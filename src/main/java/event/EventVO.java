@@ -9,6 +9,6 @@ public class EventVO {
     private String city;
     private String prize;
     private String dur;
-    private int particiNum;
-    private String eventType;
+    private int partici_num;
+    private String event_type;
 }

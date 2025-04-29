@@ -1,5 +1,6 @@
 package event;
 
+import event.EventVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class EventService {
     public EventVO selectOne(EventVO vo){
         return mapper.selectOne(vo);
     }
-    public List<EventVO> selectAll(int cpage, int limit){
-        return mapper.selectAll(cpage, limit);
+    public List<EventVO> selectAll(int startRow, int limit){
+        return mapper.selectAll(startRow, limit);
     }
 }
