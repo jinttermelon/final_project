@@ -14,5 +14,5 @@ public interface EventMapper {
 
     public EventVO selectOne(EventVO vo);
 
-    public List<EventVO> selectAll(int cpage, int limit);
+    public List<EventVO> selectAll(int startRow, int limit);
 }

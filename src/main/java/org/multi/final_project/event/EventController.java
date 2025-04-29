@@ -1,6 +1,7 @@
 package org.multi.final_project.event;
 
 import lombok.extern.slf4j.Slf4j;
+import org.multi.final_project.crewboard.CrewBoardVO;
 import org.multi.final_project.friend.FriendVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Slf4j
 @RequestMapping("/event")
@@ -24,14 +27,22 @@ public class EventController {
     }
 
     @PostMapping("/insertOK")
-    public String insertOK(FriendVO vo) {
+    public String insertOK(EventVO vo) {
+
+
+        int result = service.insertOK(vo);
         return "redirect:selectAll";
     }
 
     @GetMapping("/selectAll")
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,
                             @RequestParam(defaultValue = "10") int limit,
-                            Model model) {
+                            Model model){
+
+        int startRow = (cpage - 1) * limit;
+        List<EventVO> vos = service.selectAll(startRow, limit);
+        log.info(vos.toString());
+        model.addAttribute("vos", vos);
         return "event/selectAll";
     }
 
@@ -41,7 +52,7 @@ public class EventController {
     }
 
     @GetMapping("/deleteOK")
-    public String deleteOK(FriendVO vo) {
+    public String deleteOK(EventVO vo) {
         return "redirect:selectAll";
     }
 

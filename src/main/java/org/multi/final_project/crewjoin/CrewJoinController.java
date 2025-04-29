@@ -69,7 +69,11 @@ public class CrewJoinController {
     }
 
     @GetMapping("/selectOne")
-    public String selectOne(CrewJoinVO vo, Model model ){
+    public String selectOne(CrewVO vo, Model model ){
+
+        CrewVO vo2 = crewService.selectOne(vo);
+        log.info("CrewVO: {}", vo2);
+        model.addAttribute("vo2", vo2);
         return "crewjoin/selectOne";
     }
 }

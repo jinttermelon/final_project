@@ -2,36 +2,78 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>크루 정보</title>
     <link rel="stylesheet" th:href="@{/css/board.css}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+    <style>
+        .crew-table {
+            max-width: 700px;
+            margin: 50px auto;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .crew-table th, .crew-table td {
+            padding: 16px;
+            vertical-align: middle;
+        }
+
+        .crew-table th {
+            background-color: #f8f9fa;
+            width: 30%;
+            text-align: right;
+        }
+
+        .crew-table td {
+            background-color: #ffffff;
+        }
+
+        .join-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
 </head>
+
 <body th:replace="~{layout::layout}">
-    <div th:fragment="content">
-        <table id="customers">
-            <thead>
+<div th:fragment="content" class="container">
+    <h2 class="text-center my-4">크루 상세 정보</h2>
 
-                <td>크루명 : [[${vo2.name}]]</td>
-            <tr>
-                <td>활동지역 : [[{vo2.sido}]]</td>
-                <td>크루유형 : [[{vo2.sche}]]</td>
-                <td>크루등급 : [[{vo2.grade}}]]</td>
-                <td>크루장 : [[{vo2.leader_nickname}]]</td>
-            </tr>
-           
+    <table class="table crew-table">
+        <tbody>
+        <tr>
+            <th>크루명</th>
+            <td>[[${vo2.name}]]</td>
+        </tr>
+        <tr>
+            <th>활동지역</th>
+            <td>[[${vo2.sido}]]</td>
+        </tr>
+        <tr>
+            <th>정기일정</th>
+            <td>[[${vo2.sche}]]</td>
+        </tr>
+        <tr>
+            <th>크루등급</th>
+            <td>[[${vo2.grade}]]</td>
+        </tr>
+        <tr>
+            <th>크루장</th>
+            <td>[[${vo2.leader_nickname}]]</td>
+        </tr>
+        </tbody>
+    </table>
 
-            </thead>
-            <tbody>
-
-            </tbody>
-            <tfoot>
-            <td>
-                <a th:href="@{/crewjoin/join(cnum=${param.cnum})}">가입하기</a>
-            </td>
-            </tfoot>
-  </table>
-
+    <div class="text-center">
+        <a th:href="@{/crewjoin/join(cnum=${param.cnum})}" class="btn btn-primary join-btn">가입하기</a>
     </div>
+</div>
 </body>
 </html>

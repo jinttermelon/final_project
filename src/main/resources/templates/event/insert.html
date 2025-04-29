@@ -7,37 +7,61 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
-<body th:replace="~{layout::layout}">
-    <div th:fragment="content">
-        <h1>이벤트 배너 신청</h1>
 
-        <form action="#" method="post">
-            
-            <label>이벤트명</label>
-            <input type="text">
-            <br>
-            <label>기간</label>
-            <input type="date"> ~
-            <input type="date">
-            <br>
-            <label>배너 이미지</label>
-            <input type="file">
-            <br>
-            <label>상세 이미지</label>
-            <input type="file">
-            <br>
-            <label>지역</label>
-            <input type="text">
-            <br>
-            <label>참가비</label>
-            <input type="text">
-            <br>
-            <label>참여 인원 수</label>
-            <input type="number">
-            <br>
-            <button type="submit">배너 신청</button>
-    
-        </form>
-    </div>
+<body th:replace="~{layout::layout}">
+<div th:fragment="content">
+    <h1>이벤트 신청 페이지</h1>
+    <form action="#" method="post" th:action="@{/event/insertOK}">
+        <table id="customers">
+            <tr>
+                <td><label for="title">제목:</label></td>
+                <td>
+                    <input type="text" id="title" name="title" value="2025 전국 라이딩 페스티벌">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="city">이벤트진행 지역:</label></td>
+                <td>
+                    <input type="text" id="city" name="city" value="부산">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="prize">상품:</label></td>
+                <td>
+                    <input type="text" id="prize" name="prize" value="고급 자전거 + 상금 200만원">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="dur">기간:</label></td>
+                <td>
+                    <input type="text" id="dur" name="dur" value="2025-08-20 ~ 2025-08-21">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="partici_num">최대 참여인원:</label></td>
+                <td>
+                    <input type="text" id="partici_num" name="partici_num" value="120">명
+                </td>
+            </tr>
+            <tr>
+                <td><label for="event_type">이벤트 타입 :</label></td>
+                <td>
+                    <select id="event_type" name="event_type" class="form-control">
+                        <option value="">전체</option>
+                        <option value="제휴업체">제휴업체</option>
+                        <option value="라이딩">라이딩</option>
+                        <option value="기타">기타</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="저장">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
 </body>
 </html>
