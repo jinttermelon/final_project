@@ -1,5 +1,9 @@
 package org.multi.final_project.crewjoin;
 
+import lombok.extern.slf4j.Slf4j;
+import org.multi.final_project.crew.CrewService;
+import org.multi.final_project.crew.CrewVO;
+import org.multi.final_project.crewboard.CrewBoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@Slf4j
 @RequestMapping("crewjoin")
 @Controller
 public class CrewJoinController {
@@ -15,14 +20,26 @@ public class CrewJoinController {
     @Autowired
     private CrewJoinService service;
 
+    @Autowired
+    private CrewService crewService;
+
     @GetMapping("/join")
-    public String join(){
+    public String join(CrewVO vo, Model model) {
+
+        CrewVO vo2 = crewService.selectOne(vo);
+        log.info("CrewVO: {}", vo2);
+        model.addAttribute("vo2", vo2);
         return "crewjoin/join";
     }
 
     @PostMapping("/joinOK")
     public String joinOK(CrewJoinVO vo){
-        return "redirect:/selectAll";
+
+
+
+        int result = service.joinOK(vo);
+
+        return "redirect:/crew/selectAll";
     }
 
     @GetMapping("/update")

@@ -30,7 +30,6 @@
     <update id="updateOK" parameterType="org.multi.final_project.crewboard.CrewBoardVO">
         UPDATE crewboard
         SET
-        cnum = #{cnum},
         title = #{title},
         content = #{content},
         nickname = #{nickname},

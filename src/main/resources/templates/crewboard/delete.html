@@ -11,7 +11,7 @@
     <div th:fragment="content">
         <h1>크루게시판 글삭제 페이지</h1>
         <h3>[[${param.bnum}]] 번 글을 정말 삭제하시겠습니까?</h3>
-        <a th:href="@{/crewboard/deleteOK(bnum=${param.bnum})}">글삭제</a>
+        <a th:href="@{/crewboard/deleteOK(bnum=${param.bnum},cnum=${param.cnum})}">글삭제</a>
     </div>
 </body>
 

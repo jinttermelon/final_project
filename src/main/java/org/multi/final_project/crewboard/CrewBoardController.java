@@ -33,20 +33,27 @@ public class CrewBoardController {
         return "redirect:selectAll";
     }
     @GetMapping("update")
-    public String update(){
+    public String update(CrewBoardVO vo, Model model){
+        CrewBoardVO vo2 = service.selectOne(vo);
+        model.addAttribute("vo2", vo2);
         return "crewboard/update";
     }
     @PostMapping ("updateOK")
     public String updateOK(CrewBoardVO vo){
-        return "redirect:/selectAll";
+
+        int result = service.updateOK(vo);
+        return "redirect:selectOne?bnum="+vo.getBnum();
     }
     @GetMapping("delete")
     public String delete(){
         return "crewboard/delete";
     }
-    @PostMapping ("deleteOK")
+
+    @GetMapping ("deleteOK")
     public String deleteOK(CrewBoardVO vo){
-        return "redirect:/selectAll";
+
+        int result = service.deleteOK(vo);
+        return "redirect:selectAll?cnum="+vo.getCnum();
     }
     @GetMapping("selectAll")
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,
@@ -61,6 +68,9 @@ public class CrewBoardController {
     }
     @GetMapping("selectOne")
     public String selectOne(CrewBoardVO vo, Model model){
+
+        CrewBoardVO vo2 = service.selectOne(vo);
+        model.addAttribute("vo2", vo2);
         return "crewboard/selectOne";
     }
 

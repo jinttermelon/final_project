@@ -37,8 +37,8 @@
             <tbody>
                 <th:block th:each="vo : ${vos}">
                     <tr>
-                        <td><a th:href="@{/crewboard/selectOne(bnum=${vo.bnum})}">[[${vo.bnum}]]</a></td>
-                        <td><a th:href="@{/crewboard/selectOne(bnum=${vo.bnum})}">[[${vo.title}]]</a></td>
+                        <td><a th:href="@{/crewboard/selectOne(bnum=${vo.bnum},cnum=${vo.cnum})}">[[${vo.bnum}]]</a></td>
+                        <td><a th:href="@{/crewboard/selectOne(bnum=${vo.bnum},cnum=${vo.cnum})}">[[${vo.title}]]</a></td>
                         <td>[[${vo.nickname}]]</td>
                         <td>[[${vo.wdate}]]</td>
                     </tr>
@@ -60,7 +60,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><button><a th:href="@{/crewboard/insert}">글쓰기</a></button>
+                    <td><button><a th:href="@{/crewboard/insert(cnum=${param.cnum})}">글쓰기</a></button>
                 </tr>
 
             </tfoot>

@@ -11,46 +11,25 @@
     <div th:fragment="content">
         <table id="customers">
             <thead>
-                <input type="file" id="img" name="img" accept="image/*">
-                <td>crewA</td>
-            <tr><td>활동지역 : 경기도 화성시</td></tr>
-            <tr><td>활동인원 : 12/30</td></tr>
-            <tr> <td>크루유형 : 정기크루</td></tr>
-            <tr><td>크루등급 : 브론즈</td></tr>
-            <tr><td>크루장 : 홍길동</td></tr>
+
+                <td>크루명 : [[${vo2.name}]]</td>
+            <tr>
+                <td>활동지역 : [[{vo2.sido}]]</td>
+                <td>크루유형 : [[{vo2.sche}]]</td>
+                <td>크루등급 : [[{vo2.grade}}]]</td>
+                <td>크루장 : [[{vo2.leader_nickname}]]</td>
+            </tr>
            
-            <td colspan="2">
-                <input type="submit" value="가입 하기">
-            </td>
+
             </thead>
             <tbody>
-                <tr>
-                    <td><label for="content">크루 소개</label></td>
-                    <td>
-                        <textarea name="content" id="content" rows="10" cols="30"></textarea>
-                    </td>
-                </tr>
 
-  <table class="sche">
-    <h3>크루 일정</h3>
-
-    <thead>
-      <tr>
-        <th>날짜</th>
-        <th>시간</th>
-        <th>활동 내용</th>
-        <th>장소</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>2025-04-25 (금)</td>
-        <td>18:00 ~ 20:00</td>
-        <td>한강 라이딩</td>
-        <td>여의도 한강공원</td>
-      </tr>
-
-    </tbody>
+            </tbody>
+            <tfoot>
+            <td>
+                <a th:href="@{/crewjoin/join(cnum=${param.cnum})}">가입하기</a>
+            </td>
+            </tfoot>
   </table>
 
     </div>

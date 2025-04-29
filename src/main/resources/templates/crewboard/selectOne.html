@@ -12,15 +12,17 @@
         <h1>크루게시판 글 상세 페이지</h1>
         <form action="#" method="post" th:action="@{/crewboard/insertOK}">
             <table id="crewboard">
-                <div class="post">
-                    <h2>게시글 제목</h2>
-                    작성자: ooo | 작성일: 2025-04-24
-                    <p>
-                      안녕하세요 가입했어요
-                    </p>
-                <a th:href="@{/crewboard/selectAll(cpage=1,limit=10,cnum=${param.cnum})}">목록</a>
+                <tr>
+                    <td>[[${vo2.title}]]</td>
+                    <td>작성자:[[${vo2.nickname}]]</td>
+                    <td>작성일: [[${vo2.wdate}]]</td>
+                    <td>[[${vo2.content}]]</td>
 
-                </div>
+                <a th:href="@{/crewboard/selectAll(cnum=${param.cnum})}">목록</a>
+                <a th:href="@{/crewboard/update(bnum=${param.bnum})}">수정</a>
+                <a th:href="@{/crewboard/delete(bnum=${param.bnum},cnum=${param.cnum})}">삭제</a>
+
+                </tr>
                
             </table>
         </form>

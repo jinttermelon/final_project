@@ -12,9 +12,9 @@
         SELECT * FROM crewjoin WHERE num = #{num}
     </select>
 
-    <insert id="insertOK" >
-        INSERT INTO crewjoin (nickname, answer, approve, join_date, cnum)
-        VALUES (#{nickname}, #{answer}, #{approve}, NOW(), #{cnum})
+    <insert id="joinOK" >
+        INSERT INTO crewjoin (nickname, answer, cnum)
+        VALUES (#{nickname}, #{answer}, #{cnum})
     </insert>
 
     <update id="updateOK" >
