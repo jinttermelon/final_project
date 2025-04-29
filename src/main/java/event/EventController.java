@@ -40,7 +40,7 @@ public class EventController {
                             Model model){
 
         int startRow = (cpage - 1) * limit;
-        List<org.multi.final_project.event.EventVO> vos = service.selectAll(startRow, limit);
+        List<EventVO> vos = service.selectAll(startRow, limit);
         log.info(vos.toString());
         model.addAttribute("vos", vos);
         return "event/selectAll";
