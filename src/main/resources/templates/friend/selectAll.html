@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+    <div>
+    <h2>친구 목록</h2>
+        <tbody>
+        <th:block th:each="vo : ${vos}">
+            <tr>
+                <td>친구 1</td>
+                <td><input type="submit" value="대화"></td>
+                <td><input type="submit" value="삭제"></td>
+            </tr>
+            <br>
+            <tr>
+                <td>친구 2</td>
+                <td><input type="submit" value="대화"></td>
+                <td><input type="submit" value="삭제"></td>
+            </tr>
+            <br>
+            <tr>
+                <td>친구 3</td>
+                <td><input type="submit" value="대화"></td>
+                <td><input type="submit" value="삭제"></td>
+            </tr>
+        </th:block>
+        </tbody>
+
+        <div>
+            <input type="text" placeholder="닉네임 입력">
+            <input type="submit" value="친구 추가">
+        </div>
+        <input type="submit" value="친구 관리">
+    </div>
+</body>
+</html>

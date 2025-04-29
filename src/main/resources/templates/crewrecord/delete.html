@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h3>해당 일지를 삭제하시겠습니까?</h3>
+        <td colspan="2">
+            <input type="submit" value="예">
+            <input type="submit" value="아니오">
+        </td>    </div>
+</body>
+
+</html>

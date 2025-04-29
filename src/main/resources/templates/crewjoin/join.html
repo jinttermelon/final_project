@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h4>기본 정보 입력</h4>
+
+        <form action="#" method="post" th:action="@{/crewjoin/joinOK}">
+            <table id="customers">
+                <tr>
+                    <td><label for="name">이름(닉네임):</label></td>
+                    <td>
+                        <input type="text" id="title" name="title" value="title01...">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="sido">거주 지역:</label></td>
+                    <td>
+                        <select id="sido" name="sido" required>
+                            <option value="">-- 지역을 선택하세요 --</option>
+                            <option value="seoul">서울</option>
+                            <option value="busan">부산</option>
+                            <option value="daegu">대구</option>
+                            <option value="incheon">인천</option>
+                            <option value="gwangju">광주</option>
+                            <option value="daejeon">대전</option>
+                            <option value="ulsan">울산</option>
+                            <option value="jeju">제주</option>
+                          </select>                    </td>
+                </tr>
+                <tr>
+                    <td><label for="riding_level">라이딩 실력:</label></td>
+                    <td>
+                        <select id="sido" name="sido" required>
+                            <option value="상">상</option>
+                            <option value="중">중</option>
+                            <option value="하">하</option>
+                        
+                          </select>               
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="question">가입 질문:</label></td>
+                    <td>
+                        <text>자전거 라이딩을 시작한 지 얼마나 되셨나요?</text>
+                        
+                                <label> 처음입니다 <input type="checkbox" id="agree"> </label>
+                                <label> 1~3개월 <input type="checkbox" id="agree"> </label>
+                                <label> 3~6개월 <input type="checkbox" id="agree"> </label>
+                                <label> 1년 이상 <input type="checkbox" id="agree"> </label>
+
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="가입 완료">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

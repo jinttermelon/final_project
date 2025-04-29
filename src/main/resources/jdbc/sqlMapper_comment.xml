@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.multi.final_project.comment.CommentMapper">
+
+    <select id="selectAll" resultType="org.multi.final_project.comment.CommentVO">
+        SELECT * FROM comment
+        ORDER BY num DESC LIMIT #{startRow}, #{limit}
+    </select>
+
+    <insert id="insertOK">
+        INSERT INTO comment (bnum, content, nickname, wdate)
+        VALUES
+        (#{bnum},#{content},#{nickname},#{wdate})
+    </insert>
+
+    <update id="updateOK">
+        UPDATE comment
+        SET
+        bnum = #{bnum},
+        content = #{content},
+        nickname = #{nickname},
+        wdate = #{wdate}
+        WHERE num = #{num}
+    </update>
+
+    <delete id="deleteOK">
+        DELETE FROM comment
+        WHERE num = #{num}
+    </delete>
+
+</mapper>

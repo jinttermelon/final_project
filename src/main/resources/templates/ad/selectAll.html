@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+      <h2>광고 관리</h2>
+
+      <button>광고 등록 +</button>
+      
+      <table border="1">
+          <thead>
+              <tr>
+                  <th>광고 제목<br>(클릭하면 해당 광고 수정 페이지로 이동)</th>
+                  <th>게시 상태<br>(공개/비공개)</th>
+                  <th>광고 기간</th>
+                  <th>조회 수</th>
+                  <th>클릭 수</th>
+                  <th>수정</th>
+                  <th>삭제</th>
+                  <th>승인</th>
+                  <th>승인날짜</th>
+                  <th>요청일자</th>
+                  <th>단가</th>
+                  <th>입금상태</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td><a href="#">자전거 장비 업체 A</a></td>
+                  <td>공개</td>
+                  <td>0000-00-00 ~ 0000-00-00</td>
+                  <td>30</td>
+                  <td>10</td>
+                  <td><button>수정하기</button></td>
+                  <td><button>삭제</button></td>
+                  <td><button>승인</button></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td><a href="#">공유 자전거 업체</a></td>
+                  <td>비공개</td>
+                  <td>0000-00-00 ~ 0000-00-00</td>
+                  <td>20</td>
+                  <td>20</td>
+                  <td><button>수정하기</button></td>
+                  <td><button>삭제</button></td>
+                  <td><button>승인완료</button></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td><a href="#">자전거 판매 업체</a></td>
+                  <td>비공개</td>
+                  <td>0000-00-00 ~ 0000-00-00</td>
+                  <td>10</td>
+                  <td>30</td>
+                  <td><button>수정하기</button></td>
+                  <td><button>삭제</button></td>
+                  <td><button>승인</button></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+          </tbody>
+      </table> 
+    </div>    
+</body>
+</html>

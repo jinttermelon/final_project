@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.multi.final_project.cos.CosMapper">
+
+    <select id="selectAll" resultType="org.multi.final_project.cos.CosVO">
+        SELECT * FROM cos
+        ORDER BY cos_num asc LIMIT #{startRow}, #{limit}
+    </select>
+
+
+    <select id="searchList" resultType="org.multi.final_project.cos.CosVO">
+        SELECT * FROM cos
+        <where>
+            <choose>
+                <when test="searchKey == 'cos_name'">
+                    cos_name LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <when test="searchKey == 'city'">
+                    city = LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <when test="searchKey == 'level'">
+                    level = #{searchWord}
+                </when>
+            </choose>
+        </where>
+        ORDER BY cos_num asc LIMIT #{startRow}, #{limit}
+    </select>
+
+    <select id="selectOne" resultType="org.multi.final_project.cos.CosVO">
+        SELECT *
+        FROM cos
+        WHERE cos_num = #{cos_num}
+    </select>
+
+    <insert id="insertOK">
+        INSERT INTO cos(nickname, cos_name, info, km, cos_time, route, like_count, review_count, level, tag, city , open)
+        VALUES
+        (#{nickname}, #{cos_name}, #{info}, #{km}, #{cos_time}, #{route},  #{like_count}, #{review_count}, #{level}, #{tag}, #{city} , #{open})
+
+    </insert>
+
+    <update id="updateOK">
+        UPDATE cos
+        SET
+        nickname = #{nickname},
+        cos_name = #{cos_name},
+        info = #{info},
+        km = #{km},
+        kal = #{kal},
+        cos_time = #{cos_time},
+        route = #{route},
+        cdate = #{cdate},
+        like_count = #{like_count},
+        review_count = #{review_count},
+        img = #{img},
+        level = #{level},
+        open = #{open},
+        tag = #{tag},
+        city = #{city}
+
+        WHERE cos_num = #{cos_num}
+    </update>
+
+    <delete id="deleteOK">
+        DELETE FROM cos
+        WHERE cos_num = #{cos_num}
+    </delete>
+
+</mapper>

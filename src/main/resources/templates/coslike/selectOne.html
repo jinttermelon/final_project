@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>코스 상세 페이지</h1>
+        <form action="#" method="post" th:action="@{/cos/insertOK}">
+            <table id="cos">
+                <div class="post">
+                    <h2>코스이름</h2>
+                    <tr>
+                        <td><label for="content">코스 상세설명:</label></td>
+                    </tr>
+
+                        <td>
+                            <textarea name="content" id="content" rows="10" cols="30">코스 상세 설명입니다.</textarea>
+                        </td>
+                    </tr>
+                    <tr><td colspan="4"><button onclick="location.href='/insert'">리뷰작성하러 가기</button></tr>
+                    </div>
+               
+            </table>
+        </form>
+    </div>
+</body>
+</html>

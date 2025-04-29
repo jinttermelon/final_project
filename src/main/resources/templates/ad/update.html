@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <div>
+            <h2>광고 수정하기</h2>
+            <div style="margin:10px 0;">
+                <label>제목 입력:</label>
+                <input type="text" value="기존 제목 데이터">
+            </div>
+            <div style="margin:10px 0;">
+                <label>기간 설정:</label>
+                <input type="text" value="2025.04.25 ~ 2025.04.28">
+                <button type="button">📅</button>
+            </div>
+            <div style="margin:10px 0;">
+                <label>광고 링크:</label>
+                <input type="text" value="기존 광고 링크 데이터">
+            </div>
+            <div style="margin:10px 0;">
+                <label>배너 이미지:</label>
+                <span>기존 이미지 보기</span>
+                <input type="file">
+            </div>
+            <button type="button">취소</button>
+            <button type="button">수정 완료</button>
+        </div>
+    </div>
+</body>
+</html>

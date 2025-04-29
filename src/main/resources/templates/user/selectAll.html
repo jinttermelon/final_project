@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h2>전체 유저 보기</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>닉네임</th>
+              <th>성별</th>
+              <th>출생연도</th>
+              <th>지역</th>
+              <th>라이딩경력</th>
+              <th>연락처</th>
+              <th>프로필사진</th>
+              <th>신고기록</th>
+              <th>역할</th>
+            </tr>
+          </thead>
+          <tbody>
+          <th:block th:each="vo : ${vos}">
+            <tr>
+              <td><a th:href="@{/user/selectOne(num=${vo.num})}">[[${vo.num}]]</a></td>
+              <td><a th:href="@{/user/selectOne(num=${vo.num})}">[[${vo.nickname}]]</a></td>
+              <td>[[${vo.gender}]]</td>
+              <td>[[${vo.birth_year}]]</td>
+              <td>[[${vo.sido}]]</td>
+              <td>[[${vo.riding_year}]]</td>
+              <td>[[${vo.tel}]]</td>
+              <td>[[${vo.img_name}]]</td>
+              <td>[[${vo.report}]]</td>
+              <td>[[${vo.role}]]</td>
+              <td>
+                <a th:href="@{/user/selectOne(num=${vo.num})}">상세보기</a>
+                <a th:href="@{/user/update(num=${vo.num})}">수정</a>
+                <a th:href="@{/user/delete(num=${vo.num})}">삭제</a>
+              </td>
+            </tr>
+
+          </th:block>
+          </tbody>
+        </table>
+      
+        <br>
+
+      <tfoot>
+      <tr th:if="${param.searchKey == null}">
+        <td colspan="5">
+          <a th:href="@{/user/selectAll(cpage=1,limit=10)}">1</a>
+          <a th:href="@{/user/selectAll(cpage=2,limit=10)}">2</a>
+          <a th:href="@{/user/selectAll(cpage=3,limit=10)}">3</a>
+        </td>
+      </tr>
+      <tr th:if="${param.searchKey != null}">
+        <td colspan="5">
+          <a th:href="@{/user/searchList(cpage=1,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">1</a>
+          <a th:href="@{/user/searchList(cpage=2,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">2</a>
+          <a th:href="@{/user/searchList(cpage=3,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">3</a>
+        </td>
+      </tr>
+      </tfoot>
+    </div>    
+</body>
+</html>

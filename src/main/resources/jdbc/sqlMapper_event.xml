@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.multi.final_project.event.EventMapper">
+
+    <select id="selectAll" resultType="org.multi.final_project.event.EventVO">
+        SELECT * FROM event
+        ORDER BY num DESC LIMIT #{startRow}, #{limit}
+    </select>
+
+    <select id="selectOne" resultType="org.multi.final_project.event.EventVO">
+        SELECT *
+        FROM event
+        WHERE num = #{num}
+    </select>
+
+    <insert id="insertOK">
+    INSERT INTO event (title, city, prize, dur, partici_num, event_type)
+    VALUES
+    (#{title},#{city},#{prize},#{dur},#{partici_num},#{event_type})
+    </insert>
+
+    <update id="updateOK">
+        UPDATE event
+        SET
+        title = #{title},
+        city = #{city},
+        prize = #{prize},
+        dur = #{dur},
+        partici_num = #{partici_num},
+        event_type = #{event_type}
+        WHERE num = #{num}
+    </update>
+
+    <delete id="deleteOK">
+        DELETE FROM evnet
+        WHERE num = #{num}
+    </delete>
+
+</mapper>

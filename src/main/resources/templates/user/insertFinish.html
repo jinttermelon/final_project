@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>회원가입 완료!</h1>
+        <p>
+           BikeRiding에서 즐거운 라이딩을 위한 활발한 크루활동, 코스추천을 이용해보세요!
+        </p>
+        <input type="submit" value="Let's Go!" onclick="location.href='/home';">
+    </div>
+</body>
+</html>

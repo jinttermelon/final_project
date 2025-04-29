@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+
+<header>
+    <nav th:replace="~{top_menu :: top_menu}"></nav>
+</header>
+<body th:fragment="content"> <!-- 중요! -->
+
+<!-- 슬라이드 배너 -->
+<div class="slider">
+    <div class="slides">
+        <img src="/img/seoul.png" alt="서울 라이딩 모집">
+        <img src="/img/busan.jpg" alt="부산 라이딩 모집">
+        <img src="/img/jeju.jpg" alt="대구 라이딩 모집">
+    </div>
+</div>
+
+<!-- 코스 추천 카드 -->
+<section class="course-section">
+    <h2>추천 라이딩 코스</h2>
+    <div class="card-container">
+        <div class="card">
+            <img src="/img/hangang-river.jpg" alt="한강 코스">
+            <div class="card-content">
+                <h3>한강 자전거길</h3>
+                <p>서울 한강변을 따라 즐기는 아름다운 라이딩 코스</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="/img/busan.jpg" alt="부산 해운대 코스">
+            <div class="card-content">
+                <h3>부산 해운대 코스</h3>
+                <p>바다를 보며 시원하게 달릴 수 있는 라이딩 코스</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="/img/jeju.jpg" alt="제주 올레길">
+            <div class="card-content">
+                <h3>제주 올레길</h3>
+                <p>자연을 벗 삼아 달리는 최고의 힐링 코스</p>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+
+</body>
+<footer>
+    <div th:replace="~{footer :: footer}"></div>
+</footer>
+</html>

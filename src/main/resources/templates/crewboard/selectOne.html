@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>크루게시판 글 상세 페이지</h1>
+        <form action="#" method="post" th:action="@{/crewboard/insertOK}">
+            <table id="crewboard">
+                <div class="post">
+                    <h2>게시글 제목</h2>
+                    작성자: ooo | 작성일: 2025-04-24
+                    <p>
+                      안녕하세요 가입했어요
+                    </p>
+                <a th:href="@{/crewboard/selectAll(cpage=1,limit=10,cnum=${param.cnum})}">목록</a>
+
+                </div>
+               
+            </table>
+        </form>
+    </div>
+</body>
+</html>

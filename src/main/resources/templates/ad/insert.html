@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <div style="width:600px; margin:0 auto; border:1px solid #000; padding:10px;">
+            <!-- 광고 에디터 타이틀 -->
+            <div style="text-align:center; padding:10px; border-bottom:1px solid #000;">
+                광고 에디터
+            </div>
+    
+            <!-- 제목과 날짜 -->
+            <div style="display:flex; padding:10px; border-bottom:1px solid #000;">
+                <input type="text" placeholder="제목을 입력하세요." style="flex:2;">
+                <input type="text" placeholder="2025.04.25 ~ 2025.04.28" style="flex:1; text-align:center;">
+                <button type="button">📅</button>
+            </div>
+    
+            <!-- 광고 링크 -->
+            <div style="text-align:center; padding:50px 10px; border-bottom:1px solid #000;">
+                광고 링크
+            </div>
+    
+            <!-- 배너 이미지 등록 -->
+            <div style="text-align:center; padding:20px 10px; border-bottom:1px solid #000;">
+                <button type="button">📄 배너 이미지 등록</button>
+            </div>
+    
+            <!-- 광고 등록하기 버튼 -->
+            <div style="text-align:center; margin-top:20px;">
+                <button type="button">광고 등록하기</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

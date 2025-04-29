@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <div>
+            <h2>광고 삭제하기</h2>
+            <p>[주의] 이 광고를 삭제하시겠습니까?</p>
+            <button type="button">취소</button>
+            <button type="button">삭제 확인</button>
+        </div>
+    </div>    
+</body>
+</html>

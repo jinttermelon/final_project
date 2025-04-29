@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>크루 상세 페이지</h1>
+        <table id="crew">
+            <thead>
+            <tr>
+                <th>cnum</th>
+                    <th>name</th>
+                    <th>recruit</th>
+                    <th>sche</th>
+                    <th>score</th>
+                    <th>leader_nickname</th>
+                    <th>leader_id</th>
+                    <th>grade</th>
+                    <th>sche_check</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>[[${param.cnum}]]</td>
+                    <td>[[${vo2.name}]]</td>
+                    <td>[[${vo2.recruit}]]</td>
+                    <td>[[${vo2.sche}]]</td>
+                    <td>[[${vo2.score}]]</td>
+                    <td>[[${vo2.leader_nickname}]]</td>
+                    <td>[[${vo2.leader_id}]]</td>
+                    <td>[[${vo2.grade}]]</td>
+                    <td>[[${vo2.sche_check}]]</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <a th:href="@{/crewboard/selectAll(cpage=1,limit=10,cnum=${param.cnum})}">게시판</a>
+
+                        <a th:href="@{/crew/update(cnum=${param.cnum})}">수정</a>
+                        <a th:href="@{/crew/delete(cnum=${param.cnum})}">삭제</a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+</body>
+</html>

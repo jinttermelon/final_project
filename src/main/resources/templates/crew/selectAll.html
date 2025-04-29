@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>크루 목록</h1>
+        <form method="get" th:action="@{/crew/searchList}">
+        <table id="search_form">
+            <tr>
+                <td><select name="searchKey">
+                    <option value="title">크루이름</option>
+                    <option value="content">sche_check</option>
+                </select></td>
+                <td><input type="text" name="searchWord" th:value="${param.searchWord}"></td>
+                <td><input type="submit" value="search"></td>
+            </tr>
+        </table>
+        </form>
+
+        <table id="crew">
+            <thead>
+                <tr>
+                    <th>cnum</th>
+                    <th>name</th>
+                    <th>recruit</th>
+                    <th>sche</th>
+                    <th>score</th>
+                    <th>leader_nickname</th>
+                    <th>leader_id</th>
+                    <th>grade</th>
+                    <th>sche_check</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="vo : ${vos}">
+                    <tr>
+                        <td><a th:href="@{../crew/selectOne(cnum=${vo.cnum})}">[[${vo.cnum}]]</a></td>
+                        <td><a th:href="@{../crew/selectOne(cnum=${vo.cnum})}">[[${vo.name}]]</a></td>
+                        <td>[[${vo.recruit}]]</td>
+                        <td>[[${vo.sche}]]</td>
+                        <td>[[${vo.score}]]</td>
+                        <td>[[${vo.leader_nickname}]]</td>
+                        <td>[[${vo.leader_id}]]</td>
+                        <td>[[${vo.grade}]]</td>
+                        <td>[[${vo.sche_check}]]</td>
+
+                    </tr>
+                </th:block>
+            </tbody>
+            <tfoot>
+                <tr th:if="${param.searchKey == null}">
+                    <td colspan="5">
+                        <a th:href="@{/crew/selectAll(cpage=1,limit=10)}">1</a>
+                        <a th:href="@{/crew/selectAll(cpage=2,limit=10)}">2</a>
+                        <a th:href="@{/crew/selectAll(cpage=3,limit=10)}">3</a>
+                    </td>
+                </tr>
+                <tr th:if="${param.searchKey != null}">
+                    <td colspan="5">
+                        <a th:href="@{/crew/searchList(cpage=1,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">1</a>
+                        <a th:href="@{/crew/searchList(cpage=2,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">2</a>
+                        <a th:href="@{/crew/searchList(cpage=3,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">3</a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+</html>

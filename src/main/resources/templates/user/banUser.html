@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h2>계정 접근 제한 안내</h2>
+
+        <p>회원님의 계정은 운영정책 위반으로 인해<br>
+        2025년 4월 10일자로 <strong style="color:red;">강제 탈퇴</strong> 처리되었습니다.</p>
+
+        <ul>
+        <li><strong>사유:</strong> 커뮤니티 가이드라인 위반 (비방/욕설)</li>
+        <li><strong>신고 횟수:</strong> 6회</li>
+        </ul>
+
+    </div>    
+</body>
+</html>

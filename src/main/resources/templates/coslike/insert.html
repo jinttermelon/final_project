@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>코스 찜 페이지</h1>
+        <form action="#" method="post" th:action="@{/crewboard/insertOK}">
+            <table id="customers">
+                <tr>
+                    <td><label for="title">제목:</label></td>
+                    <td>
+                        <input type="text" id="title" name="title" value="title01...">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="nickname">작성자:</label></td>
+                    <td>
+                        <input type="text" id="nickname" name="nickname" value="nickname01">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="notice"></label></td>
+                    <td>
+                        <label><input type="checkbox" name="notice" value="notice"> 공지글 </label><br>
+                </tr>
+                <tr>
+                    <td><label for="wdate">작성일:</label></td>
+                    <td>
+                        <input type="text" id="wdate" name="wdate" value="2000.01.01">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="content">내용:</label></td>
+                    <td>
+                        <textarea name="content" id="content" rows="10" cols="30">안녕하세요 새로 가입했습니다.</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="저장">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

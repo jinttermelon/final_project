@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h2>회원 탈퇴</h2>
+
+        <p><strong>정말 탈퇴하시겠어요?</strong></p>
+        <ul>
+        <li>계정 정보 및 활동 이력이 모두 삭제됩니다.</li>
+        <li>작성한 게시물/댓글은 탈퇴 후에도 유지될 수 있습니다.</li>
+        <li>동일 이메일로 재가입은 제한될 수 있습니다.</li>
+        </ul>
+
+        <form>
+        <label>비밀번호 확인</label><br>
+        <input type="password" placeholder="비밀번호를 입력하세요"><br><br>
+
+        <button type="submit">탈퇴하기</button>
+        <button type="button">취소</button>
+    </div>    
+</body>
+</html>

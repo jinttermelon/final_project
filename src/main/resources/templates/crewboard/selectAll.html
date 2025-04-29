@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>크루1 게시판 글목록</h1>
+        <form method="get" th:action="@{/crewboard/searchList}">
+        <table id="search_form">
+            <tr>
+                <td><select name="searchKey">
+                    <option value="title">글제목</option>
+                    <option value="content">내용</option>
+                    <option value="nickname">작성자</option>
+
+                </select></td>
+                <td><input type="text" name="searchWord" th:value="ti"></td>
+                <td><input type="submit" value="search"></td>
+            </tr>
+        </table>
+        </form>
+
+        <table id="crew">
+            <thead>
+                <tr>
+                    <th>num</th>
+                    <th>title</th>
+                    <th>writer</th>
+                    <th>wdate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="vo : ${vos}">
+                    <tr>
+                        <td><a th:href="@{/crewboard/selectOne(bnum=${vo.bnum})}">[[${vo.bnum}]]</a></td>
+                        <td><a th:href="@{/crewboard/selectOne(bnum=${vo.bnum})}">[[${vo.title}]]</a></td>
+                        <td>[[${vo.nickname}]]</td>
+                        <td>[[${vo.wdate}]]</td>
+                    </tr>
+                </th:block>
+            </tbody>
+            <tfoot>
+                <tr th:if="${param.searchKey == null}">
+                    <td colspan="5">
+                        <a th:href="@{/crewboard/selectAll(cpage=1,limit=10)}">1</a>
+                        <a th:href="@{/crewboard/selectAll(cpage=2,limit=10)}">2</a>
+                        <a th:href="@{/crewboard/selectAll(cpage=3,limit=10)}">3</a>
+                    </td>
+                </tr>
+                <tr th:if="${param.searchKey != null}">
+                    <td colspan="5">
+                        <a th:href="@{/crewboard/searchList(cpage=1,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">1</a>
+                        <a th:href="@{/crewboard/searchList(cpage=2,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">2</a>
+                        <a th:href="@{/crewboard/searchList(cpage=3,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">3</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><button><a th:href="@{/crewboard/insert}">글쓰기</a></button>
+                </tr>
+
+            </tfoot>
+        </table>
+    </div>
+</body>
+</html>

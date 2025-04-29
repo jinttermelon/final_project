@@ -1,0 +1,28 @@
+package event;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class EventService {
+    @Autowired
+    private EventMapper mapper;
+
+    public int insertOK(EventVO vo){
+        return mapper.insertOK(vo);
+    }
+    public int updateOK(EventVO vo){
+        return mapper.updateOK(vo);
+    }
+    public int deleteOK(EventVO vo){
+        return mapper.deleteOK(vo);
+    }
+    public EventVO selectOne(EventVO vo){
+        return mapper.selectOne(vo);
+    }
+    public List<EventVO> selectAll(int cpage, int limit){
+        return mapper.selectAll(cpage, limit);
+    }
+}

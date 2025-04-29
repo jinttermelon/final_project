@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>코스 찜 취소 페이지</h1>
+        <h3>코스를 찜목록에서 삭제하시겠습니까?</h3>
+        <a th:href="@{/coslike/deleteOK(bnum=${param.cos_num})}">삭제</a>
+    </div>
+</body>
+
+</html>

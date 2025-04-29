@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>신고 문의 완료</h1>
+        <div>
+            <img src="https://img.icons8.com/ios-filled/100/clipboard.png" alt="완료 아이콘">
+        </div>
+        <p>
+            신고가 완료되었습니다.<br>
+            자세한 내역은 신고 문의 → 신고 내역 보기를 통해<br>
+            확인 해주세요
+        </p>
+        <p>
+            <a href="#">신고 내역 보기</a>
+        </p>
+    </div>
+</body>
+</html>

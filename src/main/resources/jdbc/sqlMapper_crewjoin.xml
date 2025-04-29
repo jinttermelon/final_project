@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.multi.final_project.crewjoin.CrewJoinMapper">
+
+    <select id="selectAll" resultType="org.multi.final_project.crewjoin.CrewJoinVO">
+        SELECT * FROM crewjoin ORDER BY num DESC LIMIT #{startRow}, #{limit}
+    </select>
+
+    <select id="selectOne" resultType="org.multi.final_project.crewjoin.CrewJoinVO" >
+        SELECT * FROM crewjoin WHERE num = #{num}
+    </select>
+
+    <insert id="insertOK" >
+        INSERT INTO crewjoin (nickname, answer, approve, join_date, cnum)
+        VALUES (#{nickname}, #{answer}, #{approve}, NOW(), #{cnum})
+    </insert>
+
+    <update id="updateOK" >
+        UPDATE crewjoin
+        SET answer = #{answer},
+        approve = #{approve},
+        join_date = #{join_date},
+        cnum = #{cnum}
+        WHERE num = #{num}
+    </update>
+
+    <delete id="deleteOK" >
+        DELETE FROM crewjoin WHERE num = #{num}
+    </delete>
+
+
+</mapper>

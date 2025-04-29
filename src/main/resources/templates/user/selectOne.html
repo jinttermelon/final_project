@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>사용자 상세 정보</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+
+<body th:replace="~{layout::layout}">
+<div th:fragment="content">
+    <h2>사용자 상세 정보</h2>
+
+    <img src="#" alt="프로필 이미지">
+    <table border="1" cellspacing="0" cellpadding="8">
+        <tr><th>ID</th><td>[[${vo2.id}]]</td></tr>
+        <tr><th>닉네임</th><td>[[${vo2.nickname}]]</td></tr>
+        <tr><th>출생년도</th><td>[[${vo2.birth_year}]]</td></tr>
+        <tr><th>성별</th><td>[[${vo2.gender}]]</td></tr>
+        <tr><th>지역(시도)</th><td>[[${vo2.sido}]]</td></tr>
+        <tr><th>라이딩 시작</th><td>[[${vo2.riding_year}]]</td></tr>
+        <tr><th>전화번호</th><td>[[${vo2.tel}]]</td></tr>
+        <tr><th>이미지 파일</th><td>[[${vo2.img_name}]]</td></tr>
+        <tr><th>신고 여부</th><td>[[${vo2.report}]]</td></tr>
+        <tr><th>역할</th><td>[[${vo2.role}]]</td></tr>
+    </table>
+    <br>
+
+    <button><a th:href="@{/user/update(num=${param.num})}">수정</a></button>
+    <button><a th:href="@{/user/delete(num=${param.num})}">삭제</a></button>
+    <button><a th:href="@{/user/selectAll}">목록으로</a></button>
+</div>
+</body>
+</html>

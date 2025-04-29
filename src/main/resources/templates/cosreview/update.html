@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>리뷰 수정 페이지</h1>
+        <form action="#" method="post" th:action="@{/crewboard/insertOK}">
+            <table id="customers">
+                <tr> 코스에 별점을 매겨주세요 </tr>
+                <tr>
+                    <td><label for="content">내용:</label></td>
+                    <td>
+                        <textarea name="content" id="content" rows="10" cols="30">너무 좋아요.</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="수정">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

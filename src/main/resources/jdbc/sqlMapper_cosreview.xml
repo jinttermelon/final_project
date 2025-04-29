@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.multi.final_project.cosreview.CosReviewMapper">
+
+    <select id="selectAll" resultType="org.multi.final_project.cosreview.CosReviewVO">
+        SELECT * FROM cosreview
+        ORDER BY num DESC LIMIT #{startRow}, #{limit}
+    </select>
+
+    <select id="selectOne" resultType="org.multi.final_project.cosreview.CosReviewVO">
+        SELECT *
+        FROM cosreview
+        WHERE num = #{num}
+    </select>
+
+    <insert id="insertOK">
+    INSERT INTO cosreview (cos_num, nickname, grade, content, wdate)
+    VALUES
+    (#{cos_num},#{nickname},#{grade},#{content}, NOW())
+    </insert>
+
+    <update id="updateOK">
+        UPDATE cosreivew
+        SET
+        cos_num = #{cos_num},
+        nickname = #{nickname},
+        grade = #{grade},
+        content = #{content},
+        wdate = #{wdate}
+        WHERE num = #{num}
+    </update>
+
+    <delete id="deleteOK">
+        DELETE FROM cosreview
+        WHERE num = #{num}
+    </delete>
+
+</mapper>

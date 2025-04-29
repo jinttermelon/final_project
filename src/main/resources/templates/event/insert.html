@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>이벤트 배너 신청</h1>
+
+        <form action="#" method="post">
+            
+            <label>이벤트명</label>
+            <input type="text">
+            <br>
+            <label>기간</label>
+            <input type="date"> ~
+            <input type="date">
+            <br>
+            <label>배너 이미지</label>
+            <input type="file">
+            <br>
+            <label>상세 이미지</label>
+            <input type="file">
+            <br>
+            <label>지역</label>
+            <input type="text">
+            <br>
+            <label>참가비</label>
+            <input type="text">
+            <br>
+            <label>참여 인원 수</label>
+            <input type="number">
+            <br>
+            <button type="submit">배너 신청</button>
+    
+        </form>
+    </div>
+</body>
+</html>

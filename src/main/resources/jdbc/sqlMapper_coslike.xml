@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.multi.final_project.coslike.CosLikeMapper">
+
+    <select id="selectAll" resultType="org.multi.final_project.coslike.CosLikeVO">
+        SELECT * FROM coslike
+        WHERE nickname = #{nickname}
+        ORDER BY num DESC LIMIT #{startRow}, #{limit}
+    </select>
+
+    <insert id="insertOK">
+        INSERT INTO coslike (nickname, cos_num)
+        VALUES
+        (#{nickname},#{cos_num})
+    </insert>
+
+    <delete id="deleteOK">
+        DELETE FROM coslike
+        WHERE cos_num = #{cos_num}
+    </delete>
+
+</mapper>

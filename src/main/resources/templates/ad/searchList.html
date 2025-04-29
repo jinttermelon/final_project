@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h2>광고 검색</h2>
+
+        <form action="#" method="get">
+            <input type="text" name="search" placeholder="광고 제목을 입력하세요.">
+            <button type="submit">검색</button>
+        </form>
+
+        <!-- 검색 결과 배너 -->
+        <div class="banner-container">
+            <!-- 검색된 광고 배너 예시 -->
+            <div class="banner">
+                <h3>자전거 장비 업체 A</h3>
+                <p>광고기간: 0000-00-00 ~ 0000-00-00</p>
+                <p>게시상태: 공개</p>
+                <p>조회수: 30 | 클릭수: 10</p>
+            </div>
+
+            <div class="banner">
+                <h3>공유 자전거 업체</h3>
+                <p>광고기간: 0000-00-00 ~ 0000-00-00</p>
+                <p>게시상태: 비공개</p>
+                <p>조회수: 20 | 클릭수: 20</p>
+            </div>
+
+            <div class="banner">
+                <h3>자전거 판매 업체</h3>
+                <p>광고기간: 0000-00-00 ~ 0000-00-00</p>
+                <p>게시상태: 비공개</p>
+                <p>조회수: 10 | 클릭수: 30</p>
+            </div>
+        </div>
+    </div>    
+</body>
+</html>

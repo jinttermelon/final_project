@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>회원수정 페이지</h1>
+        <form action="#" method="post">
+            <table id="customers">
+                <tr>
+                    <td><label for="num">번호(변경 불가)</label></td>
+                    <td>[[${param.num}]]
+                        <input type="hidden" id="num" name="num" th:value="${param.num}">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="nickname">닉네임 :</label></td>
+                    <td>
+                        <input type="text" name="nickname" value="라이더김">
+                        <input type="submit" name="nickname" value="중복 확인">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="pw">비번:</label></td>
+                    <td>
+                        <input type="password" id="pw" name="pw" th:value="${vo2.pw}">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="birthYear">출생년도:</label></td>
+                    <td>
+                        <input type="text" id="birthYear" name="birthYear" th:value="${vo2.name}">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="gander">성별:</label></td>
+                    <td>
+                        <input type="radio" name="gender" value="남" checked> 남
+                        <input type="radio" name="gender" value="여"> 여
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="sido">지역:</label></td>
+                    <td>
+                        <input type="text" name="sido" value="서울"><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="ridingYear">라이딩 경력:</label></td>
+                    <td>
+                        <input type="text" name="ridingYear" value="1개월"><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="tel">전화번호:</label></td>
+                    <td>
+                        <input type="text" id="tel" name="tel" th:value="${vo2.tel}">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="telOpen">전화번호 공개 여부:</label></td>
+                    <td>
+                        <input type="radio" name="telOpen" value="Y" checked> 공개
+                        <input type="radio" name="telOpen" value="N"> 비공개<br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>프로필이미지:</td>
+                    <td>
+                        <img th:src="|/uploadimgPath/thumb_${vo2.imgname}|" alt="">
+                        <input type="hidden" id="imgname" name="imgname" th:value="${vo2.imgname}">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="file">이미지변경:</label></td>
+                    <td>
+                        <input type="file" id="file" name="file">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>신고 횟수 (수정 불가)</label></td>
+                    <td>
+                        <input type="text" value="1회" readonly><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="user_role">권한설정:</label></td>
+                    <td>
+                        <select id="user_role" name="user_role">
+                            <option value="USER">사용자</option>
+                            <option value="ADMIN">관리자</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="변경">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

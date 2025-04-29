@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.multi.final_project.crewboard.CrewBoardMapper">
+
+    <select id="selectAll" resultType="org.multi.final_project.crewboard.CrewBoardVO">
+        SELECT * FROM crewboard
+        WHERE cnum = #{cnum}
+        ORDER BY bnum DESC LIMIT #{startRow}, #{limit}
+    </select>
+
+    <select id="searchList" resultType="org.multi.final_project.crewboard.CrewBoardVO" >
+        SELECT * FROM crewboard
+        WHERE title LIKE CONCAT('%', #{searchWord}, '%')
+        ORDER BY bnum DESC LIMIT #{startRow}, #{limit}
+    </select>
+
+    <select id="selectOne" resultType="org.multi.final_project.crewboard.CrewBoardVO" >
+        SELECT * FROM crewboard
+        WHERE bnum = #{bnum}
+    </select>
+
+
+    <insert id="insertOK" parameterType="org.multi.final_project.crewboard.CrewBoardVO">
+        INSERT INTO crewboard (cnum, title, content, wdate, nickname, notice, cos_level)
+        VALUES (#{cnum}, #{title}, #{content}, NOW(), #{nickname}, #{notice}, #{cos_level})
+    </insert>
+
+    <update id="updateOK" parameterType="org.multi.final_project.crewboard.CrewBoardVO">
+        UPDATE crewboard
+        SET
+        cnum = #{cnum},
+        title = #{title},
+        content = #{content},
+        nickname = #{nickname},
+        notice = #{notice},
+        cos_level = #{cos_level}
+        WHERE bnum = #{bnum}
+    </update>
+
+    <delete id="deleteOK" parameterType="int">
+        DELETE FROM crewboard
+        WHERE bnum = #{bnum}
+    </delete>
+
+
+</mapper>

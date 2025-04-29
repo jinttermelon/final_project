@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.multi.final_project.crew.CrewMapper">
+
+    <select id="selectAll" resultType="org.multi.final_project.crew.CrewVO">
+        SELECT * FROM crew ORDER BY cnum DESC LIMIT #{startRow}, #{limit}
+    </select>
+
+    <select id="searchList" resultType="org.multi.final_project.crew.CrewVO">
+        SELECT * FROM crew
+        WHERE name LIKE CONCAT('%', #{searchWord}, '%')
+        ORDER BY cnum DESC
+        LIMIT #{startRow}, #{limit}
+    </select>
+
+    <select id="selectOne" resultType="org.multi.final_project.crew.CrewVO" >
+        SELECT * FROM crew WHERE cnum = #{cnum}
+    </select>
+
+    <insert id="createOK" >
+        INSERT INTO crew (name, sido, recruit, sche, question, score, img_name, leader_nickname, grade, sche_check, usergrade)
+        VALUES (#{name}, #{sido}, #{recruit}, #{sche}, #{question}, #{score}, #{img_name}, #{leader_nickname}, #{grade}, #{sche_check}, #{usergrade})
+    </insert>
+
+    <update id="updateOK" >
+        UPDATE crew
+        SET
+        name = #{name},
+        sido = #{sido},
+        recruit = #{recruit},
+        sche = #{sche},
+        question = #{question},
+        score = #{score},
+        img_name = #{img_name},
+        leader_nickname = #{leader_nickname},
+        grade = #{grade},
+        sche_check = #{sche_check},
+        usergrade = #{usergrade}
+        WHERE cnum = #{cnum}
+    </update>
+
+    <delete id="deleteOK" parameterType="int">
+        DELETE FROM crew WHERE cnum = #{cnum}
+    </delete>
+
+    <select id="nameCheck" resultType="org.multi.final_project.crew.CrewVO" parameterType="String">
+        SELECT * FROM crew WHERE name = #{name}
+    </select>
+
+</mapper>

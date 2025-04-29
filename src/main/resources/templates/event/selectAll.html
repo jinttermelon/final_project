@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>EVENT</h1>
+
+         <!-- 이벤트 카테고리 버튼들 -->
+        <nav class="event-tabs">
+            <button>진행 이벤트</button>
+            <button>종료 이벤트</button>
+            <button>지역별 이벤트</button>
+        </nav>
+
+        <!-- 이벤트 카드 반복 영역 -->
+        <div class="event-list">
+            <article class="event-card">
+            <div class="event-top">
+                <span class="label">전체</span>
+                <span class="date">기간: 2025.12.34 ~ 2025.12.34</span>
+            </div>
+            <div class="event-body">
+                <div class="banner"><a href="#">이벤트 배너</a></div>
+                <div class="info">
+                <span class="location">서울</span>
+                <span class="price">참가비 0원</span>
+                <span class="people">참여 인원 수 00명</span>
+                </div>
+            </div>
+            </article>
+        </div>
+        <!-- 이벤트 카드 반복 영역 -->
+        <div class="event-list">
+            <article class="event-card">
+            <div class="event-top">
+                <span class="label">전체</span>
+                <span class="date">기간: 2025.12.34 ~ 2025.12.34</span>
+            </div>
+            <div class="event-body">
+                <div class="banner"><a href="#">이벤트 배너</a></div>
+                <div class="info">
+                <span class="location">서울</span>
+                <span class="price">참가비 0원</span>
+                <span class="people">참여 인원 수 00명</span>
+                </div>
+            </div>
+            </article>
+        </div>
+        <!-- 이벤트 카드 반복 영역 -->
+        <div class="event-list">
+            <article class="event-card">
+            <div class="event-top">
+                <span class="label">전체</span>
+                <span class="date">기간: 2025.12.34 ~ 2025.12.34</span>
+            </div>
+            <div class="event-body">
+                <div class="banner"><a href="#">이벤트 배너</a></div>
+                <div class="info">
+                <span class="location">서울</span>
+                <span class="price">참가비 0원</span>
+                <span class="people">참여 인원 수 00명</span>
+                </div>
+            </div>
+            </article>
+        </div>
+    </div>
+</body>
+</html>

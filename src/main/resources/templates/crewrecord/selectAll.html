@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>크루1 활동 일지</h1>
+        <form action="#" method="post" th:action="@{/crewrecord/insertOK}">
+            <table id="customers">
+                <thead>
+                    <tr>
+                      <th>활동일</th>
+                      <th>활동한 코스</th>
+                      <th>특이사항</th>
+                      <th>참여 크루원 수</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>2025.05.11</td>
+                      <td>붕어섬 입구 자전거 대여소 - 미륵바위 - 꺼먹다리 - 화천댐</td>
+                      <td>없음</td>
+                      <td>12</td>
+                      <td colspan="2">
+                        <input type="submit" value="수정">
+                        <input type="submit" value="삭제">
+                      </td>
+    
+                    </tr>
+                    <tr>
+                        <td>2025.05.8</td>
+                        <td>중랑천 - 한강자전거길 - 성수대교 북단 - 서울숲 지하통로</td>
+                        <td>정기라이딩</td>
+                        <td>6</td>
+                        <td colspan="2">
+                            <input type="submit" value="수정">
+                            <input type="submit" value="삭제">
+                        </td>
+        
+                      </tr>
+                      <tr>
+                        <td>2025.05.8</td>
+                        <td>중랑천 - 한강자전거길 - 성수대교 북단 - 서울숲 지하통로</td>
+                        <td>정기라이딩/부상1명</td>
+                        <td>13</td>
+                            <td colspan="2">
+                                <input type="submit" value="수정">
+                                <input type="submit" value="삭제">
+                            </td>
+            
+                      </tr>
+                      <td colspan="2">
+                        <input type="submit" value="작성">
+                    </td>
+                  </tbody>
+                  <thead>
+                    <tr>
+                      <th>활동일</th>
+                      <th>활동한 코스</th>
+                      <th>특이사항</th>
+                      <th>참여 크루원 수</th>
+                    </tr>
+                  </thead>
+                  <td>2025.05.8</td>
+                </table>
+                <td colspan="2">
+                    <input type="submit" value="수정">
+                    <input type="submit" value="삭제">
+                </td>
+    </div>
+</body>
+</html>

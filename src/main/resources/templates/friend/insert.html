@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>친구 추가 페이지</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+    <div>
+        <!-- 전체 본문-->
+        <main>
+            <div>
+            
+            <!-- 좌측 : 크루 목록
+            <section>
+                <h2>크루 목록</h2>
+
+                <div>
+                    <p>가입한 크루1</p>
+                    <ul>
+                        <li>크루1 게시판</li>
+                        <li>크루1 채팅방</li>
+                        <li>크루원 목록</li>
+                    </ul>
+                    <input type="submit" value="탈퇴"></button>
+                </div>
+            </section> -->
+
+            <!-- 메인 : 크루 맴버 목록보기 -->
+            <section>
+                <h2>크루 1 맴버 목록</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>닉네임</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>맴버 1</td>
+                            <td><input type="submit" value="친구 추가"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <a th:href="@{/board/selectAll(cpage=1,limit=5)}">1</a>
+                                <a th:href="@{/board/selectAll(cpage=2,limit=5)}">2</a>
+                                <a th:href="@{/board/selectAll(cpage=3,limit=5)}">3</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <a th:href="@{/board/searchList(cpage=1,limit=5,searchKey=${param.searchKey},searchWord=${param.searchWord})}">1</a>
+                                <a th:href="@{/board/searchList(cpage=2,limit=5,searchKey=${param.searchKey},searchWord=${param.searchWord})}">2</a>
+                                <a th:href="@{/board/searchList(cpage=3,limit=5,searchKey=${param.searchKey},searchWord=${param.searchWord})}">3</a>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+            </div>
+        </main>
+    
+    </div>
+</body>
+</html>

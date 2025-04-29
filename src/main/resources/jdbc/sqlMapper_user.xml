@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.multi.final_project.user.UserMapper">
+
+    <select id="selectAll" resultType="org.multi.final_project.user.UserVO">
+        SELECT * FROM user
+        ORDER BY num DESC LIMIT #{startRow}, #{limit}
+    </select>
+
+    <select id="selectOne" resultType="org.multi.final_project.user.UserVO">
+        SELECT * FROM user
+        WHERE num = #{num}
+    </select>
+
+    <select id="getHistoryCount" resultType="org.multi.final_project.user.UserVO">
+
+    </select>
+
+    <select id="login" resultType="org.multi.final_project.user.UserVO">
+
+    </select>
+
+    <select id="idCheck" resultType="org.multi.final_project.user.UserVO">
+
+    </select>
+
+    <select id="banUserOK" resultType="org.multi.final_project.user.UserVO">
+
+    </select>
+
+    <select id="nicknameCheck" resultType="org.multi.final_project.user.UserVO">
+
+    </select>
+
+    <insert id="insertOK">
+        INSERT INTO user(id, pw, nickname, birth_year, gender, sido, riding_year, tel, tel_open)
+        VALUES
+        (#{id}, #{pw}, #{nickname}, #{birth_year}, #{gender}, #{sido}, #{riding_year}, #{tel}, #{tel_open})
+    </insert>
+
+    <update id="updateOK">
+        UPDATE user
+        SET
+        id = #{id},
+        pw = #{pw},
+        nickname = #{nickname},
+        birth_year = #{birth_year},
+        gender = #{gender},
+        sido = #{sido},
+        riding_year = #{riding_year},
+        tel = #{tel},
+        tel_open = #{tel_open},
+        img_name = #{img_name},
+        role = #{role},
+        report = #{report}
+        WHERE num = #{num}
+    </update>
+
+    <update id="updateLevel">
+
+    </update>
+
+    <delete id="deleteOK">
+        DELETE FROM user
+        WHERE num = #{num}
+    </delete>
+
+</mapper>
