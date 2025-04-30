@@ -12,41 +12,39 @@
         <h1>회원가입</h1>
         <form action="insertOK" method="post">
         
-            <label>ID
-                <input type="text" name="id">
-                <button type="button">중복체크</button>
-            </label>
+
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">@</span>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                <span class="input-group-text" name="id">아이디</span>
+                <input type="text" class="id" placeholder="id" aria-label="id" aria-describedby="basic-addon1">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">중복체크</button>
             </div>
-            <br><br>
-
-            <label>이메일
-            <input type="email" name="email">
-            <button type="button">중복체크</button>
-            </label>
-            <br><br>
-
-            <label>비밀번호
-            <input type="text" name="pw">
-            </label>
-            <br><br>
-
-            <label>비밀번호 확인
-            <input type="password" name="pwConfirm">
-            </label>
-            <br><br>
-
-            <label>닉네임
-            <input type="text" name="nickname">
-            <button type="button">중복체크</button>
-            </label>
-            <br><br>
-
-            <label>생년월일
-            <input type="text" name="birth_year" placeholder="20020125" size="8">
-            </label>
+            <br>
+            <div class="input-group mb-3">
+                <span class="input-group-text" name="email">이메일</span>
+                <input type="text" class="email" placeholder="email" aria-label="email" aria-describedby="basic-addon1">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">중복체크</button>
+            </div>
+            <br>
+            <div class="input-group mb-3">
+                <span class="input-group-text" name="pw">비밀번호</span>
+                <input type="text" class="pw" placeholder="pw" aria-label="pw" aria-describedby="basic-addon1">
+            </div>
+            <br>
+            <div class="input-group mb-3">
+                <span class="input-group-text" name="pwConfirm">비밀번호 확인</span>
+                <input type="password" class="pwConfirm" placeholder="pwConfirm" aria-label="pwConfirm" aria-describedby="basic-addon1">
+            </div>
+            <br>
+            <div class="input-group mb-3">
+                <span class="input-group-text" name="nickname">닉네임</span>
+                <input type="text" class="nickname" placeholder="nickname" aria-label="nickname" aria-describedby="basic-addon1">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">중복체크</button>
+            </div>
+            <br>
+            <div class="input-group mb-3">
+                <span class="input-group-text" name="birth_year">생년월일</span>
+                <input type="text" class="birth_year" placeholder="20020125" aria-label="birth_year" aria-describedby="basic-addon1">
+            </div>
             <br><br>
 
             <label>성별
@@ -65,15 +63,31 @@
             <input type="text" name="tel" size="3" value="010">
             <input type="text" name="phone2" size="4">
             <input type="text" name="phone3" size="4">
-                <tr>
                     <td colspan="2">공개 여부:
                         <input type="radio" id="public" name="tel_open" value="open" checked>
                         <label for="public">공개</label>
                         <input type="radio" id="private" name="tel_open" value="close">
                         <label for="private">비공개</label>
                     </td>
-                </tr>
             </label>
+
+            <div class="input-group">
+                <span class="input-group-text">전화번호</span>
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">통신사</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">KT</a></li>
+                        <li><a class="dropdown-item" href="#">LG</a></li>
+                        <li><a class="dropdown-item" href="#">skt</a></li>
+
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+
+                <input type="text" aria-label="First name" class="form-control" value="010">
+                <input type="text" aria-label="Last name" class="form-control">
+                <input type="text" aria-label="Last name" class="form-control">
+
+            </div>
             <br><br>
 
 
