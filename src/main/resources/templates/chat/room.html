@@ -22,43 +22,41 @@ sender:<input type="text" id="sender" placeholder="닉네임" value="yangssem"/>
 message<input type="text" id="message" placeholder="메시지" value="Hello Chat"/>
 <button onclick="sendMessage()">전송</button>
 <div class="message full"></div>
-<script>
-    const log_div = function ( msg ) {
-        let objectDate = new Date();
+<script th:inline="javascript">
+    let roomId = [[${room_id}]]; // Thymeleaf에서 room_id 받아옴
+    let socket = new WebSocket("ws://" + location.hostname + ":8821/ws/chat?room_id=" + roomId);
 
-        let day = objectDate.getDate();
-        let month = objectDate.getMonth()+1;
-        let year = objectDate.getFullYear();
-        console.log(year);
-        $('.message').append('<div>[' +year+'-'+month+ '-' +day+' '+new Date().toLocaleTimeString() + '] ' +  msg + '</div>' );
-    }
-
-    let room_id = '[[${room_id}]]';
-    console.log(room_id);
-    let ws = new WebSocket("ws://172.30.1.13:8821/ws/chat?room_id=" + room_id);
-
-    ws.onopen = function( evt ) {
-        log_div( '서버와 연결하였습니다.' );
+    socket.onopen = function() {
+        log_div('서버와 연결되었습니다.');
     };
 
-
-
-    ws.onmessage = function(event) {
-        console.log("onmessage - event.data : ",event.data);
-        log_div( event.data);
+    socket.onmessage = function(event) {
+        const msg = JSON.parse(event.data);
+        const div = document.createElement('div');
+        div.innerText = msg.sender + ": " + msg.message;
+        document.querySelector(".message").appendChild(div);
     };
 
     function sendMessage() {
-        const sender = $("#sender").val();
-        const message = $("#message").val();
-        console.log( sender + ": " + message );
-        const obj_message = {
-            room_id: room_id,
+        const sender = document.getElementById("sender").value;
+        const message = document.getElementById("message").value;
+        const msgObj = {
+            room_id: roomId,
             sender: sender,
             message: message
         };
-        ws.send(JSON.stringify(obj_message));
+        socket.send(JSON.stringify(msgObj));
+        document.getElementById("message").value = "";
+    }
+
+    function log_div(msg) {
+        const now = new Date();
+        const formatted = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+        const div = document.createElement('div');
+        div.innerText = `[${formatted}] ${msg}`;
+        document.querySelector(".message").appendChild(div);
     }
 </script>
+
 </body>
 </html>
