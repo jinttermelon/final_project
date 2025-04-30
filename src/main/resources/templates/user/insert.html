@@ -51,63 +51,68 @@
             <input type="radio" name="gender" value="M"> 남자
             <input type="radio" name="gender" value="F"> 여자
             </label>
-            <br><br>
 
-            <label>전화번호
-            <select name="carrier">
-                <option>통신사</option>
-                <option>KT</option>
-                <option>SKT</option>
-                <option>LG</option>
-            </select>
-            <input type="text" name="tel" size="3" value="010">
-            <input type="text" name="phone2" size="4">
-            <input type="text" name="phone3" size="4">
-                    <td colspan="2">공개 여부:
-                        <input type="radio" id="public" name="tel_open" value="open" checked>
-                        <label for="public">공개</label>
-                        <input type="radio" id="private" name="tel_open" value="close">
-                        <label for="private">비공개</label>
-                    </td>
-            </label>
+            <br>
 
             <div class="input-group">
                 <span class="input-group-text">전화번호</span>
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">통신사</button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">KT</a></li>
-                        <li><a class="dropdown-item" href="#">LG</a></li>
-                        <li><a class="dropdown-item" href="#">skt</a></li>
-
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Separated link</a></li>
-                    </ul>
-
+                <select class="form-select" aria-label="Default select example">
+                    <option selected >통신사</option>
+                    <option value="1">KT</option>
+                    <option value="2">LG</option>
+                    <option value="3">SKT</option>
+                </select>
                 <input type="text" aria-label="First name" class="form-control" value="010">
                 <input type="text" aria-label="Last name" class="form-control">
                 <input type="text" aria-label="Last name" class="form-control">
 
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                    <label class="form-check-label" for="checkDefault">
+                        공개
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkChecked" checked>
+                    <label class="form-check-label" for="checkChecked">
+                        비공개
+                    </label>
+                </div>
             </div>
             <br><br>
 
-
-            <label>거주지역
-            <select name="sido">
-                <option>경기도(선택)</option>
-                <option>서울특별시</option>
-                <option>부산광역시</option>
-            </select>
-            <select name="sigungu">
-                <option>수원시(선택)</option>
-                <option>용인시</option>
-                <option>성남시</option>
-            </select>
-            </label>
-            <br><br>
-
-            <label>라이딩경력
-            <input type="text" name="riding_year">
-            </label>
+            <br>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="sido">거주지역</label>
+                <select class="form-select" name="sido">
+                    <option selected> 도 (선택) </option>
+                    <option value="1">경기도</option>
+                    <option value="2">서울특별시</option>
+                    <option value="3">부산광역시</option>
+                </select>
+                <select class="form-select" name="sido">
+                    <option selected> 시 (선택) </option>
+                    <option value="1">수원시</option>
+                    <option value="2">용인시</option>
+                    <option value="3">성남시</option>
+                </select>
+            </div>
+            <br>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="riding_year">거주지역</label>
+                <select class="form-select" name="riding_year">
+                    <option selected> 년 (선택) </option>
+                    <option value="1">1년</option>
+                    <option value="2">2년</option>
+                    <option value="3">3년</option>
+                </select>
+                <select class="form-select" name="riding_year">
+                    <option selected> 개월 (선택) </option>
+                    <option value="1">1개월</option>
+                    <option value="2">2개월</option>
+                    <option value="3">3개월</option>
+                </select>
+            </div>
             <br><br>
 
             <!-- 프로필 사진 -->
