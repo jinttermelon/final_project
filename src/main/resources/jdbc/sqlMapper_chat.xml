@@ -4,6 +4,12 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.multi.final_project.chat.ChatMapper">
+
+    <insert id="insertRoom" parameterType="org.multi.final_project.chat.ChatRoomVO">
+        INSERT INTO chat_room (room_id, room_name, chat_info, cdate)
+        VALUES (#{room_id}, #{room_name}, #{chat_info}, NOW())
+    </insert>
+
     <select id="findAllRooms" resultType="org.multi.final_project.chat.ChatRoomVO">
         SELECT * FROM chat_room order by num desc
     </select>

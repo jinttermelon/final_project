@@ -11,4 +11,5 @@ public class ChatRoomVO {
     private String room_name;
     private Timestamp cdate;
     private String nick;
+    private String chat_info;
 }
