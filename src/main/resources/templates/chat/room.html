@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- 중요 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/example-min.css}" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" ></script>
+
+</head>
+<body>
+<header>
+    <nav th:replace="~{top_menu :: top_menu}"></nav>
+</header>
+<h2>채팅방</h2>
+<h5>messages_history</h5>
+<ul id="chat">
+    <li th:each="msg : ${messages_history}" th:text="${msg.wdate + ': ' + msg.sender + ': ' + msg.message}"></li>
+</ul>
+sender:<input type="text" id="sender" placeholder="닉네임" value="yangssem"/><br>
+message<input type="text" id="message" placeholder="메시지" value="Hello Chat"/>
+<button onclick="sendMessage()">전송</button>
+<div class="message full"></div>
+<script th:inline="javascript">
+    let roomId = [[${room_id}]]; // Thymeleaf에서 room_id 받아옴
+    let socket = new WebSocket("ws://" + location.hostname + ":8888/ws/chat?room_id=" + roomId);
+
+    socket.onopen = function() {
+        log_div('서버와 연결되었습니다.');
+    };
+
+    socket.onmessage = function(event) {
+        const msg = JSON.parse(event.data);
+        const div = document.createElement('div');
+        div.innerText = msg.sender + ": " + msg.message;
+        document.querySelector(".message").appendChild(div);
+    };
+
+    function sendMessage() {
+        const sender = document.getElementById("sender").value;
+        const message = document.getElementById("message").value;
+        const msgObj = {
+            room_id: roomId,
+            sender: sender,
+            message: message
+        };
+        socket.send(JSON.stringify(msgObj));
+        document.getElementById("message").value = "";
+    }
+
+    function log_div(msg) {
+        const now = new Date();
+        const formatted = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+        const div = document.createElement('div');
+        div.innerText = `[${formatted}] ${msg}`;
+        document.querySelector(".message").appendChild(div);
+    }
+</script>
+
+</body>
+</html>

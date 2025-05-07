@@ -2,86 +2,71 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>이벤트 목록</title>
-    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <style>
-        h1 {
-            margin: 30px 0;
-            text-align: center;
-        }
-        .table th, .table td {
-            vertical-align: middle;
-            text-align: center;
-        }
-        .pagination {
-            justify-content: center;
-            margin-top: 20px;
-        }
-    </style>
 </head>
 <body th:replace="~{layout::layout}">
-<div th:fragment="content" class="container mt-5">
-    <h1>이벤트 목록</h1>
-    <table id="event" class="table table-bordered table-hover">
-        <thead class="thead-dark">
-        <tr>
-            <th>번호</th>
-            <th>이벤트명</th>
-            <th>진행지역</th>
-            <th>상품</th>
-            <th>진행기간</th>
-            <th>최대인원</th>
-            <th>타입</th>
-        </tr>
-        </thead>
-        <tbody>
-        <th:block th:each="vo : ${vos}">
-            <tr>
-                <td>
-                    <a th:href="@{/event/selectOne(num=${vo.num})}" class="text-dark">[[${vo.num}]]</a>
-                </td>
-                <td>
-                    <a th:href="@{/event/selectOne(num=${vo.num})}" class="text-primary font-weight-bold">[[${vo.title}]]</a>
-                </td>
-                <td>[[${vo.city}]]</td>
-                <td>[[${vo.prize}]]</td>
-                <td>[[${vo.dur}]]</td>
-                <td>[[${vo.partici_num}]]</td>
-                <td>[[${vo.event_type}]]</td>
-            </tr>
-        </th:block>
-        </tbody>
-    </table>
+    <div th:fragment="content">
+        <h1>EVENT</h1>
 
-    <!-- Pagination -->
-    <nav>
-        <ul class="pagination">
-            <li class="page-item" th:if="${param.searchKey == null}">
-                <a class="page-link" th:href="@{/event/selectAll(cpage=1,limit=10)}">1</a>
-            </li>
-            <li class="page-item" th:if="${param.searchKey == null}">
-                <a class="page-link" th:href="@{/event/selectAll(cpage=2,limit=10)}">2</a>
-            </li>
-            <li class="page-item" th:if="${param.searchKey == null}">
-                <a class="page-link" th:href="@{/event/selectAll(cpage=3,limit=10)}">3</a>
-            </li>
+         <!-- 이벤트 카테고리 버튼들 -->
+        <nav class="event-tabs">
+            <button>진행 이벤트</button>
+            <button>종료 이벤트</button>
+            <button>지역별 이벤트</button>
+        </nav>
 
-            <li class="page-item" th:if="${param.searchKey != null}">
-                <a class="page-link"
-                   th:href="@{/event/searchList(cpage=1,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">1</a>
-            </li>
-            <li class="page-item" th:if="${param.searchKey != null}">
-                <a class="page-link"
-                   th:href="@{/event/searchList(cpage=2,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">2</a>
-            </li>
-            <li class="page-item" th:if="${param.searchKey != null}">
-                <a class="page-link"
-                   th:href="@{/event/searchList(cpage=3,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">3</a>
-            </li>
-        </ul>
-    </nav>
-</div>
+        <!-- 이벤트 카드 반복 영역 -->
+        <div class="event-list">
+            <article class="event-card">
+            <div class="event-top">
+                <span class="label">전체</span>
+                <span class="date">기간: 2025.12.34 ~ 2025.12.34</span>
+            </div>
+            <div class="event-body">
+                <div class="banner"><a href="#">이벤트 배너</a></div>
+                <div class="info">
+                <span class="location">서울</span>
+                <span class="price">참가비 0원</span>
+                <span class="people">참여 인원 수 00명</span>
+                </div>
+            </div>
+            </article>
+        </div>
+        <!-- 이벤트 카드 반복 영역 -->
+        <div class="event-list">
+            <article class="event-card">
+            <div class="event-top">
+                <span class="label">전체</span>
+                <span class="date">기간: 2025.12.34 ~ 2025.12.34</span>
+            </div>
+            <div class="event-body">
+                <div class="banner"><a href="#">이벤트 배너</a></div>
+                <div class="info">
+                <span class="location">서울</span>
+                <span class="price">참가비 0원</span>
+                <span class="people">참여 인원 수 00명</span>
+                </div>
+            </div>
+            </article>
+        </div>
+        <!-- 이벤트 카드 반복 영역 -->
+        <div class="event-list">
+            <article class="event-card">
+            <div class="event-top">
+                <span class="label">전체</span>
+                <span class="date">기간: 2025.12.34 ~ 2025.12.34</span>
+            </div>
+            <div class="event-body">
+                <div class="banner"><a href="#">이벤트 배너</a></div>
+                <div class="info">
+                <span class="location">서울</span>
+                <span class="price">참가비 0원</span>
+                <span class="people">참여 인원 수 00명</span>
+                </div>
+            </div>
+            </article>
+        </div>
+    </div>
 </body>
 </html>

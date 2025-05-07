@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- 중요 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/example-min.css}"/>
+    <style>
+        .chat-container {
+            width: 80%;
+            margin: auto;
+        }
+
+        @media (max-width: 768px) {
+            .chat-container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav th:replace="~{top_menu :: top_menu}"></nav>
+</header>
+<h2>채팅방 목록</h2>
+<div class="container mt-5">
+    <form action="/chat/room" method="post" class="d-flex mb-9">
+        <input type="text" class="form-control me-2" name="room_name" placeholder="채팅방 이름" value="room1" >
+        <button type="submit" class="btn btn-primary">채팅방 생성</button>
+    </form>
+    <div class="row">
+        <div class="col-md-6" th:each="room : ${rooms}">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <a th:href="@{'/chat/room/' + ${room.room_id}}">[[${room.num}]] : [[${room.room_id}]] : [[${room.room_name}]]</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
