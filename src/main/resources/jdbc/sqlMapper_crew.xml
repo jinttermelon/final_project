@@ -49,4 +49,12 @@
         SELECT * FROM crew WHERE name = #{name}
     </select>
 
+    <select id="totalRowCount" resultType="int">
+        SELECT count(*) FROM crew
+    </select>
+
+    <select id="searchListTotalRowCount" resultType="int">
+        SELECT count(*) FROM crew WHERE name LIKE CONCAT('%', #{searchWord}, '%')
+    </select>
+
 </mapper>

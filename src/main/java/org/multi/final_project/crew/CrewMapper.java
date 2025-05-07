@@ -22,4 +22,8 @@ public interface CrewMapper {
 
         public CrewVO nameCheck(CrewVO vo);
 
+        public int totalRowCount(CrewVO vo);
+
+        public int searchListTotalRowCount(CrewVO vo,String searchKey, String searchWord);
+
 }

@@ -32,4 +32,12 @@ public class CrewService {
     public CrewVO nameCheck(CrewVO vo){
         return mapper.nameCheck(vo);
     }
+
+    public int getTotalRowCount(CrewVO vo) {
+        return mapper.totalRowCount(vo);
+    }
+
+    public int getSearchListTotalRowCount(CrewVO vo,String searchKey, String searchWord) {
+        return mapper.searchListTotalRowCount(vo,searchKey,searchWord);
+    }
 }

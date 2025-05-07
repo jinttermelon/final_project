@@ -58,11 +58,26 @@ public class CrewController {
     }
     @GetMapping("/selectAll")
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,
-                            @RequestParam(defaultValue = "10") int limit, Model model ){
+                            @RequestParam(defaultValue = "10") int limit, Model model , CrewVO vo){
 
         int startRow = (cpage - 1) * limit;
         List<CrewVO> vos = service.selectAll(startRow, limit);
         model.addAttribute("vos", vos);
+
+        int totalRowCount = service.getTotalRowCount(vo);
+        log.info("total row count: {}", totalRowCount);
+
+        int pageCount = 1;
+        if (totalRowCount / limit==0){
+            pageCount = 1;
+        }else if(totalRowCount % limit==0){
+            pageCount = totalRowCount / limit;
+        }else {
+            pageCount = totalRowCount / limit +1;
+        }
+        log.info("page count: {}", pageCount);
+
+        model.addAttribute("pageCount", pageCount);
         return "crew/selectAll";
     }
     @GetMapping("/selectOne")
@@ -78,7 +93,8 @@ public class CrewController {
             @RequestParam(defaultValue = "10") int limit,
             @RequestParam(defaultValue = "name") String searchKey,
             @RequestParam(defaultValue = "") String searchWord,
-            Model model) {
+            Model model,
+            CrewVO vo) {
 
         // 시작 행 계산
         int startRow = (cpage - 1) * limit;
@@ -92,6 +108,21 @@ public class CrewController {
         // startRow를 매퍼로 전달
         List<CrewVO> vos = service.searchList(startRow, limit, searchKey, searchWord);
         model.addAttribute("vos", vos);
+
+        int totalRowCount = service.getSearchListTotalRowCount(vo,searchKey,searchWord);
+        log.info("total row count: {}", totalRowCount);
+
+        int pageCount = 1;
+        if (totalRowCount / limit==0){
+            pageCount = 1;
+        }else if(totalRowCount % limit==0){
+            pageCount = totalRowCount / limit;
+        }else {
+            pageCount = totalRowCount / limit +1;
+        }
+        log.info("page count: {}", pageCount);
+
+        model.addAttribute("pageCount", pageCount);
 
         return "crew/selectAll";
     }
