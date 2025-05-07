@@ -20,8 +20,8 @@
     </select>
 
     <insert id="createOK" >
-        INSERT INTO crew (name, sido, recruit, sche, question, score, img_name, leader_nickname, grade, sche_check, usergrade)
-        VALUES (#{name}, #{sido}, #{recruit}, #{sche}, #{question}, #{score}, #{img_name}, #{leader_nickname}, #{grade}, #{sche_check}, #{usergrade})
+        INSERT INTO crew (name, sido, recruit, sche, question, score, img_name, leader_nickname, grade, sche_check, riding_level)
+        VALUES (#{name}, #{sido}, #{recruit}, #{sche}, #{question}, #{score}, #{img_name}, #{leader_nickname}, #{grade}, #{sche_check}, #{riding_level})
     </insert>
 
     <update id="updateOK" >

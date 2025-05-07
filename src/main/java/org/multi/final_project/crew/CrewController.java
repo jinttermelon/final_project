@@ -27,7 +27,14 @@ public class CrewController {
     }
     @PostMapping("/createOK")
     public String createOK(CrewVO vo){
-        return "redirect:/selectAll";
+
+        //크루대표이미지기본값
+        if (vo.getImg_name() == null || vo.getImg_name().isEmpty()) {
+            vo.setImg_name("default.png");
+        }
+
+        service.createOK(vo);
+        return "redirect:selectAll";
     }
     @GetMapping("/update")
     public String update(){

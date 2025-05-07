@@ -16,10 +16,9 @@ public class CrewVO {
     private String img_name;
     private MultipartFile file;
     private String leader_nickname;
-    private String leader_id;
     private String grade;
     private String sche_check;
-    private String usergrade;
+    private String riding_level;
 
 
 }
