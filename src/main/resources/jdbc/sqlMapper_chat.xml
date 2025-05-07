@@ -2,19 +2,15 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="org.multi.final_project.chat.ChatMapper">
     <select id="findAllRooms" resultType="org.multi.final_project.chat.ChatRoomVO">
         SELECT * FROM chat_room order by num desc
     </select>
 
-    <insert id="insertRoom">
-        INSERT INTO chat_room(room_id, room_name)
-        VALUES(#{room_id}, #{room_name})
-    </insert>
-
-    <insert id="insertMessage">
-        INSERT INTO chat_message(room_id, sender, message)
-        VALUES(#{room_id}, #{sender}, #{message})
+    <insert id="insertMessage" parameterType="ChatMessageVO">
+        INSERT INTO chat_message(room_id, sender, message, nick)
+        VALUES(#{room_id}, #{sender}, #{message}, #{nick})
     </insert>
 
     <select id="getMessagesByRoomId" >

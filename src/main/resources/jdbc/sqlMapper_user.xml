@@ -67,4 +67,7 @@
         WHERE num = #{num}
     </delete>
 
+    <select id="getNickname" parameterType="String" resultType="UserVO">
+        SELECT nickname FROM user WHERE id = #{id}
+    </select>
 </mapper>
