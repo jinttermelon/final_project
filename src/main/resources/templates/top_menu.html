@@ -1,14 +1,34 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<nav th:fragment="top_menu">
-    <a th:href="@{/}">HOME</a>
-    <a th:href="@{/user/insert}">회원가입</a>
-    <a th:href="@{/crew/selectAll(cpage=1,limit=10)}">크루목록</a>
-    <a th:href="@{/cos/selectAll(cpage=1,limit=10)}">코스목록</a>
-    <a th:href="@{/event/selectAll(cpage=1,limit=10)}">이벤트</a>
-    <a th:href="@{/user/selectAll}">유저목록</a>
-    <a th:href="@{/chat/rooms}">채팅하기</a>
+<nav th:fragment="top_menu"  class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user/insert}">회원가입</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/crew/selectAll(cpage=1,limit=10)}">크루목록</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/cos/selectAll(cpage=1,limit=10)}">코스목록</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/event/selectAll(cpage=1,limit=10)}">이벤트</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/chat/rooms}">채팅하기</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user/login}">로그인</a>
+                </li>
+            </ul>
+        </div>
+    </div>
     <hr>
 </nav>
 </html>
