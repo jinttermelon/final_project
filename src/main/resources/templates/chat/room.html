@@ -18,13 +18,13 @@
 <ul id="chat">
     <li th:each="msg : ${messages_history}" th:text="${msg.wdate + ': ' + msg.sender + ': ' + msg.message}"></li>
 </ul>
-sender:<input type="text" id="sender" placeholder="닉네임" value="yangssem"/><br>
+nickname:<input type="text" id="sender" placeholder="닉네임" value="yangssem"/><br>
 message<input type="text" id="message" placeholder="메시지" value="Hello Chat"/>
 <button onclick="sendMessage()">전송</button>
 <div class="message full"></div>
 <script th:inline="javascript">
     let roomId = [[${room_id}]]; // Thymeleaf에서 room_id 받아옴
-    let socket = new WebSocket("ws://" + location.hostname + ":8888/ws/chat?room_id=" + roomId);
+    let socket = new WebSocket("ws://" + location.host + "/ws/chat?room_id=" + roomId);
 
     socket.onopen = function() {
         log_div('서버와 연결되었습니다.');
@@ -42,8 +42,9 @@ message<input type="text" id="message" placeholder="메시지" value="Hello Chat
         const message = document.getElementById("message").value;
         const msgObj = {
             room_id: roomId,
-            sender: sender,
-            message: message
+            sender : sender,
+            message: message,
+            nick: sender
         };
         socket.send(JSON.stringify(msgObj));
         document.getElementById("message").value = "";

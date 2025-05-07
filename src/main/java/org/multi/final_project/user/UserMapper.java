@@ -28,4 +28,6 @@ public interface UserMapper {
 
     public UserVO nicknameCheck(UserVO vo);
 
+    UserVO getNickname(String id);
+
 }
