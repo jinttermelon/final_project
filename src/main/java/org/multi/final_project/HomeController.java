@@ -2,14 +2,11 @@ package org.multi.final_project;
 
 import lombok.extern.slf4j.Slf4j;
 import org.multi.final_project.report.ReportService;
-import org.multi.final_project.report.ReportVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Slf4j
 @Controller
@@ -24,4 +21,12 @@ public class HomeController {
     }
 
 
+    @SpringBootApplication
+    public static class final_projectApplication {
+
+        public static void main(String[] args) {
+            SpringApplication.run(final_projectApplication.class, args);
+        }
+
+    }
 }

@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
 
+</head>
+
+<body th:fragment="content"> <!-- 중요! -->
 <header>
     <nav th:replace="~{top_menu :: top_menu}"></nav>
 </header>
-<body th:fragment="content"> <!-- 중요! -->
-
 <!-- 슬라이드 배너 -->
 <div class="slider">
     <div class="slides">
