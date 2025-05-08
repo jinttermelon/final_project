@@ -25,6 +25,16 @@ public class UserController {
         return "user/insert";
     }
 
+    @GetMapping("/findId")
+    public String findId() {
+        return "user/findId";
+    }
+
+    @GetMapping("/findPassword")
+    public String findPassword() {
+        return "user/findPassword";
+    }
+
     @PostMapping("/insertOK")
     public String insertOK(UserVO vo) {
         service.insertOK(vo);
