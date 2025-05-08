@@ -11,6 +11,5 @@ public class CrewBoardVO {
     private String wdate;
     private String nickname;
     private String notice;
-    private String cos_level;
 
 }

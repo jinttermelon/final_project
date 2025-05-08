@@ -29,7 +29,16 @@ public class CrewBoardController {
     @PostMapping ("insertOK")
     public String insertOK(CrewBoardVO vo){
 
+        log.info("insert ok:{}",vo);
+
+        if (vo.getNotice() == null){
+            vo.setNotice("일반");
+        }else {
+            vo.setNotice("공지");
+        }
+
         service.insertOK(vo);
+
 
         return "redirect:selectAll?cnum="+vo.getCnum();
     }

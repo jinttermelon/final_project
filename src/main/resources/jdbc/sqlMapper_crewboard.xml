@@ -23,8 +23,8 @@
 
 
     <insert id="insertOK" parameterType="org.multi.final_project.crewboard.CrewBoardVO">
-        INSERT INTO crewboard (cnum, title, content, nickname, notice, cos_level)
-        VALUES (#{cnum}, #{title}, #{content}, #{nickname}, #{notice}, #{cos_level})
+        INSERT INTO crewboard (cnum, title, content, nickname, notice)
+        VALUES (#{cnum}, #{title}, #{content}, #{nickname}, #{notice})
     </insert>
 
     <update id="updateOK" parameterType="org.multi.final_project.crewboard.CrewBoardVO">
@@ -33,8 +33,7 @@
         title = #{title},
         content = #{content},
         nickname = #{nickname},
-        notice = #{notice},
-        cos_level = #{cos_level}
+        notice = #{notice}
         WHERE bnum = #{bnum}
     </update>
 
