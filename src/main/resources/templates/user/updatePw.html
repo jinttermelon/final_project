@@ -12,7 +12,7 @@
 		body {
 			background-color: #f5f5f5;
 		}
-		.login-card {
+		.updatePw-card {
 			max-width: 600px;
 			margin: 100px auto;
 			padding: 30px;
@@ -45,7 +45,7 @@
 		<h2>비밀번호 변경</h2>
 		<form action="/updatePw" method="post">
 			<div class="form-group">
-				<label for="userid">아이디</label>
+				<label for="userid">새 비밀번호</label>
 				<input
 						type="text"
 						class="form-control"
@@ -70,7 +70,7 @@
 		<div class="login-links">
 			<a th:href="@{/user/findId}">아이디 찾기</a> |
 			<a th:href="@{/user/findPw}">비밀번호 찾기</a> |
-			<a th:href="@{/user/insert}">로그아웃</a>
+			<a th:href="@{/user/login}">로그아웃</a>
 		</div>
 	</div>
 </div>
