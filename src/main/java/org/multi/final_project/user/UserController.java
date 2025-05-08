@@ -34,6 +34,11 @@ public class UserController {
         return "user/findPw";
     }
 
+    @GetMapping("/updatePw")
+    public String updatePw() {
+        return "user/updatePw";
+    }
+
     @PostMapping("/insertOK")
     public String insertOK(UserVO vo) {
         service.insertOK(vo);
