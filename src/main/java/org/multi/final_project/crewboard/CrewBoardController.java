@@ -52,7 +52,7 @@ public class CrewBoardController {
     public String updateOK(CrewBoardVO vo){
 
         int result = service.updateOK(vo);
-        return "redirect:selectOne?bnum="+vo.getBnum();
+        return "redirect:selectOne?bnum="+vo.getBnum()+"&cnum="+vo.getCnum();
     }
     @GetMapping("delete")
     public String delete(){

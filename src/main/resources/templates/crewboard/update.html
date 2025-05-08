@@ -15,6 +15,12 @@
         <table id="customers">
 
             <tr>
+                <td>크루번호:</td>
+                <td>[[${vo2.cnum}]]
+                    <input type="hidden" th:name="cnum" th:value="${vo2.cnum}">
+                </td>
+            </tr>
+            <tr>
                 <td><label for="bnum">글번호:</label></td>
                 <td>[[${vo2.bnum}]]
                     <input type="hidden" id="bnum" name="bnum" th:value="${vo2.bnum}" >
