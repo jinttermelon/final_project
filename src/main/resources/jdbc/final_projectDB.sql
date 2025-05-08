@@ -73,8 +73,7 @@ CREATE TABLE IF NOT EXISTS `final_project`.`crewboard` (
   `content` VARCHAR(2000) NULL,
   `wdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nickname` VARCHAR(45) NOT NULL,
-  `notice` VARCHAR(45) NOT NULL DEFAULT '공지',
-  `cos_level` VARCHAR(45) NOT NULL DEFAULT '하',
+  `notice` VARCHAR(45),
   PRIMARY KEY (`bnum`),
   INDEX `fk_crewboard_cnum_idx` (`cnum` ASC) VISIBLE,
   CONSTRAINT `fk_crewboard_cnum`
