@@ -12,8 +12,20 @@
 
     <select id="searchList" resultType="org.multi.final_project.crewboard.CrewBoardVO" >
         SELECT * FROM crewboard
-        WHERE cnum=#{cnum} AND title LIKE CONCAT('%', #{searchWord}, '%')
-        ORDER BY bnum DESC LIMIT #{startRow}, #{limit}
+        WHERE cnum=#{cnum}
+            <choose>
+                <when test="searchKey == 'title'">
+                    AND title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <when test="searchKey == 'content'">
+                    AND content LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <when test="searchKey == 'nickname'">
+                    AND nickname LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+            </choose>
+        ORDER BY bnum DESC
+        LIMIT #{startRow}, #{limit}
     </select>
 
     <select id="selectOne" resultType="org.multi.final_project.crewboard.CrewBoardVO" >
