@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>비밀번호 찾기</title>
+	<title>비밀번호</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link
 			rel="stylesheet"
@@ -12,7 +12,7 @@
 		body {
 			background-color: #f5f5f5;
 		}
-		.findPw-card {
+		.login-card {
 			max-width: 600px;
 			margin: 100px auto;
 			padding: 30px;
@@ -41,9 +41,9 @@
 <body th:replace="~{layout::layout}">
 
 <div th:fragment="content">
-	<div class="findPw-card">
+	<div class="login-card">
 		<h2>비밀번호 찾기</h2>
-		<form action="/findPw" method="post">
+		<form action="/login" method="post">
 			<div class="form-group">
 				<label for="userid">아이디</label>
 				<input
@@ -55,9 +55,9 @@
 				>
 			</div>
 			<div class="form-group">
-				<label for="tel">전화번호</label>
+				<label>전화번호</label>
 				<div class="form-row">
-					<div class="col-3">
+					<div class="col-4">
 						<select class="form-control">
 							<option selected>통신사</option>
 							<option>KT</option>
@@ -76,19 +76,20 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="form-group">
 				<label for="birth">생년월일</label>
-
 				<input type="text" class="form-control" id="birth" placeholder="20020125">
 			</div>
+
 
 			<button type="submit" class="btn btn-info btn-block">완료</button>
 		</form>
 
 		<div class="login-links">
 			<a th:href="@{/user/findId}">아이디 찾기</a> |
-			<a th:href="@{/user/changePw}">비밀번호 변경</a> |
-			<a th:href="@{/user/login}">로그인</a>
+			<a th:href="@{/user/updatePw}">비밀번호 변경</a> |
+			<a th:href="@{/user/insert}">로그아웃</a>
 		</div>
 	</div>
 </div>
