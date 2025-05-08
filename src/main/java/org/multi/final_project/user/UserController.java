@@ -29,9 +29,9 @@ public class UserController {
         return "user/findId";
     }
 
-    @GetMapping("/findPassword")
-    public String findPassword() {
-        return "findPw";
+    @GetMapping("/findPw")
+    public String findPw() {
+        return "user/findPw";
     }
 
     @PostMapping("/insertOK")
