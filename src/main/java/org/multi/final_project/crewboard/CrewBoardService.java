@@ -1,5 +1,6 @@
 package org.multi.final_project.crewboard;
 
+import org.multi.final_project.crew.CrewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +26,15 @@ public class CrewBoardService {
     public CrewBoardVO selectOne(CrewBoardVO vo){
         return mapper.selectOne(vo);
     }
-    public List<CrewBoardVO> searchList(String searchKey, String searchWord, int startRow, int limit){
-        return mapper.searchList(searchKey, searchWord, startRow, limit);
+    public List<CrewBoardVO> searchList(int cnum,String searchKey, String searchWord, int startRow, int limit){
+        return mapper.searchList(cnum,searchKey, searchWord, startRow, limit);
+    }
+    public int getTotalRowCount(CrewBoardVO vo) {
+        return mapper.totalRowCount(vo);
     }
 
+    public int getSearchListTotalRowCount(int cnum,String searchKey, String searchWord) {
+        return mapper.searchListTotalRowCount(cnum,searchKey,searchWord);
+    }
 
 }

@@ -1,6 +1,7 @@
 package org.multi.final_project.crewboard;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.multi.final_project.cos.CosVO;
 import org.multi.final_project.crew.CrewVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class CrewBoardController {
 
         service.insertOK(vo);
 
-        return "redirect:selectAll";
+        return "redirect:selectAll?cnum="+vo.getCnum();
     }
     @GetMapping("update")
     public String update(CrewBoardVO vo, Model model){
@@ -59,11 +60,29 @@ public class CrewBoardController {
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,
                             @RequestParam(defaultValue = "1") int cnum,
                             @RequestParam(defaultValue = "10") int limit,
-                            Model model){
+                            Model model,
+                            CrewBoardVO vo){
 
         int startRow = (cpage - 1) * limit;
         List<CrewBoardVO> vos = service.selectAll(startRow, limit, cnum);
         model.addAttribute("vos", vos);
+
+        // 페이지네이션
+        int totalRowCount = service.getTotalRowCount(vo);
+        log.info("total row count: {}", totalRowCount);
+
+        int pageCount = 1;
+        if (totalRowCount / limit==0){
+            pageCount = 1;
+        }else if(totalRowCount % limit==0){
+            pageCount = totalRowCount / limit;
+        }else {
+            pageCount = totalRowCount / limit +1;
+        }
+        log.info("page count: {}", pageCount);
+
+        model.addAttribute("pageCount", pageCount);
+
         return "crewboard/selectAll";
     }
     @GetMapping("selectOne")
@@ -79,7 +98,8 @@ public class CrewBoardController {
                              @RequestParam(defaultValue = "10") int limit,
                              @RequestParam(defaultValue = "title") String searchKey,
                              @RequestParam(defaultValue = "") String searchWord,
-                             Model model){
+                             Model model,
+                             int cnum){
 
         int startRow = (cpage - 1) * limit;
 
@@ -88,10 +108,28 @@ public class CrewBoardController {
         log.info("limit: {}", limit);
         log.info("searchKey: {}", searchKey);
         log.info("searchWord: {}", searchWord);
+        log.info("cnum: {}",cnum);
 
         // startRow를 매퍼로 전달
-        List<CrewBoardVO> vos = service.searchList(searchKey,searchWord,startRow,limit);
+        List<CrewBoardVO> vos = service.searchList(cnum,searchKey,searchWord,startRow,limit);
         model.addAttribute("vos", vos);
+
+        //페이지네이션
+        int totalRowCount = service.getSearchListTotalRowCount(cnum,searchKey,searchWord);
+        log.info("total row count: {}", totalRowCount);
+
+        int pageCount = 1;
+        if (totalRowCount / limit==0){
+            pageCount = 1;
+        }else if(totalRowCount % limit==0){
+            pageCount = totalRowCount / limit;
+        }else {
+            pageCount = totalRowCount / limit +1;
+        }
+        log.info("page count: {}", pageCount);
+
+        model.addAttribute("pageCount", pageCount);
+
         return "crewboard/selectAll";
     }
 

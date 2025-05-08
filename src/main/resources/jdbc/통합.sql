@@ -1,5 +1,11 @@
 insert into user(id,pw,nickname,birth_year,gender,sido,riding_year,tel,tel_open,img_name,role,report)
 values
+    ('admin01','1111','admin01',1999,'F','seoul',1,'01012341111','open','default.png','ADMIN','no'),
+
+;
+
+insert into user(id,pw,nickname,birth_year,gender,sido,riding_year,tel,tel_open,img_name,role,report)
+values
 ('admin01','1111','admin01',1999,'F','seoul',1,'01012341111','open','default.png','ADMIN','no'),
 ('user02','1111','name02',1999,'M','suwon',3,'01012342222','open','default.png','USER','no'),
 ('user03','1111','name03',1999,'F','incheon',1,'01012343333','close','default.png','USER','no'),

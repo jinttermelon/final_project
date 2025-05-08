@@ -11,12 +11,12 @@
 <body th:replace="~{layout::layout}">
     <div th:fragment="content">
         <h1>크루게시판 글작성 페이지</h1>
-        <form action="#" method="post" th:action="@{/crewboard/insertOK}">
+        <form action="/crewboard/insertOK" method="post" th:action="@{/crewboard/insertOK}">
             <table id="customers">
                 <tr>
-                    <td><label for="cnum">크루번호:</label></td>
+                    <td>크루번호:</td>
                     <td>[[${param.cnum}]]
-                        <input type="hidden" id="cnum" name="cnum" value="${param.cnum}">
+                        <input type="hidden" th:name="cnum" th:value="${param.cnum}">
                     </td>
                 </tr>
                 <tr>

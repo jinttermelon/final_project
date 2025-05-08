@@ -12,7 +12,7 @@
 
     <select id="searchList" resultType="org.multi.final_project.crewboard.CrewBoardVO" >
         SELECT * FROM crewboard
-        WHERE title LIKE CONCAT('%', #{searchWord}, '%')
+        WHERE cnum=#{cnum} AND title LIKE CONCAT('%', #{searchWord}, '%')
         ORDER BY bnum DESC LIMIT #{startRow}, #{limit}
     </select>
 
@@ -42,6 +42,17 @@
         DELETE FROM crewboard
         WHERE bnum = #{bnum}
     </delete>
+
+    <select id="totalRowCount" resultType="int">
+        SELECT count(*) FROM crewboard where cnum= #{cnum}
+    </select>
+
+    <select id="searchListTotalRowCount" resultType="int">
+        SELECT count(*)
+        FROM crewboard
+        WHERE cnum = #{cnum}
+        AND title LIKE CONCAT('%', #{searchWord}, '%')
+    </select>
 
 
 </mapper>

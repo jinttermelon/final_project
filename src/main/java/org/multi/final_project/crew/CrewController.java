@@ -64,6 +64,7 @@ public class CrewController {
         List<CrewVO> vos = service.selectAll(startRow, limit);
         model.addAttribute("vos", vos);
 
+        // 페이지네이션
         int totalRowCount = service.getTotalRowCount(vo);
         log.info("total row count: {}", totalRowCount);
 
@@ -78,6 +79,8 @@ public class CrewController {
         log.info("page count: {}", pageCount);
 
         model.addAttribute("pageCount", pageCount);
+
+
         return "crew/selectAll";
     }
     @GetMapping("/selectOne")
@@ -109,6 +112,8 @@ public class CrewController {
         List<CrewVO> vos = service.searchList(startRow, limit, searchKey, searchWord);
         model.addAttribute("vos", vos);
 
+
+        //페이지네이션
         int totalRowCount = service.getSearchListTotalRowCount(vo,searchKey,searchWord);
         log.info("total row count: {}", totalRowCount);
 
