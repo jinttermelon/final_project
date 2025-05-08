@@ -1,7 +1,6 @@
 package org.multi.final_project.user;
 
 import lombok.extern.slf4j.Slf4j;
-import org.multi.final_project.cos.CosVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +31,7 @@ public class UserController {
 
     @GetMapping("/findPassword")
     public String findPassword() {
-        return "user/findPassword";
+        return "findPw";
     }
 
     @PostMapping("/insertOK")
