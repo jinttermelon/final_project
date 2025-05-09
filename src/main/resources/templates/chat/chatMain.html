@@ -1,0 +1,13 @@
+<!-- chatMain.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:replace="chat/layout :: layout">
+
+<div th:fragment="content">
+    <p th:each="msg : ${messages}">
+        <strong th:text="${msg.sender}">보낸이</strong>: <span th:text="${msg.content}">내용</span>
+    </p>
+</div>
+
+</body>
+</html>

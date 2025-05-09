@@ -1,6 +1,7 @@
 package org.multi.final_project.chat;
 
 import lombok.extern.slf4j.Slf4j;
+import org.multi.final_project.friend.FriendMapper;
 import org.multi.final_project.user.UserMapper;
 import org.multi.final_project.user.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,13 @@ public class ChatController {
 
     @Autowired
     private ChatMapper chatMapper;
-
-    @Autowired
     private UserMapper userMapper;
+    private FriendMapper friendMapper;
 
-    public ChatController(ChatMapper chatMapper) {
-        log.info("ChatController");
+    public ChatController(ChatMapper chatMapper, UserMapper userMapper, FriendMapper friendMapper) {
         this.chatMapper = chatMapper;
+        this.userMapper = userMapper;
+        this.friendMapper = friendMapper;
     }
 
     @GetMapping("/rooms")
@@ -51,18 +52,35 @@ public class ChatController {
     }
 
     @GetMapping("/room/{room_id}")
-    public String enterRoom(@PathVariable String room_id, Model model, Principal principal) {
-//        if (principal == null) {
-//            return "redirect:/user/login"; // 로그인 안 했으면 로그인 페이지로
-//        }
+    public String enterRoom(@PathVariable String room_id, Model model) {
+        // 더미 닉네임
         String dummyNickname = "더미유저";
         model.addAttribute("nickname", dummyNickname);
+
+        // ✅ 더미 room 객체 생성
+        ChatRoomVO dummyRoom = new ChatRoomVO();
+        dummyRoom.setRoom_id(room_id);
+        dummyRoom.setRoom_name("더미 채팅방");
+
+        model.addAttribute("room", dummyRoom); // 이게 없으면 room.room_name에서 에러 발생
 
         model.addAttribute("room_id", room_id);
         model.addAttribute("messages_history", chatMapper.getMessagesByRoomId(room_id));
 
         return "chat/room";
     }
+
+    @GetMapping("/chat")
+    public String chatMain(Model model) {
+        String userId = "name02"; // 테스트용 아이디
+        model.addAttribute("chatRooms", chatMapper.findAllRooms());
+        model.addAttribute("friends", friendMapper.selectAcceptedFriends(userId)); // 예시
+        log.info("{}",friendMapper.selectAcceptedFriends(userId));
+        model.addAttribute("messages", chatMapper.getMessagesByRoomId("room1")); // 더미 방 ID
+        return "chat/chatMain";
+    }
+
+
 }
 
 

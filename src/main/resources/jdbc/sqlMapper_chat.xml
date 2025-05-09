@@ -22,4 +22,5 @@
     <select id="getMessagesByRoomId" >
         SELECT * FROM chat_message WHERE room_id = #{room_id} ORDER BY wdate desc
     </select>
+
 </mapper>
