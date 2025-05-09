@@ -19,21 +19,16 @@
             border-radius: 1rem;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
         }
-        .review-score {
 
-        }
         .star-grade{
             font-size: 40px;
             color: lightgray;
             cursor: pointer;
         }
 
-
-
         textarea.content {
             margin-top: 30px;
             margin-bottom: 10px;
-
             resize: none;
             width: 100%;
             min-height: 150px;
@@ -48,7 +43,7 @@
 <body th:replace="~{layout::layout}">
     <div th:fragment="content">
         <h1>리뷰 작성 페이지</h1>
-        <form action="#" method="post" th:action="@{/crewboard/insertOK}">
+        <form action="#" method="post" th:action="@{/cosreview/insertOK}">
             <div class="form-container">
 
             <div class="review-score">

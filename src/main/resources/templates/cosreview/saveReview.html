@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>리뷰작성 완료</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    >
+    <style>
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .saveReview {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 100px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: #ffffff;
+            text-align: center;
+
+        }
+        .saveReview h2 {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .saveReview a {
+            margin: 0 8px;
+            color: #4dd0e1;
+            text-decoration: none;
+        }
+        .saveReview a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body th:replace="~{layout::layout}">
+
+<div th:fragment="content">
+    <div class="saveReview">
+        <h2>리뷰작성이 완료되었습니다.</h2>
+        <form action="/cosreview/selectAll" method="post">
+            <a th:href="@{/cosreview/selectAll}">
+            <button type="button" class="btn btn-info">코스목록으로 이동</button>
+            </a>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -17,6 +17,13 @@ public class CosReviewController {
     @Autowired
     private CosReviewService service;
 
+    @GetMapping("/saveReview")
+    public String saveReview(){
+        log.info("saveReview()...");
+        return "cosreview/saveReview";
+
+    }
+
     @GetMapping("/insert")
     public String insert(){
         log.info("insert()...");
@@ -27,7 +34,7 @@ public class CosReviewController {
     @PostMapping("/insertOK")
     public String insertOK(CosReviewVO vo){
         log.info("insertOK()...");
-        return "redirect:selectAll";
+        return "redirect:saveReview";
     }
 
     @GetMapping("/update")
