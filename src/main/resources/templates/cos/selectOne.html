@@ -2,31 +2,97 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>코스 상세 페이지</title>
     <link rel="stylesheet" th:href="@{/css/board.css}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <style>
+        .carousel-container {
+            height: 50vh;
+        }
+        .carousel-inner img {
+            height: 100%;
+            object-fit: cover;
+        }
+        .bottom-section {
+            height: 50vh;
+        }
+        .corner-text {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: large;
+        }
+        .review-box {
+            height: 60%;
+            border-left: 1px solid #ccc;
+            padding-left: 20px;
+        }
+        .review-list {
+            height: 80%;
+            overflow-y: auto;
+        }
+        .review-button {
+            text-align: center;
+            margin-top: 18px;
+            margin-bottom: 36px;
+        }
+    </style>
 </head>
 <body th:replace="~{layout::layout}">
-    <div th:fragment="content">
-        <h1>코스 상세 페이지</h1>
-        <form action="#" method="post" th:action="@{/cos/insertOK}">
-            <table id="cos">
-                <div class="post">
-                    <h2>코스이름</h2>
-                    <tr>
-                        <td><label for="content">코스 상세설명:</label></td>
-                    </tr>
+<div th:fragment="content" class="container-fluid">
+    <h1 class="mt-4 mb-4">코스 상세 페이지</h1>
 
-                        <td>
-                            <textarea name="content" id="content" rows="10" cols="30">코스 상세 설명입니다.</textarea>
-                        </td>
-                    </tr>
-                    <tr><td colspan="4"><button onclick="location.href='/insert'">리뷰작성하러 가기</button></tr>
-                    </div>
-               
-            </table>
-        </form>
+    <!-- 상단: 슬라이드 이미지 -->
+    <div class="carousel-container mb-4">
+        <div id="cosselectOne" class="carousel slide h-100" data-ride="carousel">
+            <div class="carousel-inner h-100">
+                <div class="carousel-item active position-relative h-100">
+                    <img src="/img/seoul.png" class="d-block w-100" alt="서울">
+                </div>
+                <div class="carousel-item h-100">
+                    <img src="/img/jeju.jpg" class="d-block w-100" alt="제주">
+                </div>
+                <div class="carousel-item h-100">
+                    <img src="/img/incheon.jpg" class="d-block w-100" alt="인천">
+                </div>
+            </div>
+            <span class="corner-text">서울</span>
+
+            <a class="carousel-control-prev" href="#cosselectOne" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#cosselectOne" role="button" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
     </div>
+
+    <div class="row bottom-section">
+        <div class="col-md-8">
+            <h3>코스 상세 설명</h3>
+            <p> 내용 어떻게넣어여.. ㅎㅎ
+            </p>
+        </div>
+
+        <div class="col-md-4 review-box">
+            <h4>작성된 리뷰</h4>
+            <div class="review-list">
+                <p>👍 아주 좋은 코스였어요!</p>
+                <p>⭐ 가족과 함께 하기 좋아요.</p>
+                <p>👎 조금 지루했어요.</p>
+            </div>
+            <div class="review-button">
+                <button class="btn btn-primary" onclick="location.href='/insert'">리뷰 작성하러 가기</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
