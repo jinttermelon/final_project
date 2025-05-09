@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>채팅 레이아웃</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<!-- 여기에 layout fragment 선언 -->
+<div th:fragment="layout">
+    <div class="container">
+        <div class="row">
+            <!-- 왼쪽: 채팅 목록/검색 -->
+            <div class="col-md-3" th:replace="chat/left :: left(${chatRooms})"></div>
+
+            <!-- 중앙: 컨텐츠 자리 -->
+            <div th:replace="chat/chatRoom :: chatRoom(${messages})"></div>
+
+            <!-- 오른쪽: 친구 목록 -->
+            <div class="col-md-3" th:replace="chat/right :: right(${friends})"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

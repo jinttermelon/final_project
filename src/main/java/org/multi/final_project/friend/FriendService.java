@@ -31,4 +31,5 @@ public class FriendService {
     public String rejectedFriend(FriendVO vo){
         return mapper.rejectedFriend(vo);
     }
+    public List<FriendVO> selectAcceptedFriends(String userId){return mapper.selectAcceptedFriends(userId);}
 }

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class FriendVO {
-    private int fnum;
+    private String fnum;
     private String nickname;
     private String fnickname;
 }

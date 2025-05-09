@@ -22,4 +22,6 @@ public interface FriendMapper {
     public String acceptedFriend(FriendVO vo);
 
     public String rejectedFriend(FriendVO vo);
+
+    public List<FriendVO> selectAcceptedFriends(String user_id);
 }

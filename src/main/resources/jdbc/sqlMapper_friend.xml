@@ -45,4 +45,9 @@
         WHERE fnum = #{fnum}
     </delete>
 
+    <select id="selectAcceptedFriends" parameterType="string" resultType="org.multi.final_project.friend.FriendVO">
+        SELECT * FROM friend
+        WHERE unickname = #{user_id}
+    </select>
+
 </mapper>
