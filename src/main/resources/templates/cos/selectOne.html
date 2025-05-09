@@ -8,14 +8,14 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <style>
         .carousel-container {
-            height: 50vh;
+            height: 40vh;
         }
         .carousel-inner img {
             height: 100%;
             object-fit: cover;
         }
         .bottom-section {
-            height: 50vh;
+            height: 30vh;
         }
         .corner-text {
             position: absolute;
@@ -47,7 +47,6 @@
 <div th:fragment="content" class="container-fluid">
     <h1 class="mt-4 mb-4">코스 상세 페이지</h1>
 
-    <!-- 상단: 슬라이드 이미지 -->
     <div class="carousel-container mb-4">
         <div id="cosselectOne" class="carousel slide h-100" data-ride="carousel">
             <div class="carousel-inner h-100">
@@ -87,7 +86,7 @@
                 <p>👎 조금 지루했어요.</p>
             </div>
             <div class="review-button">
-                <button class="btn btn-primary" onclick="location.href='/insert'">리뷰 작성하러 가기</button>
+                <button class="btn btn-primary" onclick="location.href='/cosreview/insert'">리뷰 작성하러 가기</button>
             </div>
         </div>
     </div>
