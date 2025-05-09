@@ -21,7 +21,7 @@
                 <tr>
                     <td><label for="nickname">닉네임 :</label></td>
                     <td>
-                        <input type="text" name="nickname" value="라이더김">
+                        <input type="text" id="nickname "name="nickname" value="라이더김">
                         <input type="submit" name="nickname" value="중복 확인">
                     </td>
                 </tr>
@@ -72,8 +72,10 @@
                 <tr>
                     <td>프로필이미지:</td>
                     <td>
-                        <img th:src="|/uploadimgPath/thumb_${vo2.imgname}|" alt="">
-                        <input type="hidden" id="imgname" name="imgname" th:value="${vo2.imgname}">
+                        <div class="text-center mb-4">
+                            <img th:src="@{'/uploadimgPath/' + ${vo2.img_name}}" alt="대표 이미지" style="max-width: 200px; border-radius: 10px;">
+                        </div>
+                        <input type="hidden" id="img_name" name="img_name" th:value="${vo2.img_name}">
                     </td>
                 </tr>
                 <tr>

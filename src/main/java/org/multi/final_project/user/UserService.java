@@ -1,5 +1,6 @@
 package org.multi.final_project.user;
 
+import org.multi.final_project.crew.CrewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +43,12 @@ public class UserService {
     }
     public UserVO nicknameCheack(UserVO vo){
         return mapper.nicknameCheck(vo);
+    }
+    public int getTotalRowCount(UserVO vo) {
+        return mapper.totalRowCount(vo);
+    }
+
+    public int getSearchListTotalRowCount(UserVO vo,String searchKey, String searchWord) {
+        return mapper.searchListTotalRowCount(vo,searchKey,searchWord);
     }
 }

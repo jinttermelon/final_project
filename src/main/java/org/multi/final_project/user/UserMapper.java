@@ -1,6 +1,8 @@
 package org.multi.final_project.user;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.multi.final_project.crew.CrewVO;
+
 import java.util.List;
 
 @Mapper
@@ -30,4 +32,8 @@ public interface UserMapper {
 
     UserVO getNickname(String id);
 
+
+    public int totalRowCount(UserVO vo);
+
+    public int searchListTotalRowCount(UserVO vo,String searchKey, String searchWord);
 }

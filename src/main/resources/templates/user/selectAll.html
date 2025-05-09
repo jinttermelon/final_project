@@ -54,16 +54,17 @@
       <tfoot>
       <tr th:if="${param.searchKey == null}">
         <td colspan="5">
-          <a th:href="@{/user/selectAll(cpage=1,limit=10)}">1</a>
-          <a th:href="@{/user/selectAll(cpage=2,limit=10)}">2</a>
-          <a th:href="@{/user/selectAll(cpage=3,limit=10)}">3</a>
+          <th:block th:each="i : ${#numbers.sequence(1,pageCount)}">
+            <a th:href="@{/user/selectAll(cpage=${i},limit=10)}">[[${i}]]</a>
+          </th:block>
+
         </td>
       </tr>
       <tr th:if="${param.searchKey != null}">
         <td colspan="5">
-          <a th:href="@{/user/searchList(cpage=1,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">1</a>
-          <a th:href="@{/user/searchList(cpage=2,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">2</a>
-          <a th:href="@{/user/searchList(cpage=3,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">3</a>
+          <th:block th:each="i : ${#numbers.sequence(1,pageCount)}">
+            <a th:href="@{/user/searchList(cpage=${i},limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">[[${i}]]</a>
+          </th:block>
         </td>
       </tr>
       </tfoot>

@@ -1,6 +1,7 @@
 package org.multi.final_project.user;
 
 import lombok.extern.slf4j.Slf4j;
+import org.multi.final_project.crew.CrewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -98,12 +99,31 @@ public class UserController {
     @GetMapping("/selectAll")
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,
                             @RequestParam(defaultValue = "10") int limit,
-                            Model model) {
+                            Model model,
+                            UserVO vo) {
+
 
         int startRow = (cpage - 1) * limit;
         log.info("startRow:" + startRow);
         List<UserVO> vos = service.selectAll(startRow, limit);
         model.addAttribute("vos", vos);
+
+        // 페이지네이션
+        int totalRowCount = service.getTotalRowCount(vo);
+        log.info("total row count: {}", totalRowCount);
+
+        int pageCount = 1;
+        if (totalRowCount / limit==0){
+            pageCount = 1;
+        }else if(totalRowCount % limit==0){
+            pageCount = totalRowCount / limit;
+        }else {
+            pageCount = totalRowCount / limit +1;
+        }
+        log.info("page count: {}", pageCount);
+
+        model.addAttribute("pageCount", pageCount);
+
         return "user/selectAll";
     }
 
@@ -118,6 +138,7 @@ public class UserController {
 
     @GetMapping("/update")
     public String update(UserVO vo, Model model) {
+
         return "user/update";
     }
 
