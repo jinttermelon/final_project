@@ -3,19 +3,13 @@ package org.multi.final_project.chat;
 import lombok.extern.slf4j.Slf4j;
 import org.multi.final_project.friend.FriendMapper;
 import org.multi.final_project.user.UserMapper;
-import org.multi.final_project.user.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.UUID;
-
 
 @Slf4j
 @Controller
@@ -24,8 +18,8 @@ public class ChatController {
 
     @Autowired
     private ChatMapper chatMapper;
-    private UserMapper userMapper;
-    private FriendMapper friendMapper;
+    private final UserMapper userMapper;
+    private final FriendMapper friendMapper;
 
     public ChatController(ChatMapper chatMapper, UserMapper userMapper, FriendMapper friendMapper) {
         this.chatMapper = chatMapper;
@@ -33,55 +27,35 @@ public class ChatController {
         this.friendMapper = friendMapper;
     }
 
+    //채팅방 전체 목록 출력
     @GetMapping("/rooms")
     public String findAllRooms(Model model) {
         List<ChatRoomVO> rooms = chatMapper.findAllRooms();
-        log.info("rooms.size() : {}",rooms.size());
         model.addAttribute("rooms", rooms);
-        return "chat/rooms";
+        return "chat/rooms"; // 방 목록만 있는 별도 페이지가 있다면
     }
 
-    @PostMapping("/room")
-    public String createRoom(ChatRoomVO room) {
-        log.info("Creating roomName : {}", room);
-        room.setRoom_id(UUID.randomUUID().toString());
-        log.info("Creating roomName : {}", room);
+    //채팅방 입장 (room_id 파라미터 받기)
+    @GetMapping("/room")
+    public String enterRoom(@RequestParam(name = "room_id", required = false) String roomId, Model model) {
+        if (roomId != null) {
+            ChatRoomVO selectedRoom = chatMapper.selectRoomById(roomId);
+            model.addAttribute("selectedRoom", selectedRoom);
 
-        chatMapper.insertRoom(room);
-        return "redirect:/chat/rooms";
-    }
+            List<ChatMessageVO> messages = chatMapper.selectMessagesByRoomId(roomId);
+            model.addAttribute("messages", messages);
+        }
 
-    @GetMapping("/room/{room_id}")
-    public String enterRoom(@PathVariable String room_id, Model model) {
-        // 더미 닉네임
-        String dummyNickname = "더미유저";
-        model.addAttribute("nickname", dummyNickname);
-
-        // ✅ 더미 room 객체 생성
-        ChatRoomVO dummyRoom = new ChatRoomVO();
-        dummyRoom.setRoom_id(room_id);
-        dummyRoom.setRoom_name("더미 채팅방");
-
-        model.addAttribute("room", dummyRoom); // 이게 없으면 room.room_name에서 에러 발생
-
-        model.addAttribute("room_id", room_id);
-        model.addAttribute("messages_history", chatMapper.getMessagesByRoomId(room_id));
-
-        return "chat/room";
-    }
-
-    @GetMapping("/chat")
-    public String chatMain(Model model) {
-        String userId = "name02"; // 테스트용 아이디
         model.addAttribute("chatRooms", chatMapper.findAllRooms());
-        model.addAttribute("friends", friendMapper.selectAcceptedFriends(userId)); // 예시
-        log.info("{}",friendMapper.selectAcceptedFriends(userId));
-        model.addAttribute("messages", chatMapper.getMessagesByRoomId("room1")); // 더미 방 ID
+        model.addAttribute("friends", friendMapper.selectAcceptedFriends("name03")); // 테스트용 유저
         return "chat/chatMain";
     }
 
-
+    //채팅방 생성 (POST 방식)
+    @PostMapping("/room")
+    public String createRoom(ChatRoomVO room) {
+        room.setRoom_id(UUID.randomUUID().toString());
+        chatMapper.insertRoom(room);
+        return "redirect:/chat/room?room_id=" + room.getRoom_id();
+    }
 }
-
-
-

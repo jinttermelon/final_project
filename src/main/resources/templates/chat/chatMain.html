@@ -1,13 +1,158 @@
-<!-- chatMain.html -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<body th:replace="chat/layout :: layout">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>채팅 메인</title>
+    <style>
+        html {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+        }
+
+        .sidebar, .chat-area, .friends {
+            padding: 10px;
+            border-right: 1px solid #ccc;
+            overflow-y: auto;
+        }
+
+        .sidebar {
+            width: 20%;
+            background: #f9f9f9;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar form {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .chat-area {
+            width: 60%;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 20px;
+        }
+
+        .friends {
+            width: 20%;
+            background: #f9f9f9;
+        }
+
+        .chat-item, .friend-item {
+            padding: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        .chat-item:hover {
+            background-color: #eee;
+        }
+
+        .chat-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            margin: 5px 0;
+            padding: 8px;
+            background-color: #e6e6e6;
+            border-radius: 5px;
+            max-width: 70%;
+        }
+
+        .message-box {
+            margin-top: 15px;
+        }
+
+        footer {
+            padding: 10px;
+            text-align: center;
+            border-top: 1px solid #ccc;
+        }
+
+        .empty-message {
+            text-align: center;
+            margin-top: 30px;
+            color: gray;
+        }
+    </style>
+</head>
+<body th:replace="~{layout::layout}">
 <div th:fragment="content">
-    <p th:each="msg : ${messages}">
-        <strong th:text="${msg.sender}">보낸이</strong>: <span th:text="${msg.content}">내용</span>
-    </p>
-</div>
+<div class="main">
+    <!-- 좌측: 채팅방 리스트 -->
+    <div class="sidebar">
+        <h3>채팅방 목록</h3>
+        <!-- 방 생성 폼 -->
+        <form th:action="@{/chat/room}" method="post">
+            <input type="text" name="room_name" placeholder="방 이름">
+            <button type="submit">방 만들기</button>
+        </form>
+        <ul>
+            <li th:each="room : ${chatRooms}">
+                <a class="chat-item" th:href="@{/chat/room(room_id=${room.room_id})}" th:text="${room.room_name}">채팅방</a>
+            </li>
+        </ul>
+    </div>
 
+    <!-- 가운데: 메시지 -->
+    <div class="chat-area">
+        <div th:if="${selectedRoom != null}">
+            <div class="chat-header" th:text="${selectedRoom.room_name}">채팅방 이름</div>
+            <div class="message-list">
+                <div th:each="msg : ${messages}" class="message" th:text="${msg.content}">메시지</div>
+            </div>
+            <!-- 메시지 입력 -->
+            <div class="message-box">
+                <form th:action="@{/chat/message}" method="post">
+                    <input type="hidden" name="room_id" th:value="${selectedRoom.room_id}">
+                    <input type="text" name="content" placeholder="메시지를 입력하세요" style="width: 80%;">
+                    <button type="submit">전송</button>
+                </form>
+            </div>
+        </div>
+        <div class="empty-message" th:if="${selectedRoom == null}">
+            <p>메시지를 보내세요!<br>친구들에게 글이나 사진을 전달해보세요</p>
+        </div>
+    </div>
+
+    <!-- 우측: 친구 목록 -->
+    <div class="friends">
+        <h3>친구 목록</h3>
+        <ul>
+            <li th:each="f : ${friends}" class="friend-item" th:text="${f.fnickname}">친구이름</li>
+        </ul>
+    </div>
+
+</div>
+</div>
 </body>
 </html>

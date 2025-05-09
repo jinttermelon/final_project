@@ -10,7 +10,8 @@ public interface ChatMapper {
     void insertRoom(ChatRoomVO room);
     void insertMessage(ChatMessageVO message);
     List<ChatMessageVO> getMessagesByRoomId(String roomId);
-    //ChatRoom findById(String id);
+    ChatRoomVO selectRoomById(String roomId); // 단일 방 정보
+    List<ChatMessageVO> selectMessagesByRoomId(String roomId); // 해당 방 메시지
 
 }
 
