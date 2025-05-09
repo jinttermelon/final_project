@@ -53,7 +53,7 @@ public class ChatController {
 
     //채팅방 생성 (POST 방식)
     @PostMapping("/room")
-    public String createRoom(ChatRoomVO room) {
+    public String insertRoom(ChatRoomVO room) {
         room.setRoom_id(UUID.randomUUID().toString());
         chatMapper.insertRoom(room);
         return "redirect:/chat/room?room_id=" + room.getRoom_id();
