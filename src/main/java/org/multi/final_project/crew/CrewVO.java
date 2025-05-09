@@ -21,4 +21,6 @@ public class CrewVO {
     private String riding_level;
 
 
+
+
 }

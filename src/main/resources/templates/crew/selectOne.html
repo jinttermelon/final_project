@@ -7,20 +7,24 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
+
 <body th:replace="~{layout::layout}">
     <div th:fragment="content">
         <h1>크루 상세 페이지</h1>
+        <div class="text-center mb-4">
+            <img th:src="@{'/uploadimgPath/' + ${vo2.img_name}}" alt="대표 이미지" style="max-width: 200px; border-radius: 10px;">
+        </div>
         <table id="crew">
             <thead>
             <tr>
-                <th>cnum</th>
-                    <th>name</th>
-                    <th>recruit</th>
+                    <th>크루번호</th>
+                    <th>크루명</th>
+                    <th>모집인원</th>
                     <th>sche</th>
-                    <th>score</th>
-                    <th>leader_nickname</th>
-                    <th>grade</th>
-                    <th>sche_check</th>
+                    <th>평점</th>
+                    <th>크루장</th>
+                    <th>크루등급</th>
+                    <th>정기일정유무</th>
             </tr>
             </thead>
             <tbody>

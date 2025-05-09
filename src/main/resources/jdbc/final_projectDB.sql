@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `final_project`.`user` (
   `birth_year` INT NOT NULL,
   `gender` VARCHAR(45) NOT NULL,
   `sido` VARCHAR(45) NOT NULL,
-  `riding_year` INT NOT NULL DEFAULT 0,
+  `riding_year` VARCHAR(45) NOT NULL DEFAULT 0,
   `tel` VARCHAR(45) NOT NULL,
   `tel_open` VARCHAR(45) NOT NULL DEFAULT 'open',
   `img_name` VARCHAR(45) NOT NULL DEFAULT 'default.png',
