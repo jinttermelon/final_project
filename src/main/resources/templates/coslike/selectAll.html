@@ -6,27 +6,127 @@
     <link rel="stylesheet" th:href="@{/css/board.css}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+    <style>
+        .coslike-card {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: #ffffff;
+        }
+        .coslike-card h1 {
+            text-align: center;
+        }
+         .card-container {
+             display: flex;
+             flex-wrap: wrap;
+             gap: 20px;
+         }
+
+        .card-container.view-card .card {
+            width: calc(33.333% - 20px);
+            display: block;
+        }
+
+        .card-container.view-list .card{
+            display: flex;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .card-container.view-list .card img {
+            width: 30%;
+            height: auto;
+            margin-right: 20px;
+            object-fit: cover;
+        }
+        .card-container.view-list .card .card-content {
+            width: 70%;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+    </style>
+
+    <script>
+        function setView(viewType) {
+            const container = document.getElementById('courseView');
+            container.classList.remove('view-card', 'view-list');
+            container.classList.add(`view-${viewType}`);
+        }
+    </script>
 </head>
 <body th:replace="~{layout::layout}">
     <div th:fragment="content">
+        <div class="coslike-card">
+
         <h1>찜한 코스</h1>
-        <img th:src="@{${user.profileImageUrl}}" alt="프로필 사진">
-<div class="profile-name" th:text="${user.nickname}">달리자따르릉</div>
-<a th:href="@{/logout}">로그아웃</a>
+        <form action="/mypage" method="post">
+            <!-- 보기 전환 버튼 -->
+            <div class="view-toggle text-right mb-3">
+                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setView('card')">카드형 보기</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setView('list')">리스트형 보기</button>
+            </div>
 
+            <div id="courseView" class="card-container view-card">
 
-<tr>
-    <td><img src="ridingcrew.jpg" alt="코스 이미지" width="100"></td>
-    <td>지역, 난이도</td>
-  </tr>
-  <tr>
-    <td><img src="ridingcrew.jpg" alt="코스 이미지" width="100"></td>
-    <td>지역, 난이도</td>
-  </tr>
-  <tr>
-    <td><img src="ridingcrew.jpg" alt="코스 이미지" width="100"></td>
-    <td>지역, 난이도</td>
-  </tr>
+                        <div class="card">
+                            <img src="/img/hangang-river.jpg" alt="한강 코스">
+                            <div class="card-content">
+                                <h3>한강 자전거길</h3>
+                                <p>서울 한강변을 따라 즐기는 아름다운 라이딩 코스</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <img src="/img/busan.jpg" alt="부산 해운대 코스">
+                            <div class="card-content">
+                                <h3>부산 해운대 코스</h3>
+                                <p>바다를 보며 시원하게 달릴 수 있는 라이딩 코스</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <img src="/img/jeju.jpg" alt="제주 올레길">
+                            <div class="card-content">
+                                <h3>제주 올레길</h3>
+                                <p>자연을 벗 삼아 달리는 최고의 힐링 코스</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="/img/jeju.jpg" alt="제주 올레길">
+                            <div class="card-content">
+                                <h3>제주 올레길</h3>
+                                <p>자연을 벗 삼아 달리는 최고의 힐링 코스</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="/img/busan.jpg" alt="부산 해운대 코스">
+                            <div class="card-content">
+                                <h3>부산 해운대 코스</h3>
+                                <p>바다를 보며 시원하게 달릴 수 있는 라이딩 코스</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="/img/hangang-river.jpg" alt="한강 코스">
+                            <div class="card-content">
+                                <h3>한강 자전거길</h3>
+                                <p>서울 한강변을 따라 즐기는 아름다운 라이딩 코스</p>
+                            </div>
+                        </div>
+            </div>
+
+        </form>
+       </div>
     </div>
+
 </body>
 </html>

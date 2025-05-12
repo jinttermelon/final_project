@@ -52,9 +52,9 @@ public class CosLikeController {
                             @RequestParam(defaultValue = "10")int limit,
                             Model model){
         log.info("selectAll()...");
-        int startRow = (cpage - 1) * limit;
-        List<CosLikeVO> vos = service.selectAll(startRow, limit);
-        model.addAttribute("vos", vos);
+        //int startRow = (cpage - 1) * limit;
+        //List<CosLikeVO> vos = service.selectAll(startRow, limit);
+        //model.addAttribute("vos", vos);
         return "coslike/selectAll";
     }
 }
