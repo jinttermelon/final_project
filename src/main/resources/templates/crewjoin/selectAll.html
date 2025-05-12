@@ -10,29 +10,8 @@
 <body th:replace="~{layout::layout}">
     <div th:fragment="content">
         <h1>크루 가입 목록(내 크루)</h1>
-        <img th:src="@{${user.profileImageUrl}}" alt="프로필 사진">
-<div class="profile-name" th:text="${user.nickname}">달리자따르릉</div>
-<a th:href="@{/logout}">로그아웃</a>
 
 
-<tr>
-    <td><img src="ridingcrew.jpg" alt="크루 이미지" width="100"></td>
-    <td>크루1</td>
-  </tr>
-  <tr>
-    <td><img src="ridingcrew.jpg" alt="크루 이미지" width="100"></td>
-    <td>크루2</td>
-  </tr>
-  <tr>
-    <td><img src="ridingcrew.jpg" alt="크루 이미지" width="100"></td>
-    <td>크루3</td>
-  </tr>
-      
-  <tr>
-    <td colspan="3">
-        <input type="submit" value="크루 생성하기">
-    </td>
-</tr>
     </div>
 </body>
 </html>
