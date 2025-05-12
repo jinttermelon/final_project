@@ -11,7 +11,7 @@
 
     <select id="selectOne" resultType="org.multi.final_project.user.UserVO">
         SELECT * FROM user
-        WHERE num = #{num}
+        WHERE nickname = #{nickname}
     </select>
 
     <select id="getHistoryCount" resultType="org.multi.final_project.user.UserVO">
@@ -53,7 +53,7 @@
         tel_open = #{tel_open},
         img_name = #{img_name},
         role = #{role}
-        WHERE num = #{num}
+        WHERE nickname = #{nickname}
     </update>
 
     <update id="updateLevel">
@@ -62,11 +62,11 @@
 
     <delete id="deleteOK">
         DELETE FROM user
-        WHERE num = #{num}
+        WHERE nickname = #{nickname}
     </delete>
 
     <select id="getNickname" parameterType="String" resultType="UserVO">
-        SELECT nickname FROM user WHERE id = #{id}
+        SELECT * FROM user WHERE id = #{id}
     </select>
 
     <select id="totalRowCount" resultType="int">
@@ -77,9 +77,9 @@
         SELECT count(*) FROM user WHERE nickname LIKE CONCAT('%', #{searchWord}, '%')
     </select>
 
-    <select id="pwCheck" resultType="org.multi.final_project.user.UserVO">
-        SELECT * FROM user
-        WHERE num = #{num} AND pw = #{pw}
-    </select>
 
+    <select id="findById" resultType="org.multi.final_project.user.UserVO">
+        select * from user
+        where id = #{username}
+    </select>
 </mapper>

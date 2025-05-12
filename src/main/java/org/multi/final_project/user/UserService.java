@@ -41,7 +41,7 @@ public class UserService {
     public UserVO banUserOK(UserVO vo){
         return mapper.banUserOK(vo);
     }
-    public UserVO nicknameCheack(UserVO vo){
+    public UserVO nicknameCheck(UserVO vo){
         return mapper.nicknameCheck(vo);
     }
     public int getTotalRowCount(UserVO vo) {
@@ -54,5 +54,13 @@ public class UserService {
 
     public UserVO pwCheck(UserVO vo) {
         return mapper.pwCheck(vo);
+    }
+
+    public UserVO findById(String username){
+        return mapper.findById(username);
+    }
+
+    public UserVO getNickname(String id){
+        return mapper.getNickname(id);
     }
 }
