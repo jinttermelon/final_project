@@ -34,6 +34,11 @@ public class UserController {
         return "user/insert";
     }
 
+    @GetMapping("/ridingHistory")
+    public String ridingHistory() {
+        return "user/ridingHistory";
+    }
+
     @GetMapping("/mypage")
     public String mypage() {
         return "user/mypage";
