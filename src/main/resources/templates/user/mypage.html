@@ -86,9 +86,9 @@
 					</div>
 
 					<div class="list-group">
-						<a href="user/update" class="list-group-item list-group-item-action">내 정보 관리</a>
+						<a href="#" class="list-group-item list-group-item-action">내 정보 관리</a>
 
-						<a href="/coslike/selectAll?nickname=name05" class="list-group-item list-group-item-action ">찜한 코스</a>
+						<a href="#" class="list-group-item list-group-item-action ">찜한 코스</a>
 						<a href="#" class="list-group-item list-group-item-action ">라이딩 HISTORY</a>
 						<a href="#" class="list-group-item list-group-item-action ">내 크루</a>
 						<a href="#" class="list-group-item list-group-item-action ">내가 쓴 글</a>
@@ -98,6 +98,12 @@
 					</div>
 			</div>
 
+
+			<div class="login-links">
+				<a th:href="@{/user/findId}">아이디 찾기</a> |
+				<a th:href="@{/user/findPw}">비밀번호 찾기</a> |
+				<a th:href="@{/user/insert}">로그아웃</a>
+			</div>
 		</div>
 		</div>
 
