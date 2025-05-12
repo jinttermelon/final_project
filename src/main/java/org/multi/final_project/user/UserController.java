@@ -144,12 +144,49 @@ public class UserController {
     @GetMapping("/update")
     public String update(UserVO vo, Model model) {
 
+        UserVO vo2 = service.selectOne(vo);
+        log.info("vo2:" + vo2);
+        model.addAttribute("vo2", vo2);
         return "user/update";
     }
 
     @PostMapping("/updateOK")
-    public String updateOK(UserVO vo) {
-        return "redirect:/user/selectAll";
+    public String updateOK(UserVO vo) throws IOException {
+
+        log.info("realPath : {}",realPath);
+
+        String originName = vo.getFile().getOriginalFilename();
+        log.info("originName : {}",originName);
+
+        if(originName.length() == 0){//파일첨부안되었을때는 기본이미지이름으로 설정.
+            vo.setImg_name("default.png");
+        }else{
+            //중복파일명 배제하는 처리. ex: img_387483924732743.png
+            String save_name = "img_"+ System.currentTimeMillis()+originName.substring(originName.lastIndexOf("."));
+            log.info("save_name : {}",save_name);
+            vo.setImg_name(save_name);//디비에 들어갈 이미지명 세팅
+
+            File f = new File(realPath,save_name);
+            vo.getFile().transferTo(f);//파일 저장...
+
+            //작은이미지로 만들어서 저장하기
+            //// create thumbnail image/////////
+            BufferedImage original_buffer_img = ImageIO.read(f);
+            BufferedImage thumb_buffer_img = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
+            Graphics2D graphic = thumb_buffer_img.createGraphics();
+            graphic.drawImage(original_buffer_img, 0, 0, 50, 50, null);
+
+            File thumb_file = new File(realPath, "thumb_" + save_name);
+
+            ImageIO.write(thumb_buffer_img, save_name.substring(save_name.lastIndexOf(".") + 1), thumb_file);
+        }//end if
+
+
+        log.info(vo.toString());
+        service.updateOK(vo);
+
+
+        return "redirect:selectAll";
     }
 
     @GetMapping("/delete")
@@ -159,6 +196,16 @@ public class UserController {
 
     @PostMapping("/deleteOK")
     public String deleteOK(UserVO vo) {
+
+        log.info(vo.toString());
+        UserVO vo2 = service.pwCheck(vo);
+        log.info("vo2:" + vo2);
+        if (vo2 != null) {
+            service.deleteOK(vo);
+        }else {
+            return "redirect:/user/delete?num="+vo.getNum();
+        }
+
         return "redirect:/user/selectAll";
     }
 

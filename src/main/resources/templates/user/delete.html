@@ -18,12 +18,14 @@
         <li>동일 이메일로 재가입은 제한될 수 있습니다.</li>
         </ul>
 
-        <form>
+        <form action="/user/deleteOK" method="post">
         <label>비밀번호 확인</label><br>
-        <input type="password" placeholder="비밀번호를 입력하세요"><br><br>
+        <input type="password" name="pw" placeholder="비밀번호를 입력하세요"><br><br>
+        <input type="hidden" name="num" th:value="${param.num}"><br><br>
 
         <button type="submit">탈퇴하기</button>
         <button type="button">취소</button>
+        </form>
     </div>    
 </body>
 </html>

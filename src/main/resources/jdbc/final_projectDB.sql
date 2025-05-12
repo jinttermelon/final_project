@@ -58,8 +58,8 @@ CREATE TABLE IF NOT EXISTS `final_project`.`crew` (
   CONSTRAINT `fk_crew_leader_nickname`
     FOREIGN KEY (`leader_nickname`)
     REFERENCES `final_project`.`user` (`nickname`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -79,8 +79,8 @@ CREATE TABLE IF NOT EXISTS `final_project`.`crewboard` (
   CONSTRAINT `fk_crewboard_cnum`
     FOREIGN KEY (`cnum`)
     REFERENCES `final_project`.`crew` (`cnum`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 )
 ENGINE = InnoDB;
 
@@ -118,8 +118,8 @@ CREATE TABLE IF NOT EXISTS `final_project`.`crewrecord` (
   CONSTRAINT `fk_crewrecord_cnum`
     FOREIGN KEY (`cnum`)
     REFERENCES `final_project`.`crew` (`cnum`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -139,13 +139,13 @@ CREATE TABLE IF NOT EXISTS `final_project`.`crewjoin` (
   CONSTRAINT `fk_crewjoin_nickname`
     FOREIGN KEY (`nickname`)
     REFERENCES `final_project`.`user` (`nickname`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_crewjoin_cnum`
     FOREIGN KEY (`cnum`)
     REFERENCES `final_project`.`crew` (`cnum`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 )
 ENGINE = InnoDB;
 
@@ -174,8 +174,8 @@ CREATE TABLE IF NOT EXISTS `final_project`.`cos` (
   CONSTRAINT `fk_cos_nickname`
     FOREIGN KEY (`nickname`)
     REFERENCES `final_project`.`user` (`nickname`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -194,8 +194,8 @@ CREATE TABLE IF NOT EXISTS `final_project`.`cosreview` (
   CONSTRAINT `fk_cosreview_cos_num`
     FOREIGN KEY (`cos_num`)
     REFERENCES `final_project`.`cos` (`cos_num`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -212,13 +212,13 @@ CREATE TABLE IF NOT EXISTS `final_project`.`coslike` (
   CONSTRAINT `fk_coslike_nickname`
     FOREIGN KEY (`nickname`)
     REFERENCES `final_project`.`user` (`nickname`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_coslike_cos_num`
     FOREIGN KEY (`cos_num`)
     REFERENCES `final_project`.`cos` (`cos_num`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -250,8 +250,8 @@ CREATE TABLE IF NOT EXISTS `final_project`.`chat_message` (
   CONSTRAINT `fk_chat_message_room_id`
     FOREIGN KEY (`room_id`)
     REFERENCES `final_project`.`chat_room` (`room_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -272,13 +272,13 @@ CREATE TABLE IF NOT EXISTS `final_project`.`report` (
   CONSTRAINT `fk_report_nickname`
     FOREIGN KEY (`nickname`)
     REFERENCES `final_project`.`user` (`nickname`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_report_target_nickname`
     FOREIGN KEY (`target_nickname`)
     REFERENCES `final_project`.`user` (`nickname`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -323,8 +323,8 @@ CREATE TABLE IF NOT EXISTS `final_project`.`friend` (
   CONSTRAINT `fk/friend/unickname`
     FOREIGN KEY (`unickname`)
     REFERENCES `final_project`.`user` (`nickname`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 

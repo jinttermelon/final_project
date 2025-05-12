@@ -30,10 +30,12 @@ public interface UserMapper {
 
     public UserVO nicknameCheck(UserVO vo);
 
-    UserVO getNickname(String id);
+    public UserVO getNickname(String id);
 
 
     public int totalRowCount(UserVO vo);
 
     public int searchListTotalRowCount(UserVO vo,String searchKey, String searchWord);
+
+    public UserVO pwCheck(UserVO vo);
 }
