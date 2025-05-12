@@ -43,7 +43,6 @@
     <update id="updateOK">
         UPDATE user
         SET
-        id = #{id},
         pw = #{pw},
         nickname = #{nickname},
         birth_year = #{birth_year},
@@ -53,8 +52,7 @@
         tel = #{tel},
         tel_open = #{tel_open},
         img_name = #{img_name},
-        role = #{role},
-        report = #{report}
+        role = #{role}
         WHERE num = #{num}
     </update>
 
@@ -78,4 +76,10 @@
     <select id="searchListTotalRowCount" resultType="int">
         SELECT count(*) FROM user WHERE nickname LIKE CONCAT('%', #{searchWord}, '%')
     </select>
+
+    <select id="pwCheck" resultType="org.multi.final_project.user.UserVO">
+        SELECT * FROM user
+        WHERE num = #{num} AND pw = #{pw}
+    </select>
+
 </mapper>

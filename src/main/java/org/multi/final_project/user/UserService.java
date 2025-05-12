@@ -51,4 +51,8 @@ public class UserService {
     public int getSearchListTotalRowCount(UserVO vo,String searchKey, String searchWord) {
         return mapper.searchListTotalRowCount(vo,searchKey,searchWord);
     }
+
+    public UserVO pwCheck(UserVO vo) {
+        return mapper.pwCheck(vo);
+    }
 }
