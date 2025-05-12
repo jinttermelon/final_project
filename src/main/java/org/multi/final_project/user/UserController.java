@@ -34,6 +34,11 @@ public class UserController {
         return "user/insert";
     }
 
+    @GetMapping("/mypage")
+    public String mypage() {
+        return "user/mypage";
+    }
+
     @GetMapping("/findId")
     public String findId() {
         return "user/findId";
