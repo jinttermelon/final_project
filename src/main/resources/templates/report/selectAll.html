@@ -2,100 +2,90 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>신고 / 문의 내역</title>
+    <title>신고/문의 내역</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <style>
-        body {
-            background-color: #f5f5f5;
-        }
-        .mypage-card {
-            max-width: 600px;
-            margin: 100px auto;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            background-color: #ffffff;
-        }
-        .mypage-card h2 {
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .mypage-links {
-            text-align: center;
-            margin-top: 15px;
-        }
-        .mypage-links a {
-            margin: 0 8px;
-            color: #4dd0e1;
-            text-decoration: none;
-        }
-        .mypage-links a:hover {
-            text-decoration: underline;
+        .main-content, footer {
+            padding: 100px;
         }
 
-        .btn btn-outline-primary {
-            outline-color: ;
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
         }
 
-        .profile-preview {
-            width: 150px;
-            height: 150px;
-            border: 2px dashed #4dd0e1;
-            border-radius: 50%;
-            background-color: #fff;
+        .table thead th {
+            background-color: #f8f9fa;
+        }
+
+        .container h1 {
+            text-align: center;
         }
     </style>
-
-    <script>
-
-        function previewImage() {
-            const fileInput = document.getElementById('fileUpload');
-            const profilePreview = document.querySelector('.profile-preview');
-            const file = fileInput.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    profilePreview.style.display = 'block';  // 미리보기 영역을 보이도록 설정
-                    profilePreview.style.backgroundImage = 'url(' + e.target.result + ')';  // 미리보기 이미지 설정
-                };
-                reader.readAsDataURL(file);  // 파일을 Data URL로 읽어오기
-            } else {
-                profilePreview.style.display = 'none';  // 파일이 없으면 미리보기 숨기기
-            }
-        }
-
-    </script>
-
-
 </head>
-<body th:replace="~{layout::layout}">
+<body>
+<header>
+    <nav th:replace="~{top_menu :: top_menu}"></nav>
+</header>
+<!-- 메인 콘텐츠 영역 -->
+<div class="main-content">
+    <div class="container">
+        <h1>신고/문의 내역</h1>
+        <a th:href="@{/report/insert}" class="btn btn-danger">신고하기</a>
 
-<div th:fragment="content">
-    <div class="mypage-card">
-        <h2>신고 / 문의 내역</h2>
-        <form action="/mypage" method="post">
-            
-            <div class="list-group">
-                <a href="user/update" class="list-group-item list-group-item-action">스팸 홍보/상업성 메세지 전송</a>
-
-                <a href="/coslike/selectAll?nickname=name05" class="list-group-item list-group-item-action ">음란물/성희롱 게시물 및 메세지 전송</a>
-                <a href="/user/ridingHistory" class="list-group-item list-group-item-action ">3회 이상의 노쇼 행위</a>
-                <a href="/crewjoin/selectAll" class="list-group-item list-group-item-action ">욕설/비방/명예훼손</a>
-                <a href="/crewboard/myboard" class="list-group-item list-group-item-action ">기타</a>
-
-                <a href="#" class="list-group-item list-group-item-action ">신고/문의 내역 관리</a>
-            </div>
+        <form method="get" th:action="@{/report/selectAll}">
 
         </form>
+
+        <table class="table table-bordered table-striped table-hover mt-3">
+            <thead>
+            <tr>
+                <th>num</th>
+                <th>nickname</th>
+                <th>target_nickname</th>
+                <th>detail</th>
+                <th>reason</th>
+                <th>state</th>
+                <th>rdate</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="vo : ${vos}">
+                <tr>
+                    <td><a th:href="@{/report/selectOne(cos_num=${vo.num})}">[[${vo.num}]]</a></td>
+                    <td><a th:href="@{/report/selectOne(cos_num=${vo.num})}">[[${vo.nickname}]]</a></td>
+                    <td>[[${vo.target_nickname}]]</td>
+                    <td>[[${vo.detail}]]</td>
+                    <td>[[${vo.reason}]]</td>
+                    <td>[[${vo.state}]]</td>
+                    <td>[[${vo.rdate}]]</td>
+                </tr>
+            </th:block>
+            </tbody>
+            <tfoot>
+            <tr th:if="${param.searchKey == null}">
+                <td colspan="8">
+                    <a th:href="@{/report/selectAll(cpage=1,limit=10)}">1</a>
+                    <a th:href="@{/report/selectAll(cpage=2,limit=10)}">2</a>
+                    <a th:href="@{/report/selectAll(cpage=3,limit=10)}">3</a>
+                </td>
+            </tr>
+            <tr th:if="${param.searchKey != null}">
+                <td colspan="8">
+                    <a th:href="@{/report/searchList(cpage=1,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">1</a>
+                    <a th:href="@{/report/searchList(cpage=2,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">2</a>
+                    <a th:href="@{/report/searchList(cpage=3,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">3</a>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
     </div>
-
 </div>
-</div>
-
+<footer>
+    <div th:replace="~{footer :: footer}"></div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
