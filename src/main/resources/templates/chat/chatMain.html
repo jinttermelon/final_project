@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>채팅 메인</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
         html, body {
             margin: 0;
@@ -20,6 +22,7 @@
         .main {
             flex: 1;
             display: flex;
+            height: calc(100vh - 60px); /* 헤더 높이 제외용 */
         }
 
         /* 공통 */
@@ -67,84 +70,97 @@
             margin: 0;
         }
 
-        .chat-item {
-            display: block;
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 6px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            text-decoration: none;
-            color: #333;
-            transition: background-color 0.2s;
-        }
-
-        .chat-item:hover {
-            background-color: #e0e0e0;
-        }
-
-        /* 채팅 영역 */
+        /* 중앙 채팅 영역 */
         .chat-area {
             width: 60%;
             background-color: #ffffff;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             border-right: 1px solid #ddd;
+            padding: 16px;
+            position: relative;
         }
 
+        /* 채팅방 제목 */
         .chat-header {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 6px;
+            font-size: 22px;
+            font-weight: bold;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #4CAF50;
+            color: #333;
         }
 
+        /* 메시지 리스트 */
         .message-list {
             flex: 1;
-            padding-bottom: 16px;
             overflow-y: auto;
+            padding-right: 6px;
+            margin-bottom: 12px;
         }
 
+        /* 메시지 버블 */
         .message {
-            padding: 10px;
+            padding: 10px 14px;
             margin-bottom: 10px;
-            background-color: #f0f0f0;
-            border-radius: 12px;
-            max-width: 70%;
+            background-color: #f1f1f1;
+            border-radius: 16px;
+            max-width: 75%;
+            word-break: break-word;
+            position: relative;
+            font-size: 15px;
+            line-height: 1.4;
         }
 
+        /* 본인 메시지 오른쪽 정렬 예시 (추후 JS 또는 클래스에 따라 사용 가능) */
+        .message.self {
+            background-color: #DCF8C6;
+            margin-left: auto;
+        }
+
+        /* 메시지 입력 영역 */
         .message-box {
+            border-top: 1px solid #ccc;
+            padding-top: 12px;
             display: flex;
             gap: 10px;
-            margin-top: auto;
-            border-top: 1px solid #ddd;
-            padding-top: 12px;
         }
 
         .message-box input[type="text"] {
             flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+            padding: 10px 12px;
+            border: 1px solid #bbb;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
         }
 
         .message-box button {
-            padding: 10px 18px;
+            padding: 10px 16px;
             border: none;
+            border-radius: 20px;
             background-color: #2196F3;
-            color: white;
-            border-radius: 6px;
+            color: #fff;
+            font-weight: bold;
             cursor: pointer;
+            transition: background-color 0.2s;
         }
 
+        .message-box button:hover {
+            background-color: #1976D2;
+        }
+
+        /* 메시지가 없을 때 안내 메시지 */
         .empty-message {
-            text-align: center;
-            margin-top: 60px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #888;
             font-size: 16px;
+            text-align: center;
         }
+
 
         /* 친구 목록 */
         .friends {
@@ -152,33 +168,68 @@
             background-color: #f9f9f9;
         }
 
+        /* 우측 친구 목록 */
+        .friends {
+            width: 20%;
+            background-color: #fdfdfd;
+            border-left: 1px solid #ddd;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
         .friends h3 {
-            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 8px;
+        }
+
+        .friends ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+            overflow-y: auto;
         }
 
         .friend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             padding: 10px;
-            border: 1px solid #ddd;
+            border: 1px solid #e0e0e0;
             border-radius: 6px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             background-color: #fff;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s, transform 0.2s;
         }
 
         .friend-item:hover {
-            background-color: #e8e8e8;
+            background-color: #e9f5ff;
+            transform: scale(1.02);
         }
+
+        .friend-item::before {
+            content: '👤';
+            font-size: 18px;
+        }
+
 
     </style>
 </head>
 <body>
-<div th:fragment="content">
+<header>
+    <nav th:replace="~{top_menu :: top_menu}"></nav>
+</header>
+<!-- ✅ 전체 레이아웃 -->
 <div class="main">
-    <!-- 좌측: 채팅방 리스트 -->
+
+    <!-- ✅ 좌측: 채팅방 목록 -->
     <div class="sidebar">
         <h3>채팅방 목록</h3>
-        <!-- 방 생성 폼 -->
         <form th:action="@{/chat/room}" method="post">
             <input type="text" name="room_name" placeholder="방 이름">
             <button type="submit">방 만들기</button>
@@ -190,18 +241,17 @@
         </ul>
     </div>
 
-    <!-- 가운데: 메시지 -->
+    <!-- ✅ 중앙: 채팅창 -->
     <div class="chat-area">
         <div th:if="${selectedRoom != null}">
             <div class="chat-header" th:text="${selectedRoom.room_name}">채팅방 이름</div>
             <div class="message-list">
                 <div th:each="msg : ${messages}" class="message" th:text="${msg.content}">메시지</div>
             </div>
-            <!-- 메시지 입력 -->
             <div class="message-box">
                 <form th:action="@{/chat/message}" method="post">
                     <input type="hidden" name="room_id" th:value="${selectedRoom.room_id}">
-                    <input type="text" name="content" placeholder="메시지를 입력하세요" style="width: 80%;">
+                    <input type="text" name="content" placeholder="메시지를 입력하세요">
                     <button type="submit">전송</button>
                 </form>
             </div>
@@ -211,7 +261,7 @@
         </div>
     </div>
 
-    <!-- 우측: 친구 목록 -->
+    <!-- ✅ 우측: 친구 목록 -->
     <div class="friends">
         <h3>친구 목록</h3>
         <ul>
@@ -219,7 +269,9 @@
         </ul>
     </div>
 
-</div>
-</div>
+</div> <!-- /.main -->
+
+<footer>
+    <div th:replace="~{footer :: footer}"></div>
+</footer>
 </body>
-</html>

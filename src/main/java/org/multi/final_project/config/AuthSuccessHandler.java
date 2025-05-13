@@ -42,16 +42,6 @@ public class AuthSuccessHandler extends SavedRequestAwareAuthenticationSuccessHa
         //3-3.세션에 사용자 등록
         session.setAttribute("id", id);
 
-        //3-4.로그인 성공이후 미리 저장된 요청이 있었는지 읽어오기
-        SavedRequest savedRequest = requestCache.getRequest(request, response);
-
-        //3-5.만약에 미리저장된 요청이 없다면 즉 널값이 아니라면 로그인 환영페이지 또는 홈페이지로 이동
-        if (savedRequest != null) {
-            //3-6.로그인 환영페이지로 포워드(디스페처)
-            request.getRequestDispatcher("/user/loginSuccess").forward(request,response);
-        }else{
-            //3-7.원래 가려던 목적지 경로로 리다이렉트 이동시킨다(Get방식 요청 파라미터도 자동으로 같이 전달)
-            super.onAuthenticationSuccess(request, response, authentication);
-        }
+        request.getRequestDispatcher("/user/loginSuccess").forward(request,response);
     }
 }
