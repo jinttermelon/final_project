@@ -351,7 +351,9 @@ values
     ('user09','1111','name09','2020','M','suwon',3,'01012349999','open','default.png','USER','no'),
     ('user10','1111','name10','2020','F','seoul',1,'01011111111','close','default.png','USER','no'),
     ('user11','1111','name11','2010','M','incheon',4,'01022221111','open','default.png','USER','no'),
-    ('user12','1111','name12','1990','F','seoul',1,'01033331111','close','default.png','USER','no')
+    ('user12','1111','name12','1990','F','seoul',1,'01033331111','close','default.png','USER','no'),
+    ('test01@aaa.com','$2a$10$TJUbAAYslBvpWTSyP4nd7emSqSOW/nvsc.0DObqepI6gO5qeMMmba','testnick01','1990','F','seoul',1,'01033331111','close','default.png','USER','no')
+
 ;
 
 INSERT INTO crew (
@@ -427,11 +429,11 @@ VALUES
 
 INSERT INTO coslike (nickname, cos_num)
 VALUES
-    ('testnick01', 1),
+    ('name02', 1),
     ('name03', 1),
     ('name04', 2),
     ('name05', 2),
-    ('testnick01', 3),
+    ('name06', 3),
     ('name07', 3),
     ('name08', 4),
     ('name09', 4),
@@ -439,17 +441,17 @@ VALUES
     ('name11', 5),
     ('name12', 6),
     ('name02', 6),
-    ('testnick01', 7),
+    ('name03', 7),
     ('name04', 7),
     ('name05', 8),
     ('name06', 8),
     ('name07', 9),
-    ('testnick01', 9),
-    ('name09', 10),
+    ('name08', 9),
+    ('testnick01', 10),
     ('name10', 10),
     ('name11', 11),
     ('name12', 11),
-    ('name02', 12),
+    ('testnick01', 12),
     ('name03', 12),
     ('name04', 13),
     ('testnick01', 13),
