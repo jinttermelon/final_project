@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Slf4j
 @RequestMapping("crewjoin")
 @Controller
@@ -62,9 +64,31 @@ public class CrewJoinController {
         return "redirect:/selectAll";
     }
 
-    @GetMapping("/selectAll")
+    @GetMapping("/sellectAll")
+
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,
-                            @RequestParam(defaultValue = "10") int limit, Model model ){
+                            @RequestParam(defaultValue = "10") int limit, Model model , CrewVO vo){
+        int startRow = (cpage - 1) * limit;
+        List<CrewVO> vos = service.selectAll(startRow, limit);
+        model.addAttribute("vos", vos);
+
+        // 페이지네이션
+        int totalRowCount = service.getTotalRowCount(vo);
+        log.info("total row count: {}", totalRowCount);
+
+        int pageCount = 1;
+        if (totalRowCount / limit==0){
+            pageCount = 1;
+        }else if(totalRowCount % limit==0){
+            pageCount = totalRowCount / limit;
+        }else {
+            pageCount = totalRowCount / limit +1;
+        }
+        log.info("page count: {}", pageCount);
+
+        model.addAttribute("pageCount", pageCount);
+
+
         return "crewjoin/selectAll";
     }
 
