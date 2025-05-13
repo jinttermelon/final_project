@@ -21,10 +21,16 @@ public class EventController {
     @Autowired
     private EventService service;
 
+    @GetMapping("/myevent")
+    public String myevent() {
+        return "event/myevent";
+    }
+
     @GetMapping("/insert")
     public String insert() {
         return "event/insert";
     }
+
 
     @PostMapping("/insertOK")
     public String insertOK(EventVO vo) {
