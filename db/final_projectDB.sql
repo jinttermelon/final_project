@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `final_project`.`user` (
     `num` INT NOT NULL AUTO_INCREMENT,
     `pw` LONGTEXT NOT NULL,
     `nickname` VARCHAR(45) NOT NULL,
-    `birth_year` INT NOT NULL,
+    `birth_year` VARCHAR(45) NOT NULL,
     `gender` VARCHAR(45) NOT NULL,
     `sido` VARCHAR(45) NOT NULL,
     `riding_year` VARCHAR(45) NOT NULL DEFAULT 0,
