@@ -427,11 +427,11 @@ VALUES
 
 INSERT INTO coslike (nickname, cos_num)
 VALUES
-    ('name02', 1),
+    ('testnick01', 1),
     ('name03', 1),
     ('name04', 2),
     ('name05', 2),
-    ('name06', 3),
+    ('testnick01', 3),
     ('name07', 3),
     ('name08', 4),
     ('name09', 4),
@@ -439,12 +439,12 @@ VALUES
     ('name11', 5),
     ('name12', 6),
     ('name02', 6),
-    ('name03', 7),
+    ('testnick01', 7),
     ('name04', 7),
     ('name05', 8),
     ('name06', 8),
     ('name07', 9),
-    ('name08', 9),
+    ('testnick01', 9),
     ('name09', 10),
     ('name10', 10),
     ('name11', 11),
@@ -452,11 +452,11 @@ VALUES
     ('name02', 12),
     ('name03', 12),
     ('name04', 13),
-    ('name05', 13),
+    ('testnick01', 13),
     ('name06', 14),
-    ('name07', 14),
+    ('testnick01', 14),
     ('name08', 15),
-    ('name09', 15);
+    ('testnick01', 15);
 
 INSERT INTO crewrecord (
     riding_date, member, cnum, riding_cos
