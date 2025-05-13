@@ -2,96 +2,90 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>코스 상세 페이지</title>
+    <title th:text="${vo2.cos_name} + ' 상세 페이지'">코스 상세 페이지</title>
     <link rel="stylesheet" th:href="@{/css/board.css}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <style>
-        .carousel-container {
-            height: 40vh;
-        }
-        .carousel-inner img {
-            height: 100%;
-            object-fit: cover;
-        }
-        .bottom-section {
-            height: 30vh;
-        }
+        .carousel-container { height: 40vh; }
+        .carousel-inner img { height: 100%; object-fit: cover; }
+        .bottom-section { height: auto; }
         .corner-text {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            background: rgba(0,0,0,0.6);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: large;
+            position: absolute; bottom: 10px; left: 10px;
+            background: rgba(0,0,0,0.6); color: white;
+            padding: 5px 10px; border-radius: 5px; font-size: large;
         }
         .review-box {
-            height: 60%;
             border-left: 1px solid #ccc;
             padding-left: 20px;
         }
-        .review-list {
-            height: 80%;
-            overflow-y: auto;
-        }
-        .review-button {
-            text-align: center;
-            margin-top: 18px;
-            margin-bottom: 36px;
-        }
+        .review-list { height: 200px; overflow-y: auto; }
     </style>
 </head>
 <body th:replace="~{layout::layout}">
-<div th:fragment="content" class="container-fluid">
-    <h1 class="mt-4 mb-4">코스 상세 페이지</h1>
 
+<div th:fragment="content" class="container-fluid">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="mt-4 mb-4" th:text="${vo2.cos_name}">코스 이름</h1>
+
+    <!-- 이미지 캐러셀 -->
     <div class="carousel-container mb-4">
-        <div id="cosselectOne" class="carousel slide h-100" data-ride="carousel">
+        <div id="cosCarousel" class="carousel slide h-100" data-ride="carousel">
             <div class="carousel-inner h-100">
                 <div class="carousel-item active position-relative h-100">
-                    <img src="/img/seoul.png" class="d-block w-100" alt="서울">
-                </div>
-                <div class="carousel-item h-100">
-                    <img src="/img/jeju.jpg" class="d-block w-100" alt="제주">
-                </div>
-                <div class="carousel-item h-100">
-                    <img src="/img/incheon.jpg" class="d-block w-100" alt="인천">
+                    <img th:src="@{'/uploadimgPath/' + ${vo2.img}}" class="d-block w-100" th:alt="${vo2.cos_name}">
+                    <span class="corner-text" th:text="${vo2.city}">도시</span>
                 </div>
             </div>
-            <span class="corner-text">서울</span>
-
-            <a class="carousel-control-prev" href="#cosselectOne" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#cosselectOne" role="button" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </a>
         </div>
     </div>
 
+    <!-- 상세 내용 -->
     <div class="row bottom-section">
         <div class="col-md-8">
-            <h3>코스 상세 설명</h3>
-            <p> 내용 어떻게넣어여.. ㅎㅎ
-            </p>
+            <h3>코스 설명</h3>
+            <p th:text="${vo2.info}">코스 상세 설명</p>
+
+            <ul class="list-group mt-3">
+                <li class="list-group-item">🏁 거리: <span th:text="${vo2.km}">0km</span></li>
+                <li class="list-group-item">🕒 예상 시간: <span th:text="${vo2.cos_time}">0</span> 분</li>
+                <li class="list-group-item">📍 도시: <span th:text="${vo2.city}">도시명</span></li>
+                <li class="list-group-item">🎯 난이도: <span th:text="${vo2.level}">초급</span></li>
+                <li class="list-group-item">🏷️ 태그: <span th:text="${vo2.tag}">#라이딩</span></li>
+            </ul>
         </div>
 
+        <!-- 리뷰 박스 -->
         <div class="col-md-4 review-box">
             <h4>작성된 리뷰</h4>
             <div class="review-list">
                 <p>👍 아주 좋은 코스였어요!</p>
                 <p>⭐ 가족과 함께 하기 좋아요.</p>
                 <p>👎 조금 지루했어요.</p>
+
             </div>
-            <div class="review-button">
-                <button class="btn btn-primary" onclick="location.href='/cosreview/insert'">리뷰 작성하러 가기</button>
+            <div class="text-center mt-3">
+                <tr th:if="${param.message == null}">
+                    <a th:href="@{'/cosreview/insert'(cos_num=${vo2.cos_num})}" class="btn btn-primary">코스리뷰작성</a>
+                    <a th:href="@{'/coslike/insert'(cos_num=${vo2.cos_num})}" class="btn btn-primary">찜하기</a>
+                </tr>
+                <tr th:if="${#strings.equals(param.message, 'like')}">
+                    <a th:href="@{'/cosreview/insert'(cos_num=${vo2.cos_num})}" class="btn btn-primary">코스리뷰작성</a>
+                    <a th:href="@{'/coslike/insert'(cos_num=${vo2.cos_num})}" class="btn btn-primary">찜하기</a>
+                </tr>
+                <tr th:if="${#strings.equals(param.message, 'liked')}">
+                    <a th:href="@{'/cosreview/insert'(cos_num=${vo2.cos_num})}" class="btn btn-primary">코스리뷰작성</a>
+                    <a th:href="@{'/coslike/delete'(cos_num=${vo2.cos_num})}" class="btn btn-primary">찜취소</a>
+                </tr>
             </div>
         </div>
     </div>
+</div>
 
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -21,6 +21,7 @@ public class CosLikeService {
     public List<CosLikeVO> selectAll(CosLikeVO vo ,int startRow, int limit){
         return mapper.selectAll(vo,startRow,limit);
     }
-
-
+    public int checkLike(String nickname, int cos_num) {
+        return mapper.checkLike(nickname,cos_num);
+    }
 }

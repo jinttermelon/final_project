@@ -3,6 +3,7 @@ package org.multi.final_project.cos;
 import lombok.extern.slf4j.Slf4j;
 import org.multi.final_project.ad.AdVO;
 import org.multi.final_project.comment.CommentVO;
+import org.multi.final_project.crewboard.CrewBoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,9 +73,12 @@ public class CosController {
     }
 
     @GetMapping("/selectOne")
-    public String selectOne(CosVO vo){
+    public String selectOne(CosVO vo, Model model){
         log.info("selectOne()...");
 
+
+        CosVO vo2 = service.selectOne(vo);
+        model.addAttribute("vo2", vo2);
         return "cos/selectOne";
     }
 

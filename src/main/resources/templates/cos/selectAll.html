@@ -75,8 +75,8 @@
             <th:block th:each="vo : ${vos}">
                 <tr>
                     <td><a th:href="@{/cos/selectOne(cos_num=${vo.cos_num})}">[[${vo.cos_num}]]</a></td>
-                    <td><a th:href="@{/cos/selectOne(cos_num=${vo.cos_num})}">[[${vo.nickname}]]</a></td>
-                    <td>[[${vo.cos_name}]]</td>
+                    <td>[[${vo.nickname}]]</td>
+                    <td><a th:href="@{/cos/selectOne(cos_num=${vo.cos_num})}">[[${vo.cos_name}]]</a></td>
                     <td>[[${vo.city}]]</td>
                     <td>[[${vo.km}]]</td>
                     <td>[[${vo.cos_time}]]</td>

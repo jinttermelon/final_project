@@ -11,5 +11,5 @@ public interface CosLikeMapper {
     public int insertOK(CosLikeVO vo);
     public int deleteOK(CosLikeVO vo);
     public List<CosLikeVO> selectAll(@Param("vo") CosLikeVO vo, int startRow, int limit);
-
+    public int checkLike(String nickname, int cos_num);
 }

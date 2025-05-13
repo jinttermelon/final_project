@@ -35,4 +35,8 @@
         JOIN cos c ON cl.cos_num = c.cos_num
         WHERE cl.nickname = #{vo.nickname}
     </select>
+
+    <select id="checkLike" resultType="int">
+        SELECT COUNT(*) FROM coslike WHERE nickname=#{nickname} AND cos_num = #{cos_num};
+    </select>
 </mapper>
