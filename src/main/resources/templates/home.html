@@ -13,29 +13,11 @@
             display: flex;
             flex-direction: column;
         }
-        .sidebar {
-            min-width: 250px;
-            max-width: 250px;
-            height: 100vh;
-            position: fixed;
-            background-color: #343a40;
-            padding-top: 60px;
-        }
-        .sidebar a {
-            color: #fff;
-            padding: 10px;
-            display: block;
-            text-decoration: none;
-        }
-        .sidebar a:hover {
-            background-color: #495057;
-        }
+
         .main-content {
-            margin-left: 250px;
             padding: 100px;
         }
         footer {
-            margin-left: 250px;
             padding: 100px;
         }
     </style>
@@ -45,13 +27,6 @@
 <header>
     <nav th:replace="~{top_menu :: top_menu}"></nav>
 </header>
-<!-- 왼쪽 사이드바 -->
-<div class="sidebar">
-    <a th:href="@{/}">🏠 Home</a>
-    <a th:href="@{/about}">ℹ️ About</a>
-    <a th:href="@{/contact}">📞 Contact</a>
-    <a th:href="@{/settings}">⚙️ Settings</a>
-</div>
 
 <!-- 메인 콘텐츠 영역 -->
 <div class="main-content">
