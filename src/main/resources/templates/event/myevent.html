@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <style>
+
+        .body {
+            background-color: #f5f5f5;
+
+        }
+
+
         .main-content, footer {
             padding: 100px;
         }
@@ -20,15 +27,39 @@
             background-color: #f8f9fa;
         }
 
-        .thumbnail {
+        .event-card {
+            width: 300px;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .card-body {
+            background-color: #f8f9fa;
             width: 300px;
             height: auto;
 
         }
 
+        .card-text {
+            font-size: small;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: auto;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px; /* 카드 간 일정한 간격 */
+            justify-content: center;
+        }
+
+
     </style>
 </head>
-<body>
+<body class="body">
 <header>
     <nav th:replace="~{top_menu :: top_menu}"></nav>
 </header>
@@ -45,56 +76,74 @@
         </nav>
 
         <!-- 이벤트 카드 반복 영역 -->
-        <div class="event-list">
-            <article class="event-card">
-            <div class="event-top">
-                <span class="label">전체</span>
-                <span class="date">기간: 2025.12.34 ~ 2025.12.34</span>
-            </div>
-            <div class="event-body">
-                <div class="banner"><img src="/img/event.jpg"  alt="이미지" class="thumbnail"></div>
-                <div class="info">
-                <span class="location">서울</span>
-                <span class="price">참가비 0원</span>
-                <span class="people">참여 인원 수 00명</span>
+        <div class="row g-4">
+            <div class="col-md-4 mb-4">
+                <div class="event-card" style="width: 18rem;">
+                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
+                    <div class="card-body">
+                        <h5 class="card-title">전체</h5>
+                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
+                        <a href="#" class="btn btn-primary">참가</a>
+                    </div>
                 </div>
             </div>
-            </article>
-        </div>
-        <!-- 이벤트 카드 반복 영역 -->
-        <div class="event-list">
-            <article class="event-card">
-            <div class="event-top">
-                <span class="label">전체</span>
-                <span class="date">기간: 2025.12.34 ~ 2025.12.34</span>
-            </div>
-            <div class="event-body">
-                <div class="banner"><a href="#">이벤트 배너</a></div>
-                <div class="info">
-                <span class="location">서울</span>
-                <span class="price">참가비 0원</span>
-                <span class="people">참여 인원 수 00명</span>
+
+            <div class="col-md-4 mb-4">
+                <div class="event-card" style="width: 18rem;">
+                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
+                    <div class="card-body">
+                        <h5 class="card-title">전체</h5>
+                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
+                        <a href="#" class="btn btn-primary">참가</a>
+                    </div>
                 </div>
             </div>
-            </article>
-        </div>
-        <!-- 이벤트 카드 반복 영역 -->
-        <div class="event-list">
-            <article class="event-card">
-            <div class="event-top">
-                <span class="label">전체</span>
-                <span class="date">기간: 2025.12.34 ~ 2025.12.34</span>
-            </div>
-            <div class="event-body">
-                <div class="banner"><a href="#">이벤트 배너</a></div>
-                <div class="info">
-                <span class="location">서울</span>
-                <span class="price">참가비 0원</span>
-                <span class="people">참여 인원 수 00명</span>
+
+            <div class="col-md-4 mb-4">
+                <div class="event-card" style="width: 18rem;">
+                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
+                    <div class="card-body">
+                        <h5 class="card-title">전체</h5>
+                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
+                        <a href="#" class="btn btn-primary">참가</a>
+                    </div>
                 </div>
             </div>
-            </article>
-        </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="event-card" style="width: 18rem;">
+                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
+                    <div class="card-body">
+                        <h5 class="card-title">전체</h5>
+                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
+                        <a href="#" class="btn btn-primary">참가</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="event-card" style="width: 18rem;">
+                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
+                    <div class="card-body">
+                        <h5 class="card-title">전체</h5>
+                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
+                        <a href="#" class="btn btn-primary">참가</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="event-card" style="width: 18rem;">
+                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
+                    <div class="card-body">
+                        <h5 class="card-title">전체</h5>
+                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
+                        <a href="#" class="btn btn-primary">참가</a>
+                    </div>
+                </div>
+            </div>
+
+
     </div>
 </div>
 <footer>

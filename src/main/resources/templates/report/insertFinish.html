@@ -2,25 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <title>신고 완료</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <style>
+        .main-content, footer {
+            padding: 100px;
+        }
+    </style>
 </head>
-<body th:replace="~{layout::layout}">
-    <div th:fragment="content">
-        <h1>신고 문의 완료</h1>
-        <div>
-            <img src="https://img.icons8.com/ios-filled/100/clipboard.png" alt="완료 아이콘">
-        </div>
-        <p>
-            신고가 완료되었습니다.<br>
-            자세한 내역은 신고 문의 → 신고 내역 보기를 통해<br>
-            확인 해주세요
-        </p>
-        <p>
-            <a href="#">신고 내역 보기</a>
-        </p>
+<body>
+<header>
+    <nav th:replace="~{top_menu :: top_menu}"></nav>
+</header>
+<!-- 메인 콘텐츠 영역 -->
+<div class="main-content">
+    <div class="container">
+        <h2>신고 완료!</h2>
+        <p><a href="/report/selectAll">신고내역 페이지로 이동</a></p>
     </div>
+</div>
+
+<footer>
+    <div th:replace="~{footer :: footer}"></div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
