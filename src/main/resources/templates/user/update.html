@@ -146,13 +146,19 @@
                         </div>
 
                     </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" id="public" name="tel_open">
-                        <label class="form-check-label" for="public">공개</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="private" name="tel_open" checked>
-                        <label class="form-check-label" for="private">비공개</label>
+                    <!-- 라디오 버튼 그룹 -->
+                    <div class="form-group mt-3">
+                        <label class="d-block font-weight-bold mb-2">전화번호 공개 여부</label>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="tel_open" name="tel_open" value="open">
+                            <label class="form-check-label" for="tel_open">공개</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="tel_close" name="tel_open" value="close" checked>
+                            <label class="form-check-label" for="tel_close">비공개</label>
+                        </div>
                     </div>
                 </div>
 
