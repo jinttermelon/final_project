@@ -340,19 +340,19 @@ ALTER TABLE chat_room ADD chat_info VARCHAR(255);
 
 insert into user(id,pw,nickname,birth_year,gender,sido,riding_year,tel,tel_open,img_name,role,report)
 values
-    ('admin01','1111','admin01','1999','F','seoul',1,'01012341111','open','default.png','ADMIN','no'),
-    ('user02','1111','name02','1999','M','suwon',3,'01012342222','open','default.png','USER','no'),
-    ('user03','1111','name03','1999','F','incheon',1,'01012343333','close','default.png','USER','no'),
-    ('user04','1111','name04','1999','M','seoul',2,'01012344444','open','default.png','USER','no'),
-    ('user05','1111','name05','2000','M','incheon',2,'01012345555','close','default.png','USER','no'),
-    ('user06','1111','name06','2000','F','suwon',4,'01012346666','close','default.png','USER','no'),
-    ('user07','1111','name07','2000','M','seoul',1,'01012347777','open','default.png','USER','no'),
-    ('user08','1111','name08','2010','F','incheon',1,'01012348888','close','default.png','USER','no'),
-    ('user09','1111','name09','2020','M','suwon',3,'01012349999','open','default.png','USER','no'),
-    ('user10','1111','name10','2020','F','seoul',1,'01011111111','close','default.png','USER','no'),
-    ('user11','1111','name11','2010','M','incheon',4,'01022221111','open','default.png','USER','no'),
-    ('user12','1111','name12','1990','F','seoul',1,'01033331111','close','default.png','USER','no'),
-    ('test01@aaa.com','$2a$10$TJUbAAYslBvpWTSyP4nd7emSqSOW/nvsc.0DObqepI6gO5qeMMmba','testnick01','1990','F','seoul',1,'01033331111','close','default.png','USER','no')
+    ('admin01','1111','admin01','1999','F','seoul',1,'KT-010-3333-1111','open','default.png','ADMIN','no'),
+    ('user02','1111','name02','1999','M','suwon',3,'KT-010-3333-1111','open','default.png','USER','no'),
+    ('user03','1111','name03','1999','F','incheon',1,'KT-010-3333-1111','close','default.png','USER','no'),
+    ('user04','1111','name04','1999','M','seoul',2,'KT-010-3333-1111','open','default.png','USER','no'),
+    ('user05','1111','name05','2000','M','incheon',2,'KT-010-3333-1111','close','default.png','USER','no'),
+    ('user06','1111','name06','2000','F','suwon',4,'KT-010-3333-1111','close','default.png','USER','no'),
+    ('user07','1111','name07','2000','M','seoul',1,'KT-010-3333-1111','open','default.png','USER','no'),
+    ('user08','1111','name08','2010','F','incheon',1,'KT-010-3333-1111','close','default.png','USER','no'),
+    ('user09','1111','name09','2020','M','suwon',3,'KT-010-3333-1111','open','default.png','USER','no'),
+    ('user10','1111','name10','2020','F','seoul',1,'KT-010-3333-1111','close','default.png','USER','no'),
+    ('user11','1111','name11','2010','M','incheon',4,'KT-010-3333-1111','open','default.png','USER','no'),
+    ('user12','1111','name12','1990','F','seoul',1,'KT-010-3333-1111','close','default.png','USER','no'),
+    ('test01@aaa.com','$2a$10$TJUbAAYslBvpWTSyP4nd7emSqSOW/nvsc.0DObqepI6gO5qeMMmba','testnick01','1990','F','seoul',1,'KT-010-3333-1111','close','default.png','USER','no')
 
 ;
 
