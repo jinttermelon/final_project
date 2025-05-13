@@ -28,8 +28,8 @@
           <tbody>
           <th:block th:each="vo : ${vos}">
             <tr>
-              <td><a th:href="@{/user/selectOne(num=${vo.num})}">[[${vo.num}]]</a></td>
-              <td><a th:href="@{/user/selectOne(num=${vo.num})}">[[${vo.nickname}]]</a></td>
+              <td><a th:href="@{/user/selectOne(nickname=${vo.nickname})}">[[${vo.num}]]</a></td>
+              <td><a th:href="@{/user/selectOne(nickname=${vo.nickname})}">[[${vo.nickname}]]</a></td>
               <td>[[${vo.gender}]]</td>
               <td>[[${vo.birth_year}]]</td>
               <td>[[${vo.sido}]]</td>
@@ -39,9 +39,9 @@
               <td>[[${vo.report}]]</td>
               <td>[[${vo.role}]]</td>
               <td>
-                <a th:href="@{/user/selectOne(num=${vo.num})}">상세보기</a>
-                <a th:href="@{/user/update(num=${vo.num})}">수정</a>
-                <a th:href="@{/user/delete(num=${vo.num})}">삭제</a>
+                <a th:href="@{/user/selectOne(nickname=${vo.nickname})}">상세보기</a>
+                <a th:href="@{/user/update(nickname=${vo.nickname})}">수정</a>
+                <a th:href="@{/user/delete(nickname=${vo.nickname})}">삭제</a>
               </td>
             </tr>
 

@@ -1,9 +1,11 @@
 package org.multi.final_project.user;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.multi.final_project.crew.CrewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +31,12 @@ public class UserController {
     @Value("${file.dir}")
     private String realPath;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private HttpSession session;
+
     @GetMapping("/insert")
     public String insert() {
         return "user/insert";
@@ -40,7 +48,13 @@ public class UserController {
     }
 
     @GetMapping("/mypage")
-    public String mypage() {
+    public String mypage(UserVO vo, Model model) {
+
+
+        UserVO vo2 = service.selectOne(vo);
+        model.addAttribute("vo2", vo2);
+
+
         return "user/mypage";
     }
 
@@ -89,7 +103,11 @@ public class UserController {
 
             ImageIO.write(thumb_buffer_img, save_name.substring(save_name.lastIndexOf(".") + 1), thumb_file);
         }//end if
+        vo.setPw(passwordEncoder.encode(vo.getPw()));
 
+        vo.setTel(vo.getTel_company()+":"+vo.getTel01()+vo.getTel02()+vo.getTel03());
+        vo.setSido(vo.getSido01()+"/"+vo.getSido02());
+        log.info("vo : {}",vo);
         service.insertOK(vo);
 
         log.info(vo.toString());
@@ -188,10 +206,17 @@ public class UserController {
 
 
         log.info(vo.toString());
+        vo.setPw(passwordEncoder.encode(vo.getPw()));
         service.updateOK(vo);
+        log.info((String) session.getAttribute("role"));
 
 
-        return "redirect:selectAll";
+        if(session.getAttribute("role").equals("ADMIN")){
+            return "redirect:selectAll";
+        }else{
+            return "redirect:/user/mypage?nickname="+vo.getNickname();
+        }
+
     }
 
     @GetMapping("/delete")
@@ -203,34 +228,47 @@ public class UserController {
     public String deleteOK(UserVO vo) {
 
         log.info(vo.toString());
-        UserVO vo2 = service.pwCheck(vo);
-        log.info("vo2:" + vo2);
-        if (vo2 != null) {
-            service.deleteOK(vo);
-        }else {
-            return "redirect:/user/delete?num="+vo.getNum();
+
+
+        service.deleteOK(vo);
+        if(session.getAttribute("role").equals("ADMIN")){
+            return "redirect:selectAll";
+        }else{
+            return "redirect:/home";
         }
 
-        return "redirect:/user/selectAll";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/login_form")
     public String login_form() {
-        return "user/login";
+
+        return "user/login_form";
     }
 
     @GetMapping("/required")
     public String required_login() {
+
         return "user/required";
     }
 
-    @GetMapping("/fail")
+    @PostMapping("/loginFail")
     public String login_fail() {
         return "user/loginFail";
     }
 
-    @GetMapping("/success")
+    @PostMapping("/loginSuccess")
     public String login_success() {
+
+        session.getAttribute("id");
+        log.info("{}",session.getAttribute("id"));
+
+        UserVO vo2 = service.getNickname(session.getAttribute("id").toString());
+        log.info("vo2:" + vo2);
+
+        session.setAttribute("nickname", vo2.getNickname());
+        session.setAttribute("id", vo2.getId());
+        session.setAttribute("role", vo2.getRole());
+
         return "user/loginSuccess";
     }
 

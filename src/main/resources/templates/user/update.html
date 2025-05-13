@@ -12,16 +12,11 @@
         <h1>회원수정 페이지</h1>
         <form action="/user/updateOK" method="post" enctype="multipart/form-data">
             <table id="customers">
-                <tr>
-                    <td><label for="num">번호(변경 불가)</label></td>
-                    <td>[[${param.num}]]
-                        <input type="hidden" id="num" name="num" th:value="${param.num}">
-                    </td>
-                </tr>
+
                 <tr>
                     <td><label for="nickname">닉네임 :</label></td>
                     <td>
-                        <input type="text" id="nickname "name="nickname" value="라이더김">
+                        <input type="text" id="nickname "name="nickname" th:value="${vo2.nickname}">
                         <input type="submit" name="nickname" value="중복 확인">
                     </td>
                 </tr>

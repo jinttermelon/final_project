@@ -38,4 +38,7 @@ public interface UserMapper {
     public int searchListTotalRowCount(UserVO vo,String searchKey, String searchWord);
 
     public UserVO pwCheck(UserVO vo);
+
+
+    public UserVO findById(String username);
 }

@@ -19,9 +19,7 @@
         </ul>
 
         <form action="/user/deleteOK" method="post">
-        <label>비밀번호 확인</label><br>
-        <input type="password" name="pw" placeholder="비밀번호를 입력하세요"><br><br>
-        <input type="hidden" name="num" th:value="${param.num}"><br><br>
+        <input type="hidden" name="nickname" th:value="${param.nickname}"><br><br>
 
         <button type="submit">탈퇴하기</button>
         <button type="button">취소</button>
