@@ -22,10 +22,13 @@ public class CrewBoardController {
     @Autowired
     private CrewBoardService service;
 
+
+
     @GetMapping("insert")
     public String insert(){
         return "crewboard/insert";
     }
+
     @PostMapping ("insertOK")
     public String insertOK(CrewBoardVO vo){
 
@@ -140,6 +143,36 @@ public class CrewBoardController {
         model.addAttribute("pageCount", pageCount);
 
         return "crewboard/selectAll";
+    }
+
+    @GetMapping("myboard")
+    public String myboard(@RequestParam(defaultValue = "1") int cpage,
+                            @RequestParam(defaultValue = "1") int cnum,
+                            @RequestParam(defaultValue = "10") int limit,
+                            Model model,
+                            CrewBoardVO vo){
+
+        int startRow = (cpage - 1) * limit;
+        List<CrewBoardVO> vos = service.selectAll(startRow, limit, cnum);
+        model.addAttribute("vos", vos);
+
+        // 페이지네이션
+        int totalRowCount = service.getTotalRowCount(vo);
+        log.info("total row count: {}", totalRowCount);
+
+        int pageCount = 1;
+        if (totalRowCount / limit==0){
+            pageCount = 1;
+        }else if(totalRowCount % limit==0){
+            pageCount = totalRowCount / limit;
+        }else {
+            pageCount = totalRowCount / limit +1;
+        }
+        log.info("page count: {}", pageCount);
+
+        model.addAttribute("pageCount", pageCount);
+
+        return "crewboard/myboard";
     }
 
 }

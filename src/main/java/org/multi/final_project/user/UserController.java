@@ -42,13 +42,16 @@ public class UserController {
         return "user/insert";
     }
 
+    @GetMapping("/ridingHistory")
+    public String ridingHistory() {
+        return "user/ridingHistory";
+    }
+
     @GetMapping("/mypage")
     public String mypage(UserVO vo, Model model) {
 
-
         UserVO vo2 = service.selectOne(vo);
         model.addAttribute("vo2", vo2);
-
 
         return "user/mypage";
     }

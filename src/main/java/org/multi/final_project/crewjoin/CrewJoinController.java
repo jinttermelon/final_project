@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Slf4j
 @RequestMapping("crewjoin")
 @Controller
@@ -62,9 +64,11 @@ public class CrewJoinController {
         return "redirect:/selectAll";
     }
 
-    @GetMapping("/selectAll")
-    public String selectAll(@RequestParam(defaultValue = "1") int cpage,
-                            @RequestParam(defaultValue = "10") int limit, Model model ){
+    @GetMapping("/sellectAll")
+
+    public String sellectAll(@RequestParam(defaultValue = "1") int cpage,
+                            @RequestParam(defaultValue = "10") int limit, Model model , CrewVO vo){
+
         return "crewjoin/selectAll";
     }
 
