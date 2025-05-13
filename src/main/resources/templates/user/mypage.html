@@ -86,8 +86,7 @@
 					</div>
 
 					<div class="list-group">
-						<a href="user/update" class="list-group-item list-group-item-action">내 정보 관리</a>
-
+						<a th:href="@{/user/update(nickname=${session.nickname})}" class="list-group-item list-group-item-action">내 정보 관리</a>
 						<a href="/coslike/selectAll?nickname=name05" class="list-group-item list-group-item-action ">찜한 코스</a>
 						<a href="/user/ridingHistory" class="list-group-item list-group-item-action ">라이딩 HISTORY</a>
 						<a href="/crewjoin/selectAll" class="list-group-item list-group-item-action ">내 크루</a>
