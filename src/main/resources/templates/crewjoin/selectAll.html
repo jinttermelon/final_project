@@ -53,7 +53,7 @@
 <div class="main-content">
     <div class="container">
         <h1>크루 목록</h1>
-        <form method="get" th:action="@{/crew/searchList}" class="row g-3 mb-3">
+        <form method="get" th:action="@{/crewjoin/searchList}" class="row g-3 mb-3">
             <table id="search_form">
                 <tr>
                     <td><select name="searchKey">
@@ -83,8 +83,8 @@
             <tbody>
             <th:block th:each="vo : ${vos}">
                 <tr>
-                    <td><a th:href="@{../crew/selectOne(cnum=${vo.cnum})}">[[${vo.cnum}]]</a></td>
-                    <td><a th:href="@{../crew/selectOne(cnum=${vo.cnum})}">[[${vo.name}]]</a></td>
+                    <td><a th:href="@{../crewjoin/selectOne(cnum=${vo.cnum})}">[[${vo.cnum}]]</a></td>
+                    <td><a th:href="@{../crewjoin/selectOne(cnum=${vo.cnum})}">[[${vo.name}]]</a></td>
                     <td>[[${vo.recruit}]]</td>
                     <td>[[${vo.sche}]]</td>
                     <td>[[${vo.score}]]</td>
@@ -100,7 +100,7 @@
             <tr th:if="${param.searchKey == null}">
                 <td colspan="5">
                     <th:block th:each="i : ${#numbers.sequence(1,pageCount)}">
-                        <a th:href="@{/crew/selectAll(cpage=${i},limit=10)}">[[${i}]]</a>
+                        <a th:href="@{/crewjoin/selectAll(cpage=${i},limit=10)}">[[${i}]]</a>
                     </th:block>
 
                 </td>
@@ -108,7 +108,7 @@
             <tr th:if="${param.searchKey != null}">
                 <td colspan="5">
                     <th:block th:each="i : ${#numbers.sequence(1,pageCount)}">
-                        <a th:href="@{/crew/searchList(cpage=${i},limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">[[${i}]]</a>
+                        <a th:href="@{/crewjoin/searchList(cpage=${i},limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">[[${i}]]</a>
                     </th:block>
                 </td>
             </tr>
