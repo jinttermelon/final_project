@@ -100,6 +100,9 @@ public class UserController {
         }//end if
         vo.setPw(passwordEncoder.encode(vo.getPw()));
 
+        vo.setTel(vo.getTel_company()+":"+vo.getTel01()+vo.getTel02()+vo.getTel03());
+        vo.setSido(vo.getSido01()+"/"+vo.getSido02());
+        log.info("vo : {}",vo);
         service.insertOK(vo);
 
         log.info(vo.toString());
