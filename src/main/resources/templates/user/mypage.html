@@ -50,29 +50,7 @@
 		}
 	</style>
 
-	<script>
-
-		function previewImage() {
-			const fileInput = document.getElementById('fileUpload');
-			const profilePreview = document.querySelector('.profile-preview');
-			const file = fileInput.files[0];
-
-			if (file) {
-				const reader = new FileReader();
-				reader.onload = function (e) {
-					profilePreview.style.display = 'block';  // 미리보기 영역을 보이도록 설정
-					profilePreview.style.backgroundImage = 'url(' + e.target.result + ')';  // 미리보기 이미지 설정
-				};
-				reader.readAsDataURL(file);  // 파일을 Data URL로 읽어오기
-			} else {
-				profilePreview.style.display = 'none';  // 파일이 없으면 미리보기 숨기기
-			}
-		}
-
-		</script>
-
-
-		</head>
+	</head>
 		<body th:replace="~{layout::layout}">
 
 		<div th:fragment="content">
@@ -80,9 +58,9 @@
 				<h2>마이페이지</h2>
 				<form action="/mypage" method="post">
 					<div class="text-center mb-4">
-						<div class="profile-preview mx-auto mb-2"></div>
-						<label for="fileUpload" class="btn btn-outline-info btn-sm">사진 업로드</label>
-						<input type="file" id="fileUpload" name="file" style="display:none;" onchange="previewImage()"/>
+						<div class="profile-preview mx-auto mb-2"
+							 th:style="'background-image: url(' + @{/uploadimgPath/} + ${vo2.img_name} + '); background-size: cover; background-position: center;'">
+						</div>
 					</div>
 
 					<div class="list-group">
