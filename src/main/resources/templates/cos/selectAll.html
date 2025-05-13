@@ -2,87 +2,111 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <title>코스 목록</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-</head>
-<body th:replace="~{layout::layout}">
-<div th:fragment="content">
-    <h1>코스 목록</h1>
-    <form method="get" th:action="@{/cos/selectAll}">
-        <table id="search_form">
-            <tr>
-                <td><label for="sido">시/도:</label>
-                    <select id="sido">
-                        <option value="">선택</option>
-                        <option value="서울">서울</option>
-                        <option value="부산">부산</option>
-                        <option value="대구">대구</option>
-                    </select>
-                </td>
-                <td><input type="text" name="searchWord" th:value="${ti}"></td>
-                <td><input type="submit" value="search"></td>
-            </tr>
-            <tr>
-                <td><label for="km_start">거리 (km):</label>
-                    <input type="number" id="km_start" name="km_start" min="0" step="0.1"> ~
-                    <input type="number" id="km_end" name="km_end" min="0" step="0.1">
-                </td>
-            </tr>
-            <tr>
-                <td><label for="cos_time_start">시간 (m):</label>
-                    <input type="number" id="cos_time_start" name="cos_time_start" min="0" step="0.1"> ~
-                    <input type="number" id="cos_time_end" name="cos_time_end" min="0" step="0.1">
-                </td>
-            </tr>
-        </table>
-    </form>
+    <style>
+        .main-content, footer {
+            padding: 100px;
+        }
 
-    <table id="cos">
-        <thead>
-        <tr>
-            <th>cos_num</th>
-            <th>nickname</th>
-            <th>cosname</th>
-            <th>city</th>
-            <th>km</th>
-            <th>cos_time</th>
-            <th>like_count</th>
-            <th>review_count</th>
-        </tr>
-        </thead>
-        <tbody>
-        <th:block th:each="vo : ${vos}">
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table thead th {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav th:replace="~{top_menu :: top_menu}"></nav>
+</header>
+<!-- 메인 콘텐츠 영역 -->
+<div class="main-content">
+    <div class="container">
+        <h1>코스 목록</h1>
+        <form method="get" th:action="@{/cos/selectAll}">
+            <table id="search_form">
+                <tr>
+                    <td><label for="sido">시/도:</label>
+                        <select id="sido">
+                            <option value="">선택</option>
+                            <option value="서울">서울</option>
+                            <option value="부산">부산</option>
+                            <option value="대구">대구</option>
+                        </select>
+                        <input type="text" name="searchWord" th:value="${ti}">
+                        <input type="submit" value="search">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="km_start">거리 (km):</label>
+                        <input type="number" id="km_start" name="km_start" min="0" step="0.1"> ~
+                        <input type="number" id="km_end" name="km_end" min="0" step="0.1">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="cos_time_start">시간 (m):</label>
+                        <input type="number" id="cos_time_start" name="cos_time_start" min="0" step="0.1"> ~
+                        <input type="number" id="cos_time_end" name="cos_time_end" min="0" step="0.1">
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <table class="table table-bordered table-striped table-hover mt-3">
+            <thead>
             <tr>
-                <td><a th:href="@{/cos/selectOne(cos_num=${vo.cos_num})}">[[${vo.cos_num}]]</a></td>
-                <td><a th:href="@{/cos/selectOne(cos_num=${vo.cos_num})}">[[${vo.nickname}]]</a></td>
-                <td>[[${vo.cos_name}]]</td>
-                <td>[[${vo.city}]]</td>
-                <td>[[${vo.km}]]</td>
-                <td>[[${vo.cos_time}]]</td>
-                <td>[[${vo.like_count}]]</td>
-                <td>[[${vo.review_count}]]</td>
+                <th>cos_num</th>
+                <th>nickname</th>
+                <th>cosname</th>
+                <th>city</th>
+                <th>km</th>
+                <th>cos_time</th>
+                <th>like_count</th>
+                <th>review_count</th>
             </tr>
-        </th:block>
-        </tbody>
-        <tfoot>
-        <tr th:if="${param.searchKey == null}">
-            <td colspan="5">
-                <a th:href="@{/cos/selectAll(cpage=1,limit=10)}">1</a>
-                <a th:href="@{/cos/selectAll(cpage=2,limit=10)}">2</a>
-                <a th:href="@{/cos/selectAll(cpage=3,limit=10)}">3</a>
-            </td>
-        </tr>
-        <tr th:if="${param.searchKey != null}">
-            <td colspan="5">
-                <a th:href="@{/cos/searchList(cpage=1,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">1</a>
-                <a th:href="@{/cos/searchList(cpage=2,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">2</a>
-                <a th:href="@{/cos/searchList(cpage=3,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">3</a>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
+            </thead>
+            <tbody>
+            <th:block th:each="vo : ${vos}">
+                <tr>
+                    <td><a th:href="@{/cos/selectOne(cos_num=${vo.cos_num})}">[[${vo.cos_num}]]</a></td>
+                    <td><a th:href="@{/cos/selectOne(cos_num=${vo.cos_num})}">[[${vo.nickname}]]</a></td>
+                    <td>[[${vo.cos_name}]]</td>
+                    <td>[[${vo.city}]]</td>
+                    <td>[[${vo.km}]]</td>
+                    <td>[[${vo.cos_time}]]</td>
+                    <td>[[${vo.like_count}]]</td>
+                    <td>[[${vo.review_count}]]</td>
+                </tr>
+            </th:block>
+            </tbody>
+            <tfoot>
+            <tr th:if="${param.searchKey == null}">
+                <td colspan="8">
+                    <a th:href="@{/cos/selectAll(cpage=1,limit=10)}">1</a>
+                    <a th:href="@{/cos/selectAll(cpage=2,limit=10)}">2</a>
+                    <a th:href="@{/cos/selectAll(cpage=3,limit=10)}">3</a>
+                </td>
+            </tr>
+            <tr th:if="${param.searchKey != null}">
+                <td colspan="8">
+                    <a th:href="@{/cos/searchList(cpage=1,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">1</a>
+                    <a th:href="@{/cos/searchList(cpage=2,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">2</a>
+                    <a th:href="@{/cos/searchList(cpage=3,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">3</a>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
+<footer>
+    <div th:replace="~{footer :: footer}"></div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
