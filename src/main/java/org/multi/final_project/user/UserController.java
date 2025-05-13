@@ -103,7 +103,7 @@ public class UserController {
         }//end if
         vo.setPw(passwordEncoder.encode(vo.getPw()));
 
-        vo.setTel(vo.getTel_company()+":"+vo.getTel01()+vo.getTel02()+vo.getTel03());
+        vo.setTel(vo.getTel_company()+"-"+vo.getTel01()+"-"+vo.getTel02()+"-"+vo.getTel03());
         vo.setSido(vo.getSido01()+"/"+vo.getSido02());
         log.info("vo : {}",vo);
         service.insertOK(vo);
@@ -166,6 +166,11 @@ public class UserController {
     public String update(UserVO vo, Model model) {
 
         UserVO vo2 = service.selectOne(vo);
+        String[] temp = vo2.getTel().split("-");
+        vo2.setTel_company(temp[0]);
+        vo2.setTel01(temp[1]);
+        vo2.setTel02(temp[2]);
+        vo2.setTel03(temp[3]);
         log.info("vo2:" + vo2);
         model.addAttribute("vo2", vo2);
         return "user/update";
@@ -180,7 +185,7 @@ public class UserController {
         log.info("originName : {}",originName);
 
         if(originName.length() == 0){//파일첨부안되었을때는 기본이미지이름으로 설정.
-            vo.setImg_name("default.png");
+            //vo.setImg_name("default.png");
         }else{
             //중복파일명 배제하는 처리. ex: img_387483924732743.png
             String save_name = "img_"+ System.currentTimeMillis()+originName.substring(originName.lastIndexOf("."));
@@ -201,12 +206,13 @@ public class UserController {
 
             ImageIO.write(thumb_buffer_img, save_name.substring(save_name.lastIndexOf(".") + 1), thumb_file);
         }//end if
-
-
-        log.info(vo.toString());
         vo.setPw(passwordEncoder.encode(vo.getPw()));
+        vo.setTel(vo.getTel_company()+"-"+vo.getTel01()+"-"+vo.getTel02()+"-"+vo.getTel03());
+        vo.setSido(vo.getSido01()+"/"+vo.getSido02());
+        vo.setRole((String) session.getAttribute("role"));
+        log.info("vo : {}",vo);
+
         service.updateOK(vo);
-        log.info((String) session.getAttribute("role"));
 
 
         if(session.getAttribute("role").equals("ADMIN")){
