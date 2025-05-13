@@ -18,7 +18,9 @@ public class CosLikeService {
     public int deleteOK(CosLikeVO vo){
         return mapper.deleteOK(vo);
     }
-    public List<CosLikeVO> selectAll(int startRow, int limit){
-        return mapper.selectAll(startRow,limit);
+    public List<CosLikeVO> selectAll(CosLikeVO vo ,int startRow, int limit){
+        return mapper.selectAll(vo,startRow,limit);
     }
+
+
 }

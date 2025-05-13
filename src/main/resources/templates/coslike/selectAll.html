@@ -77,51 +77,16 @@
             </div>
 
             <div id="courseView" class="card-container view-card">
-
-                        <div class="card">
-                            <img src="/img/hangang-river.jpg" alt="한강 코스">
-                            <div class="card-content">
-                                <h3>한강 자전거길</h3>
-                                <p>서울 한강변을 따라 즐기는 아름다운 라이딩 코스</p>
-                            </div>
+                <div class="card" th:each="vo : ${vos}">
+                    <!-- 링크 추가 -->
+                    <a th:href="@{'/cos/selectOne?cos_num=' + ${vo.cosVO.cos_num}}">
+                        <img th:src="@{'/uploadimgPath/' + ${vo.cosVO.img}}" th:alt="${vo.cosVO.cos_name}">
+                        <div class="card-content">
+                            <h3 th:text="${vo.cosVO.cos_name}">코스이름</h3>
+                            <p th:text="${vo.cosVO.info}">코스설명</p>
                         </div>
-
-                        <div class="card">
-                            <img src="/img/busan.jpg" alt="부산 해운대 코스">
-                            <div class="card-content">
-                                <h3>부산 해운대 코스</h3>
-                                <p>바다를 보며 시원하게 달릴 수 있는 라이딩 코스</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <img src="/img/jeju.jpg" alt="제주 올레길">
-                            <div class="card-content">
-                                <h3>제주 올레길</h3>
-                                <p>자연을 벗 삼아 달리는 최고의 힐링 코스</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="/img/jeju.jpg" alt="제주 올레길">
-                            <div class="card-content">
-                                <h3>제주 올레길</h3>
-                                <p>자연을 벗 삼아 달리는 최고의 힐링 코스</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="/img/busan.jpg" alt="부산 해운대 코스">
-                            <div class="card-content">
-                                <h3>부산 해운대 코스</h3>
-                                <p>바다를 보며 시원하게 달릴 수 있는 라이딩 코스</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="/img/hangang-river.jpg" alt="한강 코스">
-                            <div class="card-content">
-                                <h3>한강 자전거길</h3>
-                                <p>서울 한강변을 따라 즐기는 아름다운 라이딩 코스</p>
-                            </div>
-                        </div>
+                    </a>
+                </div>
             </div>
 
         </form>

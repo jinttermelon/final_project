@@ -50,11 +50,21 @@ public class CosLikeController {
     @GetMapping("/selectAll")
     public String selectAll(@RequestParam(defaultValue = "1")int cpage,
                             @RequestParam(defaultValue = "10")int limit,
-                            Model model){
+                            Model model,
+                            CosLikeVO vo){
         log.info("selectAll()...");
-        //int startRow = (cpage - 1) * limit;
-        //List<CosLikeVO> vos = service.selectAll(startRow, limit);
-        //model.addAttribute("vos", vos);
+        log.info("vo:{}",vo);
+        int startRow = (cpage - 1) * limit;
+
+        List<CosLikeVO> vos = service.selectAll(vo, startRow, limit);
+        for (CosLikeVO cosLike : vos) {
+            System.out.println(cosLike.getCosVO().getCos_name());  // cos_name 확인
+        }
+
+
+        model.addAttribute("vos", vos);
         return "coslike/selectAll";
     }
+
+
 }

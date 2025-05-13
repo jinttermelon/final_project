@@ -4,12 +4,6 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.multi.final_project.coslike.CosLikeMapper">
 
-    <select id="selectAll" resultType="org.multi.final_project.coslike.CosLikeVO">
-        SELECT * FROM coslike
-        WHERE nickname = #{nickname}
-        ORDER BY num DESC LIMIT #{startRow}, #{limit}
-    </select>
-
     <insert id="insertOK">
         INSERT INTO coslike (nickname, cos_num)
         VALUES
@@ -21,4 +15,24 @@
         WHERE cos_num = #{cos_num}
     </delete>
 
+    <resultMap id="CosLikeWithCosMap" type="org.multi.final_project.coslike.CosLikeVO">
+        <id property="num" column="num"/>
+        <result property="cos_num" column="cos_num"/>
+        <result property="nickname" column="nickname"/>
+
+        <!-- CosVO 매핑 -->
+        <association property="cosVO" javaType="org.multi.final_project.cos.CosVO">
+            <id property="cos_num" column="cos_num"/>
+            <result property="cos_name" column="cos_name"/>
+            <result property="img" column="img"/>
+            <result property="info" column="info"/>
+        </association>
+    </resultMap>
+
+    <select id="selectAll" resultMap="CosLikeWithCosMap">
+        SELECT *
+        FROM coslike cl
+        JOIN cos c ON cl.cos_num = c.cos_num
+        WHERE cl.nickname = #{vo.nickname}
+    </select>
 </mapper>
