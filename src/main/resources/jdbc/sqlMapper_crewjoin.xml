@@ -4,9 +4,62 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.multi.final_project.crewjoin.CrewJoinMapper">
 
-    <select id="selectAll" resultType="org.multi.final_project.crewjoin.CrewJoinVO">
-        SELECT * FROM crewjoin ORDER BY num DESC LIMIT #{startRow}, #{limit}
+
+    <select id="selectAll" resultMap="CrewJoinWithCrewMap">
+        SELECT
+        cj.num,
+        cj.nickname,
+        cj.answer,
+        cj.approve,
+        cj.join_date,
+        cj.cnum AS cj_cnum,
+
+        c.cnum AS c_cnum,
+        c.name,
+        c.sido,
+        c.riding_level,
+        c.recruit,
+        c.sche,
+        c.score,
+        c.img_name,
+        c.leader_nickname,
+        c.grade,
+        c.sche_check,
+        c.question
+        FROM
+        crewjoin cj
+        JOIN
+        crew c ON cj.cnum = c.cnum
+        WHERE
+        cj.nickname = #{nickname};
     </select>
+
+    <resultMap id="CrewJoinWithCrewMap" type="org.multi.final_project.crewjoin.CrewJoinVO">
+        <!-- crewjoin 필드 -->
+        <id property="num" column="num"/>
+        <result property="nickname" column="nickname"/>
+        <result property="answer" column="answer"/>
+        <result property="approve" column="approve"/>
+        <result property="join_date" column="join_date"/>
+        <result property="cnum" column="cj_cnum"/>
+
+        <!-- crew 객체 매핑 -->
+        <association property="crewVO" javaType="org.multi.final_project.crew.CrewVO">
+            <id property="cnum" column="c_cnum"/>
+            <result property="name" column="name"/>
+            <result property="sido" column="sido"/>
+            <result property="riding_level" column="riding_level"/>
+            <result property="recruit" column="recruit"/>
+            <result property="sche" column="sche"/>
+            <result property="score" column="score"/>
+            <result property="img_name" column="img_name"/>
+            <result property="leader_nickname" column="leader_nickname"/>
+            <result property="grade" column="grade"/>
+            <result property="sche_check" column="sche_check"/>
+            <result property="question" column="question"/>
+        </association>
+    </resultMap>
+
 
     <select id="selectOne" resultType="org.multi.final_project.crewjoin.CrewJoinVO" >
         SELECT * FROM crewjoin WHERE num = #{num}
@@ -30,5 +83,8 @@
         DELETE FROM crewjoin WHERE num = #{num}
     </delete>
 
+    <select id="totalRowCount" resultType="int">
+        SELECT count(*) FROM crewjoin where cnum= #{cnum}
+    </select>
 
 </mapper>

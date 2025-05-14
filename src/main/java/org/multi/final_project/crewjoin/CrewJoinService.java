@@ -1,4 +1,6 @@
 package org.multi.final_project.crewjoin;
+import org.multi.final_project.crew.CrewVO;
+import org.multi.final_project.crewboard.CrewBoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +20,12 @@ public class CrewJoinService {
             return mapper.deleteOK(vo);
         }
         public List<CrewJoinVO> selectAll(int cpage, int limit, CrewJoinVO vo){
-            return mapper.selectAll(cpage, limit, vo);
+            return mapper.selectAll(vo.getNickname(), cpage, limit, vo);
         }
         public CrewJoinVO selectOne(CrewJoinVO vo){
             return mapper.selectOne(vo);
-
         }
+    public int getTotalRowCount(CrewJoinVO vo) {
+        return mapper.totalRowCount(vo);
+    }
 }

@@ -2,6 +2,7 @@ package org.multi.final_project.crewjoin;
 
 
 import lombok.Data;
+import org.multi.final_project.crew.CrewVO;
 
 import java.sql.Timestamp;
 
@@ -11,7 +12,8 @@ public class CrewJoinVO {
     private String answer;
     private int num;
     private int cnum;
-    private boolean approve;
+    private String approve;
     private String join_date;
+    private CrewVO crewVO;
 
 }

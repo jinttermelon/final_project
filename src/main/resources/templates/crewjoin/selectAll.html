@@ -30,18 +30,6 @@
 <div class="main-content">
     <div class="container">
         <h1>내 크루</h1>
-        <form method="get" th:action="@{/crewjoin/searchList}" class="row g-3 mb-3">
-            <table id="search_form">
-                <tr>
-                    <td><select name="searchKey">
-                        <option value="title">크루이름</option>
-                        <option value="content">sche_check</option>
-                    </select></td>
-                    <td><input type="text" name="searchWord"  th:value="${param.searchWord}"></td>
-                    <td><input type="submit" value="search"></td>
-                </tr>
-            </table>
-        </form>
 
         <table class="table table-bordered table-striped table-hover mt-3">
             <thead class="table-dark">
@@ -49,41 +37,38 @@
                 <th>크루번호</th>
                 <th>크루명</th>
                 <th>모집인원</th>
-                <th>sche</th>
+                <th>정기일정</th>
                 <th>평점</th>
                 <th>크루장</th>
                 <th>크루등급</th>
-                <th>정기일정유무</th>
-                <th></th>
+                <th>승인상태</th>
             </tr>
             </thead>
             <tbody>
             <th:block th:each="vo : ${vos}">
                 <tr>
-                    <td><a th:href="@{../crewjoin/selectOne(cnum=${vo.cnum})}">[[${vo.cnum}]]</a></td>
-                    <td><a th:href="@{../crewjoin/selectOne(cnum=${vo.cnum})}">[[${vo.name}]]</a></td>
-                    <td>[[${vo.recruit}]]</td>
-                    <td>[[${vo.sche}]]</td>
-                    <td>[[${vo.score}]]</td>
-                    <td>[[${vo.leader_nickname}]]</td>
-                    <td>[[${vo.grade}]]</td>
-                    <td>[[${vo.sche_check}]]</td>
-                    <td><button><a th:href="@{../crewjoin/selectOne(cnum=${vo.cnum})}">가입</a></button></td>
-
+                    <td><a th:href="@{../crew/selectOne(cnum=${vo.cnum})}">[[${vo.cnum}]]</a></td>
+                    <td><a th:href="@{../crew/selectOne(cnum=${vo.cnum})}">[[${vo.crewVO.name}]]</a></td>
+                    <td>[[${vo.crewVO.recruit}]]</td>
+                    <td>[[${vo.crewVO.sche}]]</td>
+                    <td>[[${vo.crewVO.score}]]</td>
+                    <td>[[${vo.crewVO.leader_nickname}]]</td>
+                    <td>[[${vo.crewVO.grade}]]</td>
+                    <td>[[${vo.approve}]]</td>
                 </tr>
             </th:block>
             </tbody>
             <tfoot>
             <tr th:if="${param.searchKey == null}">
-                <td colspan="5">
+                <td colspan="9">
                     <th:block th:each="i : ${#numbers.sequence(1,pageCount)}">
-                        <a th:href="@{/crewjoin/selectAll(cpage=${i},limit=10)}">[[${i}]]</a>
+                        <a th:href="@{/crewjoin/selectAll(cpage=${i},limit=10,nickname=${session.nickname})}">[[${i}]]</a>
                     </th:block>
 
                 </td>
             </tr>
             <tr th:if="${param.searchKey != null}">
-                <td colspan="5">
+                <td colspan="9">
                     <th:block th:each="i : ${#numbers.sequence(1,pageCount)}">
                         <a th:href="@{/crewjoin/searchList(cpage=${i},limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">[[${i}]]</a>
                     </th:block>

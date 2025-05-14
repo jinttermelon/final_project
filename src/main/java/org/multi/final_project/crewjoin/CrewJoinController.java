@@ -66,26 +66,33 @@ public class CrewJoinController {
 
     @GetMapping("/selectAll")
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,
-                            @RequestParam(defaultValue = "10") int limit, Model model , CrewJoinVO vo){
+                            @RequestParam(defaultValue = "10") int limit,
+                            Model model,
+                            CrewJoinVO vo) {
+
         int startRow = (cpage - 1) * limit;
-//        List<CrewVO> vos = service.selectAll(startRow, limit,vo);
-//        model.addAttribute("vos", vos);
-//
-//        // 페이지네이션
-//        int totalRowCount = service.getTotalRowCount(vo);
-//        log.info("total row count: {}", totalRowCount);
+
+        // CrewJoinVO 리스트로 변경 (crew 정보까지 포함)
+        List<CrewJoinVO> vos = service.selectAll(startRow, limit, vo);
+        model.addAttribute("vos", vos);
+
+        // 페이지네이션
+        int totalRowCount = service.getTotalRowCount(vo);
+        log.info("total row count: {}", totalRowCount);
 
         int pageCount = 1;
-//        if (totalRowCount / limit==0){
-//            pageCount = 1;
-//        }else if(totalRowCount % limit==0){
-//            pageCount = totalRowCount / limit;
-//        }else {
-//            pageCount = totalRowCount / limit +1;
-//        }
+        if (totalRowCount / limit==0){
+            pageCount = 1;
+        }else if(totalRowCount % limit==0){
+            pageCount = totalRowCount / limit;
+        }else {
+            pageCount = totalRowCount / limit +1;
+        }
         log.info("page count: {}", pageCount);
 
         model.addAttribute("pageCount", pageCount);
+        model.addAttribute("cpage", cpage); // 현재 페이지도 보내기 (선택 사항)
+
         return "crewjoin/selectAll";
     }
 
