@@ -106,8 +106,8 @@
                    class="list-group-item list-group-item-action">크루레코드 페이지로 이동</a>
                 <a th:href="@{/crew/update(cnum=${param.cnum})}"
                    class="list-group-item list-group-item-action ">크루 수정 페이지로 이동</a>
-                <a th:href="@{/crew/delete(cnum=${param.cnum})}"
-                   class="list-group-item list-group-item-action ">크루 삭제 페이지로 이동</a>
+                <a th:href="@{/crew/delete(cnum=${param.cnum},name=${vo2.name})}"
+                   class="list-group-item list-group-item-action ">크루 해체 페이지로 이동</a>
             </div>
 
 </div>

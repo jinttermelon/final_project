@@ -9,69 +9,39 @@
 </head>
 <body th:replace="~{layout::layout}">
     <div th:fragment="content">
-        <h1>크루1 활동 일지</h1>
-        <form action="#" method="post" th:action="@{/crewrecord/insertOK}">
+        <br>
+        <br>
+        <br>
+        <h1>[[${param.name}]] 활동 일지</h1>
+        <form action="#" method="post" th:action="@{/crewrecord/selectAll}">
             <table id="customers">
                 <thead>
                     <tr>
                       <th>활동일</th>
                       <th>활동한 코스</th>
-                      <th>특이사항</th>
                       <th>참여 크루원 수</th>
                     </tr>
                   </thead>
-                  <tbody>
+                <tbody>
+                <th:block th:each="vo : ${vos}">
                     <tr>
-                      <td>2025.05.11</td>
-                      <td>붕어섬 입구 자전거 대여소 - 미륵바위 - 꺼먹다리 - 화천댐</td>
-                      <td>없음</td>
-                      <td>12</td>
-                      <td colspan="2">
-                        <input type="submit" value="수정">
-                        <input type="submit" value="삭제">
-                      </td>
-    
+                        <td>[[${vo.riding_date}]]</td>
+                        <td>[[${vo.riding_cos}]]</td>
+                        <td>[[${vo.member}]]</td>
                     </tr>
-                    <tr>
-                        <td>2025.05.8</td>
-                        <td>중랑천 - 한강자전거길 - 성수대교 북단 - 서울숲 지하통로</td>
-                        <td>정기라이딩</td>
-                        <td>6</td>
-                        <td colspan="2">
-                            <input type="submit" value="수정">
-                            <input type="submit" value="삭제">
-                        </td>
-        
-                      </tr>
-                      <tr>
-                        <td>2025.05.8</td>
-                        <td>중랑천 - 한강자전거길 - 성수대교 북단 - 서울숲 지하통로</td>
-                        <td>정기라이딩/부상1명</td>
-                        <td>13</td>
-                            <td colspan="2">
-                                <input type="submit" value="수정">
-                                <input type="submit" value="삭제">
-                            </td>
-            
-                      </tr>
-                      <td colspan="2">
-                        <input type="submit" value="작성">
+                </th:block>
+                </tbody>
+                <tfoot>
+                <tr th:if="${param.searchKey == null}">
+                    <td colspan="11">
+                        <th:block th:each="i : ${#numbers.sequence(1,pageCount)}">
+                            <a th:href="@{/crewrecord/selectAll(cpage=${i},limit=10,cnum=${param.cnum})}">[[${i}]]</a>
+                        </th:block>
                     </td>
-                  </tbody>
-                  <thead>
-                    <tr>
-                      <th>활동일</th>
-                      <th>활동한 코스</th>
-                      <th>특이사항</th>
-                      <th>참여 크루원 수</th>
-                    </tr>
-                  </thead>
-                  <td>2025.05.8</td>
-                </table>
-                <td colspan="2">
-                    <input type="submit" value="수정">
-                    <input type="submit" value="삭제">
-                </td>
+                </tr>
+                </tfoot>
+            </table>
+        </form>
     </div>
 </body>
 </html>

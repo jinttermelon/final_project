@@ -7,6 +7,7 @@
     <select id="selectAll" resultType="org.multi.final_project.crewrecord.CrewRecordVO">
         SELECT *
         FROM crewrecord
+        WHERE cnum=#{cnum}
         ORDER BY num DESC LIMIT #{startRow}, #{limit}
     </select>
 
@@ -53,5 +54,8 @@
         WHERE num = #{num}
     </delete>
 
+    <select id="totalRowCount" resultType="int">
+        SELECT count(*) FROM crewrecord where cnum= #{cnum}
+    </select>
 
 </mapper>
