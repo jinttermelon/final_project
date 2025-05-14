@@ -31,6 +31,11 @@ public class EventController {
         return "event/insert";
     }
 
+    @GetMapping("/eventManagement")
+    public String eventManagement() {
+        return "event/eventManagement";
+    }
+
 
     @PostMapping("/insertOK")
     public String insertOK(EventVO vo) {

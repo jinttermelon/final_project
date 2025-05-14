@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>신고하기</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .mb-3{
+            font-size: 11px;
+            color: black;
+            cursor: pointer;
+        }
+
+        textarea.content {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            resize: none;
+            width: 100%;
+            min-height: 150px;
+            height: 300px;
+            box-sizing: border-box;
+            padding: 1rem;
+            font-size: 1rem;
+        }
+
+        .form-container h1{
+            text-align: center;
+        }
+
+        .form-control {
+            margin-top: 50px ;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 0.375rem;
+            border: 1px solid #ced4da;
+            color: gray;
+        }
+
+    </style>
+</head>
+<body th:replace="~{layout::layout}">
+<div th:fragment="content">
+
+    <form action="#" method="post" th:action="@{/report/insertOK}">
+        <div class="form-container">
+            <h1>신고/문의</h1>
+
+            <div class="report-card">
+
+                <div class="mb-3">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="대상 닉네임 또는 아이디 입력">
+                </div>
+                <select class="form-select" aria-label="Small select example">
+                    <option selected> 유형을 선택해주세요 </option>
+                    <option value="1">스팸/홍보/상업성 메시지 전송</option>
+                    <option value="2">음란물 유포/성희롱</option>
+                    <option value="3">3회 이상의 노쇼 행위</option>
+                    <option value="4">욕설/비방/명예훼손</option>
+                    <option value="5">문의사항</option>
+                    <option value="6">기타</option>
+
+
+
+                </select>
+
+                <div class="report-text">
+                    <textarea name="content" class="content"  placeholder="신고 사유 혹은 문의사항을 작성해주세요"></textarea>
+                </div>
+
+
+                <div class="report-save">
+                    <button type="submit" class="btn btn-info btn-block">작성 완료</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
