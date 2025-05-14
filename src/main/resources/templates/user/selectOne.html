@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>사용자 상세 정보</title>
-    <link rel="stylesheet" th:href="@{/css/board.css}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
-
 <body th:replace="~{layout::layout}">
 <div th:fragment="content">
     <h2>사용자 상세 정보</h2>
-
     <div class="text-center mb-4">
         <img th:src="@{'/uploadimgPath/' + ${vo2.img_name}}" alt="대표 이미지" style="max-width: 200px; border-radius: 10px;">
     </div>
@@ -33,5 +30,10 @@
     <button><a th:href="@{/user/delete(nickname=${vo2.nickname})}">삭제</a></button>
     <button><a th:href="@{/user/selectAll}">목록으로</a></button>
 </div>
+<footer>
+    <div th:replace="~{footer :: footer}"></div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

@@ -1,84 +1,97 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<title>마이페이지</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link
-			rel="stylesheet"
-			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	>
-	<style>
-		body {
-			background-color: #f5f5f5;
-		}
-		.mypage-card {
-			max-width: 600px;
-			margin: 100px auto;
-			padding: 30px;
-			border-radius: 10px;
-			box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-			background-color: #ffffff;
-		}
-		.mypage-card h2 {
-			margin-bottom: 30px;
-			text-align: center;
-		}
-		.mypage-links {
-			text-align: center;
-			margin-top: 15px;
-		}
-		.mypage-links a {
-			margin: 0 8px;
-			color: #4dd0e1;
-			text-decoration: none;
-		}
-		.mypage-links a:hover {
-			text-decoration: underline;
-		}
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    >
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
 
-		.btn btn-outline-primary {
-			outline-color: ;
-		}
+        .mypage-card {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
 
-		.profile-preview {
-			width: 150px;
-			height: 150px;
-			border: 2px dashed #4dd0e1;
-			border-radius: 50%;
-			background-color: #fff;
-		}
-	</style>
+        .mypage-card h2 {
+            margin-bottom: 30px;
+            text-align: center;
+        }
 
-	</head>
-		<body th:replace="~{layout::layout}">
+        .mypage-links {
+            text-align: center;
+            margin-top: 15px;
+        }
 
-		<div th:fragment="content">
-			<div class="mypage-card">
-				<h2>마이페이지</h2>
-				<form action="/mypage" method="post">
-					<div class="text-center mb-4">
-						<div class="profile-preview mx-auto mb-2"
-							 th:style="'background-image: url(' + @{/uploadimgPath/} + ${vo2.img_name} + '); background-size: cover; background-position: center;'">
-						</div>
-					</div>
+        .mypage-links a {
+            margin: 0 8px;
+            color: #4dd0e1;
+            text-decoration: none;
+        }
 
-					<div class="list-group">
-						<a th:href="@{/user/update(nickname=${session.nickname})}" class="list-group-item list-group-item-action">내 정보관리</a>
-						<a th:href="@{/coslike/selectAll(nickname=${session.nickname})}" class="list-group-item list-group-item-action ">찜한 코스</a>
-						<a th:href="@{/user/ridingHistory(nickname=${session.nickname})}" class="list-group-item list-group-item-action ">라이딩 HISTORY</a>
-						<a th:href="@{/crewjoin/selectAll(nickname=${session.nickname})}" class="list-group-item list-group-item-action ">내 크루</a>
-						<a th:href="@{/crewboard/myboard(nickname=${session.nickname})}" class="list-group-item list-group-item-action ">내가 쓴 글</a>
-						<a href="#" class="list-group-item list-group-item-action ">내 채팅방</a>
-						<a href="/event/myevent" class="list-group-item list-group-item-action ">신청한 이벤트</a>
-						<a href="/report/selectAll" class="list-group-item list-group-item-action ">신고/문의 내역 관리</a>
-					</div>
+        .mypage-links a:hover {
+            text-decoration: underline;
+        }
 
-					</form>
-			</div>
+        .btn btn-outline-primary {
+            outline-color: #1388ff;
+        }
 
-		</div>
-		</div>
+        .profile-preview {
+            width: 150px;
+            height: 150px;
+            border: 2px dashed #4dd0e1;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+    </style>
 
-		</body>
-		</html>
+</head>
+<body th:replace="~{layout::layout}">
+
+<div th:fragment="content">
+    <div class="mypage-card">
+        <h2>마이페이지</h2>
+        <form action="/mypage" method="post">
+            <div class="text-center mb-4">
+                <div class="profile-preview mx-auto mb-2"
+                     th:style="'background-image: url(' + @{/uploadimgPath/} + ${vo2.img_name} + '); background-size: cover; background-position: center;'">
+                </div>
+            </div>
+
+            <div class="list-group">
+                <a th:href="@{/user/update(nickname=${session.nickname})}"
+                   class="list-group-item list-group-item-action">내 정보관리</a>
+                <a th:href="@{/coslike/selectAll(nickname=${session.nickname})}"
+                   class="list-group-item list-group-item-action ">찜한 코스</a>
+                <a th:href="@{/user/ridingHistory(nickname=${session.nickname})}"
+                   class="list-group-item list-group-item-action ">라이딩 HISTORY</a>
+                <a th:href="@{/crewjoin/selectAll(nickname=${session.nickname})}"
+                   class="list-group-item list-group-item-action ">내 크루</a>
+                <a th:href="@{/crewboard/myboard(nickname=${session.nickname})}"
+                   class="list-group-item list-group-item-action ">내가 쓴 글</a>
+                <a href="#" class="list-group-item list-group-item-action ">내 채팅방</a>
+                <a href="/event/myevent" class="list-group-item list-group-item-action ">신청한 이벤트</a>
+                <a href="/report/selectAll" class="list-group-item list-group-item-action ">신고/문의 내역 관리</a>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+<footer>
+    <div th:replace="~{footer :: footer}"></div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
