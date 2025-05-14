@@ -36,8 +36,7 @@
         img_name = #{img_name},
         leader_nickname = #{leader_nickname},
         grade = #{grade},
-        sche_check = #{sche_check},
-        usergrade = #{usergrade}
+        sche_check = #{sche_check}
         WHERE cnum = #{cnum}
     </update>
 
