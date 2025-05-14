@@ -84,6 +84,7 @@
                     <th>크루장</th>
                     <th>크루등급</th>
                     <th>정기일정유무</th>
+                    <th></th>
             </tr>
             </thead>
             <tbody>
@@ -96,6 +97,7 @@
                     <td>[[${vo2.leader_nickname}]]</td>
                     <td>[[${vo2.grade}]]</td>
                     <td>[[${vo2.sche_check}]]</td>
+                    <td><button><a th:href="@{../crewjoin/join(cnum=${vo2.cnum})}">가입</a></button></td>
                 </tr>
             </tbody>
             </table>
