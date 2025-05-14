@@ -28,7 +28,7 @@
 <!-- 메인 콘텐츠 영역 -->
 <div class="main-content">
     <div class="container">
-        <h1>크루1 게시판 글목록</h1>
+        <h1>**[[${param.name}]]** 게시판 글목록</h1>
         <form method="get" th:action="@{/crewboard/searchList}">
             <input type="hidden" name="cnum" th:value="${param.cnum}"> <!-- cnum을 hidden 필드로 전달 -->
             <table id="search_form">
