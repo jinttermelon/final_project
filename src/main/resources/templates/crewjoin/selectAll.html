@@ -2,42 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>내 크루</title>
+    <title>코스 목록</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <style>
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .sidebar {
-            min-width: 250px;
-            max-width: 250px;
-            height: 100vh;
-            position: fixed;
-            background-color: #343a40;
-            padding-top: 60px;
-        }
-        .sidebar a {
-            color: #fff;
-            padding: 10px;
-            display: block;
-            text-decoration: none;
-        }
-        .sidebar a:hover {
-            background-color: #495057;
-        }
-        .main-content {
-            margin-left: 250px;
+        .main-content, footer {
             padding: 100px;
         }
-        footer {
-            margin-left: 250px;
-            padding: 100px;
+
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table thead th {
+            background-color: #1388ff;
         }
     </style>
 </head>
-
 <body>
 <header>
     <nav th:replace="~{top_menu :: top_menu}"></nav>
@@ -60,7 +43,7 @@
             </table>
         </form>
 
-        <table class="table table-striped table-hover mt-3">
+        <table class="table table-bordered table-striped table-hover mt-3">
             <thead class="table-dark">
             <tr>
                 <th>크루번호</th>
