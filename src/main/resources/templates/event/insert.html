@@ -2,66 +2,136 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <title>이벤트 등록하기</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 2rem;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        .main-content {
+            padding: 100px;
+        }
+        footer {
+            padding: 100px;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            toggleScheInput();
+        };
+
+        function toggleScheInput() {
+            const scheCheck = document.getElementById('sche_check').value;
+            const scheRow = document.getElementById('sche_row');
+            if (scheCheck === 'regular') {
+                scheRow.style.display = 'block';
+            } else {
+                scheRow.style.display = 'none';
+            }
+        }
+
+    </script>
 </head>
 
-<body th:replace="~{layout::layout}">
-<div th:fragment="content">
-    <h1>이벤트 등록 페이지</h1>
-    <form action="#" method="post" th:action="@{/event/insertOK}">
-        <table id="customers">
-            <tr>
-                <td><label for="title">제목:</label></td>
-                <td>
-                    <input type="text" id="title" name="title" value="2025 전국 라이딩 페스티벌">
-                </td>
-            </tr>
-            <tr>
-                <td><label for="city">이벤트진행 지역:</label></td>
-                <td>
-                    <input type="text" id="city" name="city" value="부산">
-                </td>
-            </tr>
-            <tr>
-                <td><label for="prize">상품:</label></td>
-                <td>
-                    <input type="text" id="prize" name="prize" value="고급 자전거 + 상금 200만원">
-                </td>
-            </tr>
-            <tr>
-                <td><label for="dur">기간:</label></td>
-                <td>
-                    <input type="text" id="dur" name="dur" value="2025-08-20 ~ 2025-08-21">
-                </td>
-            </tr>
-            <tr>
-                <td><label for="partici_num">최대 참여인원:</label></td>
-                <td>
-                    <input type="text" id="partici_num" name="partici_num" value="120">명
-                </td>
-            </tr>
-            <tr>
-                <td><label for="event_type">이벤트 타입 :</label></td>
-                <td>
-                    <select id="event_type" name="event_type" class="form-control">
-                        <option value="">전체</option>
-                        <option value="제휴업체">제휴업체</option>
-                        <option value="라이딩">라이딩</option>
-                        <option value="기타">기타</option>
-                    </select>
-                </td>
-            </tr>
+<body>
+<header>
+    <nav th:replace="~{top_menu :: top_menu}"></nav>
+</header>
+<div class="main-content">
+    <div class="container">
+        <div class="form-container">
+            <h2 class="text-center mb-4">이벤트 등록하기</h2>
+            <form action="insertOK" method="post" enctype="multipart/form-data">
 
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="저장">
-                </td>
-            </tr>
-        </table>
-    </form>
+                <div class="form-group">
+                    <label for="title">이벤트 제목</label>
+                    <div class="input-group">
+                        <input type="title" class="form-control" id="title" name="title" placeholder="제목을 입력하세요">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>배너 이미지 업로드</label>
+                    <div class="d-flex align-items-center">
+                        <input type="file" id="banner" name="banner" style="display: none;" onchange="showFileName('banner')">
+                        <input type="text" class="form-control mr-2" id="bannerFileName" readonly placeholder="선택된 파일 없음">
+                        <label for="banner" class="btn btn-outline-info btn-sm mb-0">업로드</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>이벤트 유형</label>
+                    <div class="form-row">
+                        <div class="col-4">
+                            <select name="tel_company" class="form-control">
+                                <option>이벤트 유형</option>
+                                <option value="전체">전체</option>
+                                <option value="제휴업체" selected>제휴업체</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                <div class="form-group">
+                    <label>이벤트 지역</label>
+                    <div class="form-row">
+                        <div class="col">
+                            <select class="form-control" name="sido01">
+                                <option>도 (선택)</option>
+                                <option value="경기도">경기도</option>
+                                <option value="서울특별시" selected>서울특별시</option>
+                                <option value="부산광역시">부산광역시</option>
+                                <option value="대전광역시">대전광역시</option>
+                                <option value="대구광역시">대구광역시</option>
+                                <option value="부산광역시">부산광역시</option>
+                                <option value="제주특별시">제주특별시</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select class="form-control" name="sido02">
+                                <option>시 (선택)</option>
+                                <option value="수원시">수원시</option>
+                                <option value="용인시" selected>용인시</option>
+                                <option value="성남시">성남시</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control" id="description" name="description" rows="6" placeholder="이벤트 내용을 입력하세요"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>포스터 이미지 업로드</label>
+                        <div class="d-flex align-items-center">
+                            <input type="file" id="fileUpload" name="file" style="display: none;" onchange="showFileName('fileUpload')">
+                            <input type="text" class="form-control mr-2" id="fileUploadFileName" readonly placeholder="선택된 파일 없음">
+                            <label for="fileUpload" class="btn btn-outline-info btn-sm mb-0">업로드</label>
+                        </div>
+                    </div>
+
+
+        <button type="submit" class="btn btn-info btn-block">이벤트 등록완료</button>
+            </form>
+        </div>
+
+    </div>
 </div>
+<footer>
+    <div th:replace="~{footer :: footer}"></div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
