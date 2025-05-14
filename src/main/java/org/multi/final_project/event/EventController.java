@@ -62,6 +62,18 @@ public class EventController {
         return "event/selectAll";
     }
 
+    @GetMapping("/participantList")
+    public String participantList(@RequestParam(defaultValue = "1") int cpage,
+                            @RequestParam(defaultValue = "10") int limit,
+                            Model model){
+
+        int startRow = (cpage - 1) * limit;
+        List<EventVO> vos = service.selectAll(startRow, limit);
+        log.info(vos.toString());
+        model.addAttribute("vos", vos);
+        return "event/participantList";
+    }
+
     @GetMapping("/selectOne")
     public String selectOne(EventVO vo,Model model) {
         return "event/selectOne";
