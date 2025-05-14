@@ -1,5 +1,6 @@
 package org.multi.final_project.crewrecord;
 
+import org.multi.final_project.crewboard.CrewBoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,8 @@ public class CrewRecordService {
     public int deleteOK(CrewRecordVO vo){
         return mapper.deleteOK(vo);
     }
-    public List<CrewRecordVO> selectAll(int cpage, int limit, CrewRecordVO vo){
-        return mapper.selectAll(cpage, limit, vo);
+    public List<CrewRecordVO> selectAll(int startRow, int limit, int cnum){
+        return mapper.selectAll(startRow, limit , cnum);
     }
     public CrewRecordVO selectOne(CrewRecordVO vo){
         return mapper.selectOne(vo);
@@ -28,5 +29,7 @@ public class CrewRecordService {
     public List<CrewRecordVO> searchList(String searchKey, String searchWord, int cpage, int limit,CrewRecordVO vo){
         return mapper.searchList(searchKey, searchWord, cpage, limit, vo);
     }
-
+    public int getTotalRowCount(CrewRecordVO vo) {
+        return mapper.totalRowCount(vo);
+    }
 }
