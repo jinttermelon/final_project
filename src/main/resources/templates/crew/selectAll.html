@@ -52,10 +52,8 @@
 </header>
 <!-- 왼쪽 사이드바 -->
 <div class="sidebar">
-    <a th:href="@{/}">🏠 Home</a>
-    <a th:href="@{/about}">ℹ️ About</a>
-    <a th:href="@{/contact}">📞 Contact</a>
-    <a th:href="@{/settings}">⚙️ Settings</a>
+    <a th:href="@{/crewjoin/selectAll(nickname=${session.nickname})}">내 크루</a>
+    <a th:href="@{/crewboard/myboard(nickname=${session.nickname})}">내가 쓴 글</a>
 </div>
 <!-- 메인 콘텐츠 영역 -->
 <div class="main-content">
