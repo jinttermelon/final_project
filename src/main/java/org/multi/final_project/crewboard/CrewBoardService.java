@@ -1,5 +1,6 @@
 package org.multi.final_project.crewboard;
 
+import org.apache.ibatis.annotations.Param;
 import org.multi.final_project.crew.CrewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,4 +38,7 @@ public class CrewBoardService {
         return mapper.searchListTotalRowCount(cnum,searchKey,searchWord);
     }
 
+    public List<CrewBoardVO> myBoardselectAll(int startRow, int limit, CrewBoardVO vo) {
+        return mapper.myBoardSelectAll(startRow,limit, vo.getNickname());
+    }
 }

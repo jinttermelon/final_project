@@ -1,6 +1,7 @@
 package org.multi.final_project.crewboard;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.multi.final_project.crew.CrewVO;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface CrewBoardMapper {
     public CrewBoardVO selectOne(CrewBoardVO vo);
     public List<CrewBoardVO>searchList( int cnum,String searchKey, String searchWord, int startRow, int limit);
     public int totalRowCount(CrewBoardVO vo);
-
     public int searchListTotalRowCount(int cnum,String searchKey, String searchWord);
+    List<CrewBoardVO> myBoardSelectAll(int startRow, int limit , @Param("nickname") String nickname);
 
 }

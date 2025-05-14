@@ -97,6 +97,7 @@ public class CrewBoardController {
 
         return "crewboard/selectAll";
     }
+
     @GetMapping("selectOne")
     public String selectOne(CrewBoardVO vo, Model model){
 
@@ -146,14 +147,14 @@ public class CrewBoardController {
     }
 
     @GetMapping("myboard")
-    public String myboard(@RequestParam(defaultValue = "1") int cpage,
+    public String myBoard(@RequestParam(defaultValue = "1") int cpage,
                             @RequestParam(defaultValue = "1") int cnum,
                             @RequestParam(defaultValue = "10") int limit,
                             Model model,
                             CrewBoardVO vo){
 
         int startRow = (cpage - 1) * limit;
-        List<CrewBoardVO> vos = service.selectAll(startRow, limit, cnum);
+        List<CrewBoardVO> vos = service.myBoardselectAll(startRow, limit, vo);
         model.addAttribute("vos", vos);
 
         // 페이지네이션
@@ -174,5 +175,6 @@ public class CrewBoardController {
 
         return "crewboard/myboard";
     }
+
 
 }

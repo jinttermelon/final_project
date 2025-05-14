@@ -65,5 +65,10 @@
         AND title LIKE CONCAT('%', #{searchWord}, '%')
     </select>
 
+    <select id="myBoardSelectAll" resultType="org.multi.final_project.crewboard.CrewBoardVO">
+        SELECT * FROM crewboard
+        WHERE nickname = #{nickname}
+        ORDER BY bnum DESC LIMIT #{startRow}, #{limit}
+    </select>
 
 </mapper>
