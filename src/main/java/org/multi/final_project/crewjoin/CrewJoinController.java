@@ -64,9 +64,8 @@ public class CrewJoinController {
         return "redirect:/selectAll";
     }
 
-    @GetMapping("/sellectAll")
-
-    public String sellectAll(@RequestParam(defaultValue = "1") int cpage,
+    @GetMapping("/selectAll")
+    public String selectAll(@RequestParam(defaultValue = "1") int cpage,
                             @RequestParam(defaultValue = "10") int limit, Model model , CrewVO vo){
 
         return "crewjoin/selectAll";
