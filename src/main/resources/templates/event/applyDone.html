@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 신청 완료 메시지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <style>
+        .main-content, footer {
+            padding: 100px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav th:replace="~{top_menu :: top_menu}"></nav>
+</header>
+<!-- 메인 콘텐츠 영역 -->
+<div class="main-content">
+    <div class="container">
+        <h1>참가신청 완료!</h1>
+        <p>
+            BikeRiding에서 즐거운 라이딩을 위한 활발한 크루활동, 코스추천을 이용해보세요!
+        </p>
+        <input type="submit" value="Let's Go!" onclick="location.href='/home';">
+    </div>
+</div>
+<footer>
+    <div th:replace="~{footer :: footer}"></div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

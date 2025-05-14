@@ -6,14 +6,36 @@
     <link rel="stylesheet" th:href="@{/css/board.css}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .event-card {
+            max-width: 600px;
+            height: auto;
+            margin: 100px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: #ffffff;
+        }
+    </style>
 </head>
 <body th:replace="~{layout::layout}">
     <div th:fragment="content">
         <h1>진행 이벤트</h1>
-        <div id="selectBaner">
-            <img src="#">
+
+            <div class="event-card">
+                <img src="/img/event.jpg" class="card-img-top" alt="이미지">
+                <div class="card-body">
+                    <h5 class="card-title">전체</h5>
+                    <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
+                    <a href="/event/applyDone" class="btn btn-primary">참가</a>
+                </div>
+            </div>
         </div>
-        <input type="submit" value="참가 신청">
-    </div>
+
 </body>
 </html>

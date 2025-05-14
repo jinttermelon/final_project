@@ -21,6 +21,11 @@ public class EventController {
     @Autowired
     private EventService service;
 
+    @GetMapping("/applyDone")
+    public String applyDone() {
+        return "event/applyDone";
+    }
+
     @GetMapping("/myevent")
     public String myevent() {
         return "event/myevent";
