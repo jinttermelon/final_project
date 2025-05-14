@@ -6,7 +6,7 @@ import lombok.Data;
 public class ReportVO {
     private int num;
     private String nickname;
-    private String targetNickname;
+    private String target_nickname;
     private String detail;
     private String reason;
     private String state;

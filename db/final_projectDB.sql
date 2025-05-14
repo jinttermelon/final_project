@@ -263,10 +263,10 @@ CREATE TABLE IF NOT EXISTS `final_project`.`chat_message` (
 CREATE TABLE IF NOT EXISTS `final_project`.`report` (
                                                         `num` INT NOT NULL AUTO_INCREMENT,
                                                         `nickname` VARCHAR(45) NOT NULL,
-    `target_nickname` VARCHAR(45) NOT NULL,
+    `target_nickname` VARCHAR(45) ,
     `detail` VARCHAR(2000) NULL,
     `reason` VARCHAR(1000) NOT NULL,
-    `state` VARCHAR(45) NOT NULL DEFAULT '완료',
+    `state` VARCHAR(45) NOT NULL DEFAULT '처리중',
     `rdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`num`),
     INDEX `fk_report_nickname_idx` (`nickname` ASC) VISIBLE,
@@ -502,7 +502,11 @@ VALUES
 -- 광고성 (게시글)
 ('name11', 'name02', '게시판에 개인 블로그 홍보 게시글을 올렸습니다. 커뮤니티 목적과 맞지 않습니다.', '광고성', '처리중', NOW()),
 -- 기타
-('name12', 'name04', '크루 활동 외적으로 지속적인 사적인 연락을 요구하며 불쾌감을 주었습니다.', '기타', '처리중', NOW());
+('name12', 'name04', '크루 활동 외적으로 지속적인 사적인 연락을 요구하며 불쾌감을 주었습니다.', '기타', '처리중', NOW()),
+('testnick01', 'name02', '크루 활동 외적으로 지속적인 사적인 연락을 요구하며 불쾌감을 주었습니다.', '기타', '처리중', NOW()),
+('testnick01', 'name03', '크루 활동 외적으로 지속적인 사적인 연락을 요구하며 불쾌감을 주었습니다.', '기타', '처리중', NOW()),
+('name03', 'testnick01', '크루 활동 외적으로 지속적인 사적인 연락을 요구하며 불쾌감을 주었습니다.', '기타', '처리중', NOW()),
+('name02', 'testnick01', '크루 활동 외적으로 지속적인 사적인 연락을 요구하며 불쾌감을 주었습니다.', '기타', '처리중', NOW());
 
 INSERT INTO event (
     title, city, prize, dur, partici_num, event_type

@@ -62,28 +62,28 @@
 
     <form action="#" method="post" th:action="@{/report/insertOK}">
         <div class="form-container">
-            <h1>신고/문의</h1>
+            <h1>신고하기</h1>
 
             <div class="report-card">
-
+                <input type="hidden" name="nickname" class="form-control" th:value="${session.nickname}">
                 <div class="mb-3">
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="대상 닉네임 또는 아이디 입력">
+                    <input type="text" name="target_nickname" class="form-control" id="exampleFormControlInput1" placeholder="대상 닉네임 입력 *문의사항 작성시 공백">
                 </div>
-                <select class="form-select" aria-label="Small select example">
+                <select class="form-select" aria-label="Small select example" name="reason">
                     <option selected> 유형을 선택해주세요 </option>
-                    <option value="1">스팸/홍보/상업성 메시지 전송</option>
-                    <option value="2">음란물 유포/성희롱</option>
-                    <option value="3">3회 이상의 노쇼 행위</option>
-                    <option value="4">욕설/비방/명예훼손</option>
-                    <option value="5">문의사항</option>
-                    <option value="6">기타</option>
+                    <option value="스팸/홍보/상업성 메시지 전송">스팸/홍보/상업성 메시지 전송</option>
+                    <option value="음란물 유포/성희롱">음란물 유포/성희롱</option>
+                    <option value="노쇼 행위">노쇼 행위</option>
+                    <option value="욕설/비방/명예훼손">욕설/비방/명예훼손</option>
+                    <option value="문의사항">문의사항</option>
+                    <option value="기타">기타</option>
 
 
 
                 </select>
 
-                <div class="report-text">
-                    <textarea name="content" class="content"  placeholder="신고 사유 혹은 문의사항을 작성해주세요"></textarea>
+                <div class="report-text" th:name="detail">
+                    <textarea name="detail" class="content"  placeholder="신고사유 또는 문의내용을 작성해주세요"></textarea>
                 </div>
 
 

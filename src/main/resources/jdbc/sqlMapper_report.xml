@@ -6,7 +6,9 @@
 
     <select id="selectAll" resultType="org.multi.final_project.report.ReportVO">
         SELECT * FROM report
-        ORDER BY num DESC LIMIT #{startRow}, #{limit}
+        WHERE nickname = #{nickname} OR target_nickname = #{nickname}
+        ORDER BY num DESC
+        LIMIT #{startRow}, #{limit}
     </select>
 
     <select id="selectOne">
@@ -16,11 +18,14 @@
     </select>
 
     <insert id="insertOK">
-    INSERT INTO report (nickname,target_nickname,detail,reason,state,rdate)
+    INSERT INTO report (nickname,target_nickname,detail,reason)
     VALUES
-    (#{nickname},#{target_nickname},#{detail},#{reason},#{state},#{rdate})
+    (#{nickname},#{target_nickname},#{detail},#{reason})
     </insert>
 
+    <select id="totalRowCount" resultType="int">
+        SELECT count(*) FROM report where nickname= #{nickname}
+    </select>
 
 
 </mapper>

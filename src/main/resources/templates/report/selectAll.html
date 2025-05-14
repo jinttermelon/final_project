@@ -35,28 +35,28 @@
         <h1>신고/문의 내역</h1>
         <a th:href="@{/report/insert}" class="btn btn-danger">신고하기</a>
 
-        <form method="get" th:action="@{/report/selectAll}">
-
-        </form>
-
         <table class="table table-bordered table-striped table-hover mt-3">
             <thead>
             <tr>
-                <th>num</th>
-                <th>nickname</th>
-                <th>target_nickname</th>
-                <th>detail</th>
-                <th>reason</th>
-                <th>state</th>
-                <th>rdate</th>
+                <th>번호</th>
+                <th>신고자</th>
+                <th>신고대상</th>
+                <th>신고사유</th>
+                <th>항목</th>
+                <th>처리상태</th>
+                <th>신고날짜</th>
             </tr>
             </thead>
             <tbody>
             <th:block th:each="vo : ${vos}">
                 <tr>
-                    <td><a th:href="@{/report/selectOne(cos_num=${vo.num})}">[[${vo.num}]]</a></td>
-                    <td><a th:href="@{/report/selectOne(cos_num=${vo.num})}">[[${vo.nickname}]]</a></td>
-                    <td>[[${vo.target_nickname}]]</td>
+                    <td>[[${vo.num}]]</td>
+                    <td th:text="${vo.nickname}"
+                        th:classappend="${vo.nickname == session.nickname} ? 'font-weight-bold text-dark' : ''">
+                    </td>
+                    <td th:text="${vo.target_nickname}"
+                        th:classappend="${vo.target_nickname == session.nickname} ? 'font-weight-bold text-dark' : ''">
+                    </td>
                     <td>[[${vo.detail}]]</td>
                     <td>[[${vo.reason}]]</td>
                     <td>[[${vo.state}]]</td>
@@ -66,17 +66,10 @@
             </tbody>
             <tfoot>
             <tr th:if="${param.searchKey == null}">
-                <td colspan="8">
-                    <a th:href="@{/report/selectAll(cpage=1,limit=10)}">1</a>
-                    <a th:href="@{/report/selectAll(cpage=2,limit=10)}">2</a>
-                    <a th:href="@{/report/selectAll(cpage=3,limit=10)}">3</a>
-                </td>
-            </tr>
-            <tr th:if="${param.searchKey != null}">
-                <td colspan="8">
-                    <a th:href="@{/report/searchList(cpage=1,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">1</a>
-                    <a th:href="@{/report/searchList(cpage=2,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">2</a>
-                    <a th:href="@{/report/searchList(cpage=3,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">3</a>
+                <td colspan="11">
+                    <th:block th:each="i : ${#numbers.sequence(1,pageCount)}">
+                        <a th:href="@{/report/selectAll(cpage=${i},limit=10,nickname=${session.nickname})}">[[${i}]]</a>
+                    </th:block>
                 </td>
             </tr>
             </tfoot>

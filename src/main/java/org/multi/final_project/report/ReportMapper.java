@@ -1,6 +1,8 @@
 package org.multi.final_project.report;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.multi.final_project.crewboard.CrewBoardVO;
 
 import java.util.List;
 
@@ -11,5 +13,6 @@ public interface ReportMapper {
 
     public ReportVO selectOne(ReportVO vo);
 
-    public List<ReportVO> selectAll(int cpage, int limit);
+    public List<ReportVO> selectAll(int startRow, int limit, @Param("nickname") String nickname);
+    public int totalRowCount(ReportVO vo);
 }
