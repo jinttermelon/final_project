@@ -1,6 +1,7 @@
 package org.multi.final_project.user;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.multi.final_project.crew.CrewVO;
 
 import java.util.List;
@@ -41,4 +42,10 @@ public interface UserMapper {
 
 
     public UserVO findById(String username);
+
+    public String findIdOK(UserVO vo);
+
+    public UserVO findPwOK(UserVO vo);
+
+    public int updatePwOK(UserVO vo);
 }

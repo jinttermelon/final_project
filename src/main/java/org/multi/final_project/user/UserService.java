@@ -63,4 +63,16 @@ public class UserService {
     public UserVO getNickname(String id){
         return mapper.getNickname(id);
     }
+
+    public String findIdOK(UserVO vo) {
+        return mapper.findIdOK(vo);
+    }
+
+    public UserVO findPwOK(UserVO vo) {
+        return mapper.findPwOK(vo);
+    }
+
+    public int updatePwOK(UserVO vo) {
+        return mapper.updatePwOK(vo);
+    }
 }

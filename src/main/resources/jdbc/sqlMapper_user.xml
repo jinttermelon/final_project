@@ -82,4 +82,21 @@
         select * from user
         where id = #{username}
     </select>
+
+    <select id="findIdOK" resultType="java.lang.String" parameterType="UserVO">
+        select id from user
+        where tel = #{tel} AND birth_year = #{birth_year}
+    </select>
+
+    <select id="findPwOK" resultType="org.multi.final_project.user.UserVO" parameterType="UserVO">
+        select * from user
+        where id = #{id} AND tel = #{tel} AND birth_year = #{birth_year}
+    </select>
+
+    <update id="updatePwOK">
+        UPDATE user
+        SET
+        pw = #{pw}
+        WHERE id = #{id}
+    </update>
 </mapper>

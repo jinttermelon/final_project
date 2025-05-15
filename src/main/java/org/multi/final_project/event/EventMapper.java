@@ -1,6 +1,7 @@
 package org.multi.final_project.event;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.multi.final_project.crew.CrewVO;
 
 import java.util.List;
 
@@ -15,4 +16,8 @@ public interface EventMapper {
     public EventVO selectOne(EventVO vo);
 
     public List<EventVO> selectAll(int startRow, int limit);
+
+
+    public int totalRowCount(EventVO vo);
+
 }

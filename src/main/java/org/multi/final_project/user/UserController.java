@@ -14,6 +14,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 @Slf4j
@@ -284,9 +286,7 @@ public class UserController {
         log.info(vo.toString());
 
         vo.setTel(vo.getTel_company()+"-"+vo.getTel01()+"-"+vo.getTel02()+"-"+vo.getTel03());
-        //String id = service.findIdOK(vo);//전화번호와 출생년도로 아이디 얻어오기
-        //String id = null;//임시값
-        String id = "test01@aaa.com";//임시값
+        String id = service.findIdOK(vo);//전화번호와 출생년도로 아이디 얻어오기
         if(id!=null){
             return "redirect:/user/findIdSuccess?id="+id;
         }else{
@@ -305,14 +305,14 @@ public class UserController {
     }
 
     @PostMapping("/findPwOK")
-    public String findPwOK(UserVO vo) {
+    public String findPwOK(UserVO vo) throws UnsupportedEncodingException {
         log.info("/user/findPwOK");
-        log.info(vo.toString());
 
         vo.setTel(vo.getTel_company()+"-"+vo.getTel01()+"-"+vo.getTel02()+"-"+vo.getTel03());
-        //UserVO vo2 = service.findPwOK(vo);//아이디,전화번호, 출생년도로 vo2 얻어오기
-        //UserVO vo2 = null;//임시값
-        UserVO vo2 = vo;//임시값
+        log.info(vo.toString());
+
+        UserVO vo2 = service.findPwOK(vo);//아이디,전화번호, 출생년도로 vo2 얻어오기
+
         if(vo2 != null){
             return "redirect:/user/findPwSuccess?id="+vo2.getId();
         }else{
@@ -331,14 +331,15 @@ public class UserController {
     }
 
     @PostMapping("/updatePwOK")
-    public String updatePwOK(UserVO vo) {
+    public String updatePwOK(UserVO vo) throws UnsupportedEncodingException {
         log.info("/user/updatePwOK");
-        log.info(vo.toString());
 
         vo.setTel(vo.getTel_company()+"-"+vo.getTel01()+"-"+vo.getTel02()+"-"+vo.getTel03());
-        //int result = service.updatePwOK(vo);//아이디로 비번변경하기
-        //int rewsult = 0;//임시값
-        int result = 1;//임시값
+
+        log.info(vo.toString());
+
+        int result = service.updatePwOK(vo);//아이디로 비번변경하기
+
         if(result == 1){
             return "redirect:/user/login_form";
         }else{

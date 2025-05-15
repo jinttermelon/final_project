@@ -38,4 +38,8 @@
         WHERE num = #{num}
     </delete>
 
+    <select id="totalRowCount" resultType="int">
+        SELECT count(*) FROM event
+    </select>
+
 </mapper>

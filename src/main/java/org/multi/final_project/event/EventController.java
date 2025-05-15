@@ -1,6 +1,7 @@
 package org.multi.final_project.event;
 
 import lombok.extern.slf4j.Slf4j;
+import org.multi.final_project.crew.CrewVO;
 import org.multi.final_project.crewboard.CrewBoardVO;
 import org.multi.final_project.friend.FriendVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,13 +53,29 @@ public class EventController {
 
     @GetMapping("/selectAll")
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,
-                            @RequestParam(defaultValue = "10") int limit,
-                            Model model){
+                            @RequestParam(defaultValue = "10") int limit, Model model , EventVO vo){
 
         int startRow = (cpage - 1) * limit;
         List<EventVO> vos = service.selectAll(startRow, limit);
-        log.info(vos.toString());
         model.addAttribute("vos", vos);
+
+        // 페이지네이션
+        int totalRowCount = service.getTotalRowCount(vo);
+        log.info("total row count: {}", totalRowCount);
+
+        int pageCount = 1;
+        if (totalRowCount / limit==0){
+            pageCount = 1;
+        }else if(totalRowCount % limit==0){
+            pageCount = totalRowCount / limit;
+        }else {
+            pageCount = totalRowCount / limit +1;
+        }
+        log.info("page count: {}", pageCount);
+
+        model.addAttribute("pageCount", pageCount);
+
+
         return "event/selectAll";
     }
 

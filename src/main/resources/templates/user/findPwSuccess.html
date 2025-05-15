@@ -23,18 +23,17 @@
 <div class="main-content">
     <div class="container">
         <h2>새로운 비밀번호를 설정하세요</h2>
-        <form action="updatePwOK" method="post">
-            <div class="form-group">
+        <form id="pwForm" action="updatePwOK" method="post">
+            <input type="hidden" id="id" name="id" th:value="${param.id}">
+            <div class="form-group password-input">
                 <label for="pw01">새로운 비밀번호</label>
-
-                <input type="text" class="form-controll password-input" id="pw01" name="pw" placeholder="1111" value="1111">
+                <input type="password" id="pw01" name="pw" placeholder="1111" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group password-input">
                 <label for="pw02">재확인 비밀번호</label>
-
-                <input type="text" class="form-controll password-input" id="pw02" name="pw" placeholder="1111" value="1111">
+                <input type="password" id="pw02" name="pw_check" placeholder="1111" class="form-control">
             </div>
-
+            <div id="errorMsg" style="color:red; margin-bottom: 15px;"></div>
             <button type="submit" class="btn btn-info btn-block">비밀번호 변경완료</button>
         </form>
     </div>
@@ -44,6 +43,20 @@
     <div th:replace="~{footer :: footer}"></div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById('pwForm').addEventListener('submit', function(event) {
+        const pw = document.getElementById('pw01').value;
+        const pwCheck = document.getElementById('pw02').value;
+        const errorMsg = document.getElementById('errorMsg');
+
+        if (pw !== pwCheck) {
+            event.preventDefault();  // 폼 제출 막기
+            errorMsg.textContent = '비밀번호가 일치하지 않습니다. 다시 확인해주세요.';
+        } else {
+            errorMsg.textContent = '';  // 에러 메시지 지우기
+        }
+    });
+</script>
 </body>
 </html>
 

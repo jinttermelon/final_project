@@ -59,7 +59,7 @@
 				<label>전화번호</label>
 				<div class="form-row">
 					<div class="col-4">
-						<select class="form-control">
+						<select class="form-control" name="tel_company">
 							<option>통신사</option>
 							<option value="KT" selected>KT</option>
 							<option value="LGU+">LGU+</option>
@@ -90,7 +90,7 @@
 
 		<div class="login-links">
 			<a th:href="@{/user/findId}">아이디 찾기</a> |
-			<a th:href="@{/user/updatePw}">비밀번호 찾기</a> |
+			<a th:href="@{/user/findPw}">비밀번호 찾기</a> |
 			<a th:href="@{/user/insert}">회원가입</a>
 		</div>
 	</div>

@@ -1,5 +1,6 @@
 package org.multi.final_project.event;
 
+import org.multi.final_project.crew.CrewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,4 +26,8 @@ public class EventService {
     public List<EventVO> selectAll(int startRow, int limit){
         return mapper.selectAll(startRow, limit);
     }
+    public int getTotalRowCount(EventVO vo) {
+        return mapper.totalRowCount(vo);
+    }
+
 }
