@@ -57,10 +57,10 @@
     <form action="/mypage" method="post">
 
       <div class="list-group">
-        <a th:href="@{/crewrecord/admin(nickname=${session.nickname})}"
+        <a th:href="@{/user/userRecord(nickname=${session.nickname})}"
            class="list-group-item list-group-item-action">유저 활동기록
         </a>
-        <a th:href="@{/crew/crewlistAdmin(nickname=${session.nickname})}"
+        <a th:href="@{/report/reportAdmin(nickname=${session.nickname})}"
            class="list-group-item list-group-item-action ">신고/문의내역 관리
         </a>
       </div>

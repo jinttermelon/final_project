@@ -137,6 +137,36 @@ public class UserController {
     public String banUserOK(UserVO vo) {
         return "redirect:/user/selectAll";
     }
+    @GetMapping("/userRecord")
+    public String userRecord(@RequestParam(defaultValue = "1") int cpage,
+                            @RequestParam(defaultValue = "10") int limit,
+                            Model model,
+                            UserVO vo) {
+
+
+        int startRow = (cpage - 1) * limit;
+        log.info("startRow:" + startRow);
+        List<UserVO> vos = service.selectAll(startRow, limit);
+        model.addAttribute("vos", vos);
+
+        // 페이지네이션
+        int totalRowCount = service.getTotalRowCount(vo);
+        log.info("total row count: {}", totalRowCount);
+
+        int pageCount = 1;
+        if (totalRowCount / limit==0){
+            pageCount = 1;
+        }else if(totalRowCount % limit==0){
+            pageCount = totalRowCount / limit;
+        }else {
+            pageCount = totalRowCount / limit +1;
+        }
+        log.info("page count: {}", pageCount);
+
+        model.addAttribute("pageCount", pageCount);
+
+        return "/user/userRecord";
+    }
 
     @GetMapping("/selectAll")
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,

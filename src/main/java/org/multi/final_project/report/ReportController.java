@@ -20,6 +20,7 @@ public class ReportController {
     @Autowired
     private ReportService service;
 
+
     @GetMapping("/insert")
     public String insert() {
 
@@ -32,6 +33,35 @@ public class ReportController {
         service.insertOK(vo);
 
         return "redirect:/report/selectAll?nickname=" + vo.getNickname();
+    }
+
+    @GetMapping("reportAdmin")
+    public String reportAdmin(@RequestParam(defaultValue = "1") int cpage,
+                            @RequestParam(defaultValue = "10") int limit,
+                            Model model,
+                            ReportVO vo){
+
+        int startRow = (cpage - 1) * limit;
+        List<ReportVO> vos = service.selectAll(startRow, limit, vo);
+        model.addAttribute("vos", vos);
+
+        // 페이지네이션
+        int totalRowCount = service.getTotalRowCount(vo);
+        log.info("total row count: {}", totalRowCount);
+
+        int pageCount = 1;
+        if (totalRowCount / limit==0){
+            pageCount = 1;
+        }else if(totalRowCount % limit==0){
+            pageCount = totalRowCount / limit;
+        }else {
+            pageCount = totalRowCount / limit +1;
+        }
+        log.info("page count: {}", pageCount);
+
+        model.addAttribute("pageCount", pageCount);
+
+        return "report/reportAdmin";
     }
 
     @GetMapping("selectAll")
