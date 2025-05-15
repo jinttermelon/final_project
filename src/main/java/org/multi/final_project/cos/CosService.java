@@ -33,4 +33,8 @@ public class CosService {
     public int getTotalRowCount(CosVO vo) {
         return mapper.totalRowCount(vo);
     }
+    public List<CosVO> selectTop6ByReviewCount(CosVO vo){
+        return mapper.selectTop6ByReviewCount(vo);
+    }
+
 }

@@ -1,5 +1,6 @@
 package org.multi.final_project.crew;
 
+import org.multi.final_project.cos.CosVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +40,9 @@ public class CrewService {
 
     public int getSearchListTotalRowCount(CrewVO vo,String searchKey, String searchWord) {
         return mapper.searchListTotalRowCount(vo,searchKey,searchWord);
+    }
+
+    public List<CrewVO> selectOneDayCrew(CrewVO vo){
+        return mapper.selectOneDayCrew(vo);
     }
 }

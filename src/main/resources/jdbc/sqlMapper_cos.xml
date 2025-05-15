@@ -72,4 +72,9 @@
         SELECT count(*) FROM cos
     </select>
 
+    <select id="selectTop6ByReviewCount" resultType="org.multi.final_project.cos.CosVO">
+        SELECT * FROM cos
+        ORDER BY review_count DESC
+        LIMIT 6
+    </select>
 </mapper>

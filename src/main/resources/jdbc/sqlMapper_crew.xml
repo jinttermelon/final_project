@@ -56,4 +56,8 @@
         SELECT count(*) FROM crew WHERE name LIKE CONCAT('%', #{searchWord}, '%')
     </select>
 
+    <select id="selectOneDayCrew" resultType="org.multi.final_project.crew.CrewVO">
+        SELECT * FROM crew
+        WHERE sche_check = 'one'
+    </select>
 </mapper>

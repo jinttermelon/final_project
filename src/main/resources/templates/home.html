@@ -89,82 +89,45 @@
         <!-- 코스 추천 카드 -->
         <section class="cos-section">
             <h2>추천 라이딩 코스</h2>
-            <div class="card-container">
-                <div class="card">
-                    <img src="/uploadimgPath/hangang-river.jpg" alt="한강 코스">
-                    <div class="card-content">
-                        <h3>한강 자전거길</h3>
-                        <p>서울 한강변을 따라 즐기는 아름다운 라이딩 코스</p>
-                    </div>
-                </div>
 
-                <div class="card">
-                    <img src="/uploadimgPath/busan.jpg" alt="부산 해운대 코스">
-                    <div class="card-content">
-                        <h3>부산 해운대 코스</h3>
-                        <p>바다를 보며 시원하게 달릴 수 있는 라이딩 코스</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="/uploadimgPath/jeju.jpg" alt="제주 올레길">
-                    <div class="card-content">
-                        <h3>제주 올레길</h3>
-                        <p>자연을 벗 삼아 달리는 최고의 힐링 코스</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/uploadimgPath/jeju.jpg" alt="제주 올레길">
-                    <div class="card-content">
-                        <h3>제주 올레길</h3>
-                        <p>자연을 벗 삼아 달리는 최고의 힐링 코스</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/uploadimgPath/busan.jpg" alt="부산 해운대 코스">
-                    <div class="card-content">
-                        <h3>부산 해운대 코스</h3>
-                        <p>바다를 보며 시원하게 달릴 수 있는 라이딩 코스</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/uploadimgPath/hangang-river.jpg" alt="한강 코스">
-                    <div class="card-content">
-                        <h3>한강 자전거길</h3>
-                        <p>서울 한강변을 따라 즐기는 아름다운 라이딩 코스</p>
-                    </div>
-                </div>
-        </section>
-        <div class="oneoffCrew">
-
-            <h2>번개크루 참가하기<h2>
-                        <!-- 이벤트 카드 반복 영역 -->
-                        <div class="row g-4">
-                            <div class="col-md-4 mb-4">
-                                <div class="card">
-                                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
-                                    <div class="card-body">
-                                        <h5 class="card-title">크루1</h5>
-                                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
-                                        <a href="/event/selectOne" class="btn btn-primary">참가</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 mb-4">
-                                <div class="card">
-                                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
-                                    <div class="card-body">
-                                        <h5 class="card-title">크루2</h5>
-                                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
-                                        <a href="/event/selectOne" class="btn btn-primary">참가</a>
-                                    </div>
-                                </div>
-                            </div>
-
+            <div class="card-container" style="display: flex; flex-wrap: wrap; gap: 16px;">
+                <a th:each="top6 : ${top6}"
+                   th:href="@{'/cos/selectOne?cos_num=' + ${top6.cos_num}}"
+                   style="text-decoration: none; color: inherit; width: 300px;">
+                    <div class="card" style="border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">
+                        <img th:src="@{'/uploadimgPath/' + ${top6.img}}" th:alt="${top6.cos_name}" style="width: 100%; height: 180px; object-fit: cover;">
+                        <div class="card-content" style="padding: 12px;">
+                            <h3 th:text="${top6.cos_name}">코스명</h3>
+                            <p th:text="${top6.info}">코스 설명</p>
                         </div>
+                    </div>
+                </a>
+            </div>
+        </section>
 
-</div>
+        <section class="oneday-section">
+            <br>
+            <hr>
+            <br>
+            <h2>번개크루 참가하기</h2>
+            <!-- 이벤트 카드 반복 영역 -->
+            <div class="row g-4">
+                <div class="col-md-4 mb-4" th:each="crew : ${oneday_crew}">
+                    <div class="card">
+                        <img th:src="@{'/uploadimgPath/' + ${crew.img_name}}" class="card-img-top" alt="이미지">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${crew.name}">크루명</h5>
+                            <p class="card-text">
+                                지역 : <span th:text="${crew.sido}">지역</span><br>
+                                모집 인원 수 : <span th:text="${crew.recruit}">00</span>명<br>
+                                라이딩 날짜 : <span th:text="${crew.sche}"></span>
+                            </p>
+                            <a th:href="@{'/crew/selectOne?cnum=' + ${crew.cnum}}" class="btn btn-primary">참가</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
 
 <footer>
     <div th:replace="~{footer :: footer}"></div>

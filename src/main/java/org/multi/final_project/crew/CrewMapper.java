@@ -3,6 +3,7 @@ package org.multi.final_project.crew;
 
 
 import org.apache.ibatis.annotations.Mapper;
+import org.multi.final_project.cos.CosVO;
 
 import java.util.List;
 
@@ -25,5 +26,7 @@ public interface CrewMapper {
         public int totalRowCount(CrewVO vo);
 
         public int searchListTotalRowCount(CrewVO vo,String searchKey, String searchWord);
+
+        public List<CrewVO> selectOneDayCrew(CrewVO vo);
 
 }
