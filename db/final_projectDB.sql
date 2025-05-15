@@ -295,7 +295,7 @@ CREATE TABLE IF NOT EXISTS `final_project`.`event` (
     `dur` VARCHAR(45) NOT NULL,
     `partici_num` INT NOT NULL,
     `event_type` VARCHAR(45) NOT NULL DEFAULT '전체',
-    `img_name` VARCHAR(45) NOT NULL DEFAULT 'event_default',
+    `img_name` VARCHAR(45) NOT NULL DEFAULT 'event_default.png',
     PRIMARY KEY (`num`))
     ENGINE = InnoDB;
 
