@@ -20,6 +20,32 @@
         footer {
             padding: 100px;
         }
+
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table thead th {
+            background-color: #f8f9fa;
+        }
+
+        .card-body {
+            background-color: #f8f9fa;
+            width: 300px;
+            height: auto;
+
+        }
+
+        .card-text {
+            font-size: small;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: auto;
+        }
+
     </style>
 </head>
 
@@ -61,7 +87,7 @@
 
 
         <!-- 코스 추천 카드 -->
-        <section class="course-section">
+        <section class="cos-section">
             <h2>추천 라이딩 코스</h2>
             <div class="card-container">
                 <div class="card">
@@ -111,9 +137,37 @@
                 <th:block sec:authorize="isAuthenticated()">
                     <div>어떤권한이건 상관없이 인증된(로그인성공) 사용자에게만 보입니다.</div>
                 </th:block>
-
-            </div>
         </section>
+        <div class="oneoffCrew">
+
+            <h2>번개크루 참가하기<h2>
+                        <!-- 이벤트 카드 반복 영역 -->
+                        <div class="row g-4">
+                            <div class="col-md-4 mb-4">
+                                <div class="card">
+                                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
+                                    <div class="card-body">
+                                        <h5 class="card-title">크루1</h5>
+                                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
+                                        <a href="/event/selectOne" class="btn btn-primary">참가</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-4">
+                                <div class="card">
+                                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
+                                    <div class="card-body">
+                                        <h5 class="card-title">크루2</h5>
+                                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
+                                        <a href="/event/selectOne" class="btn btn-primary">참가</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
     </div>
 </div>
 

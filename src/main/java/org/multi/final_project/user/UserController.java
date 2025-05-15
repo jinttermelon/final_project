@@ -33,6 +33,15 @@ public class UserController {
     @Autowired
     private HttpSession session;
 
+    @GetMapping("/adminMenu")
+    public String adminMenu(UserVO vo, Model model) {
+
+        UserVO vo2 = service.selectOne(vo);
+        model.addAttribute("vo2", vo2);
+
+        return "user/adminMenu";
+    }
+
     @GetMapping("/insert")
     public String insert() {
         return "user/insert";

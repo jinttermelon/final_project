@@ -1,7 +1,6 @@
 package org.multi.final_project.crew;
 
 import lombok.extern.slf4j.Slf4j;
-import org.multi.final_project.crewboard.CrewBoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -30,7 +29,10 @@ public class CrewController {
     @Value("${file.dir}")
     private String realPath;
 
-
+    @GetMapping("/crewAdmin")
+    public String crewAdmin(){
+        return "crew/crewAdmin";
+    }
 
     @GetMapping("/create")
     public String create(){
@@ -125,6 +127,33 @@ public class CrewController {
     public String deleteOK(CrewVO vo){
         service.deleteOK(vo);
         return "redirect:/crew/deleteFinish";
+    }
+    @GetMapping("/crewlistAdmin")
+    public String crewlistAdmin(@RequestParam(defaultValue = "1") int cpage,
+                            @RequestParam(defaultValue = "10") int limit, Model model , CrewVO vo){
+
+        int startRow = (cpage - 1) * limit;
+        List<CrewVO> vos = service.selectAll(startRow, limit);
+        model.addAttribute("vos", vos);
+
+        // 페이지네이션
+        int totalRowCount = service.getTotalRowCount(vo);
+        log.info("total row count: {}", totalRowCount);
+
+        int pageCount = 1;
+        if (totalRowCount / limit==0){
+            pageCount = 1;
+        }else if(totalRowCount % limit==0){
+            pageCount = totalRowCount / limit;
+        }else {
+            pageCount = totalRowCount / limit +1;
+        }
+        log.info("page count: {}", pageCount);
+
+        model.addAttribute("pageCount", pageCount);
+
+
+        return "crew/crewlistAdmin";
     }
     @GetMapping("/selectAll")
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,
