@@ -353,7 +353,7 @@ public class UserController {
         log.info("/user/updatePwOK");
 
         vo.setTel(vo.getTel_company()+"-"+vo.getTel01()+"-"+vo.getTel02()+"-"+vo.getTel03());
-
+        vo.setPw(passwordEncoder.encode(vo.getPw()));
         log.info(vo.toString());
 
         int result = service.updatePwOK(vo);//아이디로 비번변경하기
