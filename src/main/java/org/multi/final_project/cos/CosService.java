@@ -1,5 +1,6 @@
 package org.multi.final_project.cos;
 
+import org.multi.final_project.crewboard.CrewBoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +29,8 @@ public class CosService {
     }
     public List<CosVO> searchList(String searchKey, String searchWord, int startRow, int limit){
         return mapper.searchList(searchKey,searchWord,startRow,limit);
+    }
+    public int getTotalRowCount(CosVO vo) {
+        return mapper.totalRowCount(vo);
     }
 }

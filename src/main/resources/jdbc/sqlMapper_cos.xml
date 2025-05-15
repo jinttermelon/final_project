@@ -68,4 +68,8 @@
         WHERE cos_num = #{cos_num}
     </delete>
 
+    <select id="totalRowCount" resultType="int">
+        SELECT count(*) FROM cos
+    </select>
+
 </mapper>

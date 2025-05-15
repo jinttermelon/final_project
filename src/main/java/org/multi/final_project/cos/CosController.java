@@ -65,10 +65,27 @@ public class CosController {
     @GetMapping("/selectAll")
     public String selectAll(@RequestParam(defaultValue = "1")int cpage,
                             @RequestParam(defaultValue = "5")int limit,
-                            Model model){
+                            Model model,
+                            CosVO vo){
         int startRow = (cpage - 1) * limit;
         List<CosVO> vos = service.selectAll(startRow, limit);
         model.addAttribute("vos", vos);
+
+        // 페이지네이션
+        int totalRowCount = service.getTotalRowCount(vo);
+        log.info("total row count: {}", totalRowCount);
+
+        int pageCount = 1;
+        if (totalRowCount / limit==0){
+            pageCount = 1;
+        }else if(totalRowCount % limit==0){
+            pageCount = totalRowCount / limit;
+        }else {
+            pageCount = totalRowCount / limit +1;
+        }
+        log.info("page count: {}", pageCount);
+
+        model.addAttribute("pageCount", pageCount);
         return "cos/selectAll";
     }
 
