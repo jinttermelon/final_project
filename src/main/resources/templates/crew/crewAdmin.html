@@ -57,7 +57,7 @@
         <form action="/mypage" method="post">
 
             <div class="list-group">
-                <a th:href="@{/event/eventManagement(nickname=${session.nickname})}"
+                <a th:href="@{/crewrecord/admin(nickname=${session.nickname})}"
                    class="list-group-item list-group-item-action">전체 크루 활동기록
                 </a>
                 <a th:href="@{/crew/crewlistAdmin(nickname=${session.nickname})}"
