@@ -2,16 +2,12 @@ package org.multi.final_project.user;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
-import org.multi.final_project.crew.CrewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -282,5 +278,72 @@ public class UserController {
     }
 
 
+    @PostMapping("/findIdOK")
+    public String findIdOK(UserVO vo) {
+        log.info("/user/findIdOK");
+        log.info(vo.toString());
+
+        vo.setTel(vo.getTel_company()+"-"+vo.getTel01()+"-"+vo.getTel02()+"-"+vo.getTel03());
+        //String id = service.findIdOK(vo);//전화번호와 출생년도로 아이디 얻어오기
+        //String id = null;//임시값
+        String id = "test01@aaa.com";//임시값
+        if(id!=null){
+            return "redirect:/user/findIdSuccess?id="+id;
+        }else{
+            return "redirect:/user/findIdFail";
+        }
+    }
+
+    @GetMapping("/findIdSuccess")
+    public String findIdSuccess() {
+        return "user/findIdSuccess";
+    }
+
+    @GetMapping("/findIdFail")
+    public String findIdFail() {
+        return "user/findIdFail";
+    }
+
+    @PostMapping("/findPwOK")
+    public String findPwOK(UserVO vo) {
+        log.info("/user/findPwOK");
+        log.info(vo.toString());
+
+        vo.setTel(vo.getTel_company()+"-"+vo.getTel01()+"-"+vo.getTel02()+"-"+vo.getTel03());
+        //UserVO vo2 = service.findPwOK(vo);//아이디,전화번호, 출생년도로 vo2 얻어오기
+        //UserVO vo2 = null;//임시값
+        UserVO vo2 = vo;//임시값
+        if(vo2 != null){
+            return "redirect:/user/findPwSuccess?id="+vo2.getId();
+        }else{
+            return "redirect:/user/findPwFail";
+        }
+    }
+
+    @GetMapping("/findPwSuccess")
+    public String findPwSuccess() {
+        return "user/findPwSuccess";
+    }
+
+    @GetMapping("/findPwFail")
+    public String findPwFail() {
+        return "user/findPwFail";
+    }
+
+    @PostMapping("/updatePwOK")
+    public String updatePwOK(UserVO vo) {
+        log.info("/user/updatePwOK");
+        log.info(vo.toString());
+
+        vo.setTel(vo.getTel_company()+"-"+vo.getTel01()+"-"+vo.getTel02()+"-"+vo.getTel03());
+        //int result = service.updatePwOK(vo);//아이디로 비번변경하기
+        //int rewsult = 0;//임시값
+        int result = 1;//임시값
+        if(result == 1){
+            return "redirect:/user/login_form";
+        }else{
+            return "redirect:/user/findPwSuccess?id="+vo.getId();
+        }
+    }
 
 }

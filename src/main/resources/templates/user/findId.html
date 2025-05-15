@@ -43,45 +43,45 @@
 <div th:fragment="content">
 	<div class="findId-card">
 		<h2>아이디 찾기</h2>
-		<form action="/login" method="post">
+		<form action="findIdOK" method="post">
 
 			<div class="form-group">
 				<label for="tel">전화번호</label>
 				<div class="form-row">
 				<div class="col-3">
-					<select class="form-control">
-						<option selected>통신사</option>
-						<option>KT</option>
-						<option>LG</option>
-						<option>SKT</option>
+					<select class="form-control" id="tel" name="tel_company">
+						<option>통신사</option>
+						<option value="KT" selected>KT</option>
+						<option value="LGU+">LGU+</option>
+						<option value="SKT">SKT</option>
 					</select>
 				</div>
 				<div class="col">
-					<input type="text" class="form-control" placeholder="010">
+					<input type="text" class="form-control" placeholder="010" name="tel01" value="010">
 				</div>
 				<div class="col">
-					<input type="text" class="form-control">
+					<input type="text" class="form-control" placeholder="2222" name="tel02" value="2222">
 				</div>
 				<div class="col">
-					<input type="text" class="form-control">
+					<input type="text" class="form-control" placeholder="3333" name="tel03" value="3333">
 				</div>
 					</div>
 			</div>
 
 
 			<div class="form-group">
-					<label for="birth">출생연도</label>
+					<label for="birth_year">출생년도</label>
 
-					<input type="text" class="form-control" id="birth" placeholder="20020125">
+					<input type="text" class="form-control" id="birth_year" name="birth_year" placeholder="2002" value="2002">
 			</div>
 
-			<button type="submit" class="btn btn-info btn-block">완료</button>
+			<button type="submit" class="btn btn-info btn-block">찾기</button>
 		</form>
 
 		<div class="findId-links">
 			<a th:href="@{/user/findId}">아이디 찾기</a> |
 			<a th:href="@{/user/findPw}">비밀번호 찾기</a> |
-			<a th:href="@{/user/login}">로그인</a>
+			<a th:href="@{/user/insert}">회원가입</a>
 		</div>
 	</div>
 </div>

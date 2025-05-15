@@ -21,7 +21,10 @@ public class SecurityConfig {
                 "/", "/home", "/user/insert", "/user/insertOK",
                 "/user/selectAll",
                 "/user/login_form", "/user/loginSuccess", "/user/loginFail",
-                "/user/required", "/user/denied", "/user/expired","/user/findId","/user/findPw",
+                "/user/findId","/user/findPw",
+                "/user/findIdOK","/user/findIdSuccess", "/user/findIdFail",
+                "/user/findPwOK","/user/findPwSuccess", "/user/findPwFail","/user/updatePwOK",
+                "/user/required", "/user/denied", "/user/expired",
                 "/crewboard/selectAll", "/crewboard/selectOne",
                 "/uploadimgPath/**", "/error", "/api/**", "/css/**", "/js/**", "/images/**"
         };

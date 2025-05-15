@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디 찾기</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <style>
+        .main-content, footer {
+            padding: 100px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav th:replace="~{top_menu :: top_menu}"></nav>
+</header>
+<!-- 메인 콘텐츠 영역 -->
+<div class="main-content">
+    <div class="container">
+        <h2>입력하신 정보가 바르지 않습니다.</h2>
+        <p><a href="/user/findPw">비밀번호 찾기로 이동</a></p>
+    </div>
+</div>
+
+<footer>
+    <div th:replace="~{footer :: footer}"></div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
