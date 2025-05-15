@@ -21,7 +21,7 @@ public class SecurityConfig {
                 "/", "/home", "/user/insert", "/user/insertOK",
                 "/user/selectAll",
                 "/user/login_form", "/user/loginSuccess", "/user/loginFail",
-                "/user/required", "/user/denied", "/user/expired",
+                "/user/required", "/user/denied", "/user/expired","/user/findId","/user/findPw",
                 "/crewboard/selectAll", "/crewboard/selectOne",
                 "/uploadimgPath/**", "/error", "/api/**", "/css/**", "/js/**", "/images/**"
         };
