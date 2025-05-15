@@ -16,9 +16,9 @@
     </select>
 
     <insert id="insertOK">
-    INSERT INTO event (title, city, prize, dur, partici_num, event_type)
+    INSERT INTO event (title, city, prize, dur, partici_num, event_type,img_name)
     VALUES
-    (#{title},#{city},#{prize},#{dur},#{partici_num},#{event_type})
+    (#{title},#{city},#{prize},#{dur},#{partici_num},#{event_type},#{img_name})
     </insert>
 
     <update id="updateOK">

@@ -35,28 +35,18 @@
     <div class="container">
         <h1>이벤트 관리목록</h1>
         <a th:href="@{/event/insert}" class="btn btn-danger">이벤트 등록</a>
-        <a th:href="@{/event/participantList}" class="btn btn-danger">이벤트 참가자 명단 -> 이거는 이벤트 제목 눌렀을 때 볼 수 있도록 하는거 어떨까요?</a>
-
-
-        <form method="get" th:action="@{/event/selectAll}">
-
-        </form>
 
         <table class="table table-bordered table-striped table-hover mt-3">
             <thead>
             <tr>
-                <th>num</th>
-                <th>title</th>
-                <th>게시 상태(공개/비공개)</th>
-                <th>이벤트 상태(진행/종료)</th>
+                <th>이벤트번호</th>
+                <th>제목</th>
+                <th>장소</th>
+                <th>상품</th>
                 <th>이벤트 기간</th>
-                <th>모집상태(모집중/마감)</th>
+                <th>이벤트 타입</th>
                 <th>신청인원</th>
-                <th>모집기간</th>
-                <th>삭제버튼자리</th>
-                <th>승인버튼자리</th>
-                <th>승인날짜</th>
-                <th>요청일자</th>
+                <th>이미지</th>
             </tr>
             </thead>
             <tbody>
@@ -64,27 +54,24 @@
                 <tr>
                     <td>[[${vo.num}]]</td>
                     <td>[[${vo.title}]]</td>
-                    <td>[[${vo.num}]]</td>
-                    <td>[[${vo.num}]]</td>
-                    <td>[[${vo.num}]]</td>
+                    <td>[[${vo.city}]]</td>
+                    <td>[[${vo.prize}]]</td>
+                    <td>[[${vo.dur}]]</td>
+                    <td>[[${vo.partici_num}]]</td>
+                    <td>[[${vo.event_type}]]</td>
+                    <td>[[${vo.img_name}]]</td>
                 </tr>
             </th:block>
             </tbody>
             <tfoot>
-            <tr th:if="${param.searchKey == null}">
+            <tr>
                 <td colspan="8">
-                    <a th:href="@{/event/selectAll(cpage=1,limit=10)}">1</a>
-                    <a th:href="@{/event/selectAll(cpage=2,limit=10)}">2</a>
-                    <a th:href="@{/event/selectAll(cpage=3,limit=10)}">3</a>
+                    <th:block th:each="i : ${#numbers.sequence(1,pageCount)}">
+                        <a th:href="@{/event/eventManagement(cpage=${i},limit=10)}">[[${i}]]</a>
+                    </th:block>
                 </td>
             </tr>
-            <tr th:if="${param.searchKey != null}">
-                <td colspan="8">
-                    <a th:href="@{/event/searchList(cpage=1,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">1</a>
-                    <a th:href="@{/event/searchList(cpage=2,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">2</a>
-                    <a th:href="@{/event/searchList(cpage=3,limit=10,searchKey=${param.searchKey},searchWord=${param.searchWord})}">3</a>
-                </td>
-            </tr>
+
             </tfoot>
         </table>
     </div>
