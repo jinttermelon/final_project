@@ -116,7 +116,7 @@ public class EventController {
 
     @GetMapping("/selectAll")
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,
-                            @RequestParam(defaultValue = "10") int limit, Model model, EventVO vo) {
+                            @RequestParam(defaultValue = "3") int limit, Model model, EventVO vo) {
 
         int startRow = (cpage - 1) * limit;
         List<EventVO> vos = service.selectAll(startRow, limit);
@@ -155,8 +155,13 @@ public class EventController {
     }
 
     @GetMapping("/selectOne")
-    public String selectOne(EventVO vo, Model model) {
+    public String selectOne(@RequestParam("num") int num,EventVO vo, Model model) {
+
+        EventVO vo2 = service.selectOne(vo); // 이걸 받아야 함!
+        log.info("조회 결과: {}", vo2);
+        model.addAttribute("vo2", vo2);
         return "event/selectOne";
+
     }
 
     @GetMapping("/delete")
