@@ -55,7 +55,7 @@
             <th:block th:each="vo : ${vos}">
                 <tr>
                     <td>[[${vo.num}]]</td>
-                    <td>[[${vo.title}]]</td>
+                    <td><a th:href="@{/event/update(num=${vo.num})}">[[${vo.title}]]</a></td>
                     <td>[[${vo.city}]]</td>
                     <td>[[${vo.prize}]]</td>
                     <td>[[${vo.dur}]]</td>
