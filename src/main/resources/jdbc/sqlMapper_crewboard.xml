@@ -71,4 +71,17 @@
         ORDER BY bnum DESC LIMIT #{startRow}, #{limit}
     </select>
 
+    <select id="selectByUser" resultType="org.multi.final_project.crewboard.CrewBoardVO">
+        SELECT *
+        FROM crewboard
+        WHERE nickname = #{nickname}
+        ORDER BY wdate DESC
+        LIMIT #{limit} OFFSET #{startRow}
+    </select>
+
+    <select id="getTotalByUser" resultType="int">
+        SELECT COUNT(*)
+        FROM crewboard
+        WHERE nickname = #{nickname}
+    </select>
 </mapper>

@@ -30,4 +30,17 @@
         WHERE num = #{num}
     </delete>
 
+    <select id="selectByUser" resultType="org.multi.final_project.comment.CommentVO">
+        SELECT *
+        FROM comment
+        WHERE nickname = #{nickname}
+        ORDER BY wdate DESC
+        LIMIT #{limit} OFFSET #{startRow}
+    </select>
+
+    <select id="getTotalByUser" resultType="int">
+        SELECT COUNT(*)
+        FROM comment
+        WHERE nickname = #{nickname}
+    </select>
 </mapper>

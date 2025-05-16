@@ -17,6 +17,8 @@ public interface CrewBoardMapper {
     public List<CrewBoardVO>searchList( int cnum,String searchKey, String searchWord, int startRow, int limit);
     public int totalRowCount(CrewBoardVO vo);
     public int searchListTotalRowCount(int cnum,String searchKey, String searchWord);
-    List<CrewBoardVO> myBoardSelectAll(int startRow, int limit , @Param("nickname") String nickname);
+    public List<CrewBoardVO> myBoardSelectAll(int startRow, int limit , @Param("nickname") String nickname);
+    public List<CrewBoardVO> selectByUser(String nickname, int startRow, int limit);
 
+    public int getTotalByUser(String nickname);
 }
