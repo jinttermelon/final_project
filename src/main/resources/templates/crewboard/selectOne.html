@@ -60,7 +60,12 @@
             background-color: #f8f9fa;
         }
 
+        .btn btn-primary mt-2 {
+            margin-bottom: 50px;
+        }
     </style>
+
+
 
 </head>
 <body th:replace="~{layout::layout}">
@@ -75,10 +80,25 @@
                 <th>작성일자</th><td>작성일: [[${vo2.wdate}]]</td>
             </tr>
             <tr>
-                <th>글내용</th><
+                <th>글내용</th>
                 <td colspan="5" height="50px">[[${vo2.content}]]</td>
             </tr>
         </table>
+
+        <!-- 댓글 입력칸입니다 -->
+        <form th:action="@{/crewboard/comment}" method="post">
+            <!-- 게시글 번호도 함께 전달 -->
+            <input type="hidden" name="bnum" th:value="${vo2.bnum}" />
+
+            <div class="d-flex">
+                <label for="commentContent">댓글</label>
+                <textarea name="content" id="commentContent" class="form-control" rows="3" placeholder="댓글을 입력하세요"></textarea>
+                <button type="submit" class="btn btn-primary mt-2">작성</button>
+            </div>
+        </form>
+            <!-- 여기까지 댓글 입력칸입니다 -->
+
+
         <div class="list-group">
             <a th:href="@{/crewboard/update(bnum=${param.bnum})}"
                class="list-group-item list-group-item-action ">게시글 수정 페이지로 이동</a>
