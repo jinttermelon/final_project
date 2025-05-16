@@ -227,7 +227,7 @@
 <!-- ✅ 전체 레이아웃 -->
 <div class="main">
 
-    <!-- ✅ 좌측: 채팅방 목록 -->
+    <!-- 좌측: 채팅방 목록 -->
     <div class="sidebar">
         <h3>채팅방 목록</h3>
         <form th:action="@{/chat/room}" method="post">
@@ -235,13 +235,13 @@
             <button type="submit">방 만들기</button>
         </form>
         <ul>
-            <li th:each="room : ${chatRooms}">
-                <a class="chat-item" th:href="@{/chat/room(room_id=${room.room_id})}" th:text="${room.room_name}">채팅방</a>
+            <li th:each="room : ${rooms}">
+                <a class="chat-item" th:href="@{/chat/cummunity(room_id=${room.room_id})}" th:text="${room.room_name}">채팅방</a>
             </li>
         </ul>
     </div>
 
-    <!-- ✅ 중앙: 채팅창 -->
+    <!-- 중앙: 채팅창 -->
     <div class="chat-area">
         <div th:if="${selectedRoom != null}">
             <div class="chat-header" th:text="${selectedRoom.room_name}">채팅방 이름</div>
@@ -261,7 +261,7 @@
         </div>
     </div>
 
-    <!-- ✅ 우측: 친구 목록 -->
+    <!-- 우측: 친구 목록 -->
     <div class="friends">
         <h3>친구 목록</h3>
         <ul>
@@ -269,7 +269,7 @@
         </ul>
     </div>
 
-</div> <!-- /.main -->
+</div>
 
 <footer>
     <div th:replace="~{footer :: footer}"></div>
