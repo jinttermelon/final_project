@@ -1,6 +1,9 @@
 package org.multi.final_project.cos;
 
 import lombok.Data;
+import org.multi.final_project.cosreview.CosReviewVO;
+
+import java.util.List;
 
 @Data
 public class CosVO {
@@ -21,5 +24,5 @@ public class CosVO {
     private String open;
     private String tag;
     private String city;
-
+    private List<CosReviewVO> reviewList;
 }

@@ -3,6 +3,7 @@ package org.multi.final_project.cos;
 import lombok.extern.slf4j.Slf4j;
 import org.multi.final_project.ad.AdVO;
 import org.multi.final_project.comment.CommentVO;
+import org.multi.final_project.cosreview.CosReviewVO;
 import org.multi.final_project.crewboard.CrewBoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ public class CosController {
 
     @Autowired
     private CosService service;
+
 
 
     @GetMapping("/insert")
@@ -90,12 +92,16 @@ public class CosController {
     }
 
     @GetMapping("/selectOne")
-    public String selectOne(CosVO vo, Model model){
+    public String selectOne(Model model,@RequestParam("cos_num") int cos_num){
         log.info("selectOne()...");
 
 
-        CosVO vo2 = service.selectOne(vo);
+        CosVO vo2 = service.selectOne(cos_num);
         model.addAttribute("vo2", vo2);
+
+        List<CosReviewVO> reviews = service.selectReviewsByCosNum(cos_num);
+        model.addAttribute("reviews", reviews);
+
         return "cos/selectOne";
     }
 

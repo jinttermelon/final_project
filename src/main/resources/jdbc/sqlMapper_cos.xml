@@ -77,4 +77,10 @@
         ORDER BY review_count DESC
         LIMIT 6
     </select>
+
+    <select id="selectReviewsByCosNum" parameterType="int" resultType="org.multi.final_project.cosreview.CosReviewVO">
+        SELECT num, cos_num, nickname, grade, content, wdate
+        FROM cosreview
+        WHERE cos_num = #{cos_num}
+    </select>
 </mapper>

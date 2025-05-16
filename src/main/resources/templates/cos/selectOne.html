@@ -62,11 +62,18 @@
         <!-- 리뷰 박스 -->
         <div class="col-md-4 review-box">
             <h4>작성된 리뷰</h4>
-            <div class="review-list">
-                <p>👍 아주 좋은 코스였어요!</p>
-                <p>⭐ 가족과 함께 하기 좋아요.</p>
-                <p>👎 조금 지루했어요.</p>
+            <div class="review-list" style="max-width: 600px; margin: 0 auto;">
+                <div th:each="review : ${reviews}"
+                     style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); background: #fafafa;">
 
+                    <p style="margin: 0 0 8px 0; font-weight: bold; color: #333;">
+                        <span th:text="${review.nickname}"></span>
+                        <span th:text="'(' + ${review.grade} + '점)'"
+                              style="color: #666; font-weight: normal;"></span>
+                    </p>
+
+                    <p style="margin: 0; color: #555; line-height: 1.4em;" th:text="${review.content}"></p>
+                </div>
             </div>
             <div class="text-center mt-3">
                 <tr th:if="${param.message == null}">
