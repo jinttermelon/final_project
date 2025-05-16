@@ -145,13 +145,14 @@ public class UserController {
                             UserVO vo) {
 
 
-        int startRow = (cpage - 1) * limit;
-        log.info("startRow:" + startRow);
-        List<UserVO> vos = service.selectAll(startRow, limit);
-        model.addAttribute("vos", vos);
+//        int startRow = (cpage - 1) * limit;
+//        log.info("startRow:" + startRow);
+//        List<UserVO> vos = service.selectAll(startRow, limit);
+//        model.addAttribute("vos", vos);
 
         // 페이지네이션
-        int totalRowCount = service.getTotalRowCount(vo);
+        //int totalRowCount = service.getTotalRowCount(vo);
+        int totalRowCount = 10;
         log.info("total row count: {}", totalRowCount);
 
         int pageCount = 1;
