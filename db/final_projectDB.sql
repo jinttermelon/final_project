@@ -320,7 +320,7 @@ CREATE TABLE IF NOT EXISTS `final_project`.`ad` (
 CREATE TABLE IF NOT EXISTS `final_project`.`friend` (
                                                         `fnickname` VARCHAR(45) NOT NULL,
     `unickname` VARCHAR(45) NOT NULL,
-    `fnum` VARCHAR(45) NOT NULL,
+    `fnum` int NOT NULL auto_increment,
     PRIMARY KEY (`fnum`),
     INDEX `fk/friend/unickname_idx` (`unickname` ASC) VISIBLE,
     CONSTRAINT `fk/friend/unickname`
@@ -542,44 +542,48 @@ VALUES
     ('testnick01', '친목을 기대하고 있고, 협동 라이딩도 배우고 싶습니다.', '대기', now(), 2),
     ('testnick01', '친목을 기대하고 있고, 협동 라이딩도 배우고 싶습니다.', '승인', now(), 3);
 
-INSERT INTO friend (fnickname, unickname, fnum)
+INSERT INTO friend (fnickname, unickname)
 VALUES
 -- name02가 여러 명과 친구
-('name02', 'name03', 'F001'),
-('name03', 'name02', 'F002'),
-('name02', 'name04', 'F003'),
-('name04', 'name02', 'F004'),
-('name02', 'name05', 'F005'),
-('name05', 'name02', 'F006'),
+('name02', 'name03'),
+('name03', 'name02'),
+('name02', 'name04'),
+('name04', 'name02'),
+('name02', 'name05'),
+('name05', 'name02'),
 
 -- name03이 여러 명과 친구
-('name03', 'name06', 'F007'),
-('name06', 'name03', 'F008'),
-('name03', 'name07', 'F009'),
-('name07', 'name03', 'F010'),
+('name03', 'name06'),
+('name06', 'name03'),
+('name03', 'name07'),
+('name07', 'name03'),
 
 -- name04가 여러 명과 친구
-('name04', 'name08', 'F011'),
-('name08', 'name04', 'F012'),
-('name04', 'name09', 'F013'),
-('name09', 'name04', 'F014'),
+('name04', 'name08'),
+('name08', 'name04'),
+('name04', 'name09'),
+('name09', 'name04'),
 
 -- name05와 name06이 서로 친구
-('name05', 'name06', 'F015'),
-('name06', 'name05', 'F016'),
+('name05', 'name06'),
+('name06', 'name05'),
 
 -- name07이 name10, name11과 친구
-('name07', 'name10', 'F017'),
-('name10', 'name07', 'F018'),
-('name07', 'name11', 'F019'),
-('name11', 'name07', 'F020'),
+('name07', 'name10'),
+('name10', 'name07'),
+('name07', 'name11'),
+('name11', 'name07'),
 
 -- name08이 name12와 친구
-('name08', 'name12', 'F021'),
-('name12', 'name08', 'F022'),
+('name08', 'name12'),
+('name12', 'name08'),
 
 -- name09가 name10과도 친구
-('name09', 'name10', 'F023'),
-('name10', 'name09', 'F024');
+('name09', 'name10'),
+('name10', 'name09'),
+
+-- testnick01 의 친구
+('name09', 'testnick01'),
+('name10', 'testnick01');
 
 commit;
