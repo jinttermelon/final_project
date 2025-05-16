@@ -34,17 +34,7 @@ public class CosReviewController {
     @PostMapping("/insertOK")
     public String insertOK(CosReviewVO vo){
         log.info("insertOK()...");
-        log.info("vo: {}", vo);
-
-        int result = service.insertOK(vo);
-
-        if(result == 1){
-            return "redirect:saveReview?cos_num="+vo.getCos_num();
-        }else{
-            return "redirect:selectOne?cos_num="+vo.getCos_num();
-        }
-
-
+        return "redirect:saveReview";
     }
 
     @GetMapping("/update")

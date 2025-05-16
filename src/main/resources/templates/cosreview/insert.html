@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/board.css}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
@@ -10,7 +11,6 @@
         body {
             background-color: #f5f5f5;
         }
-
         .form-container {
             max-width: 600px;
             margin: 50px auto;
@@ -20,20 +20,10 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
         }
 
-        .star-grade {
+        .star-grade{
             font-size: 40px;
             color: lightgray;
             cursor: pointer;
-        }
-
-        .star {
-            font-size: 40px;
-            color: lightgray;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .star.selected {
-            color: gold;
         }
 
         textarea.content {
@@ -47,58 +37,37 @@
             padding: 1rem;
             font-size: 1rem;
         }
+
     </style>
-
-    <script>
-        $(document).ready(function () {
-            $(".star").click(function () {
-                const rating = $(this).data("value");
-
-                // 별 색 초기화
-                $(".star").each(function () {
-                    const value = $(this).data("value");
-                    if (value <= rating) {
-                        $(this).addClass("selected");
-                    } else {
-                        $(this).removeClass("selected");
-                    }
-                });
-
-                // 별점 값 hidden input에 설정
-                $("#grade-value").val(rating);
-            });
-        });
-    </script>
 </head>
 <body th:replace="~{layout::layout}">
-<div th:fragment="content">
-    <h1>리뷰 작성 페이지</h1>
-    <form action="#" method="post" th:action="@{/cosreview/insertOK}">
-        <div class="form-container">
+    <div th:fragment="content">
+        <h1>리뷰 작성 페이지</h1>
+        <form action="#" method="post" th:action="@{/cosreview/insertOK}">
+            <div class="form-container">
 
             <div class="review-score">
-                <h5>코스에 별점을 매겨주세요</h5>
+                <h5> 코스에 별점을 매겨주세요 </h5>
                 <div class="star-grade">
-                    <span class="star" data-value="1">★</span>
-                    <span class="star" data-value="2">★</span>
-                    <span class="star" data-value="3">★</span>
-                    <span class="star" data-value="4">★</span>
                     <span class="star" data-value="5">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="1">★</span>
                 </div>
-                <input type="hidden" name="grade" id="grade-value" value="0">
-                <input type="hidden" name="nickname" id="nickname" th:value="${session.nickname}">
-                <input type="hidden" name="cos_num" id="cos_num" th:value="${param.cos_num}">
-            </div>
+                <input type="hidden" name="garde" id="grade-value" value="0">
 
-            <div class="review-text">
-                <textarea name="content" class="content" placeholder="자세한 후기를 들려주세요">힘들지않아서 초보자에게 아주 좋은 코스인것 같습니다.</textarea>
-            </div>
+                    <div class="review-text">
+                        <textarea name="content" class="content"  placeholder="자세한 후기를 들려주세요"></textarea>
+                    </div>
 
-            <div class="review-save">
-                <button type="submit" class="btn btn-info btn-block">리뷰 등록하기</button>
+
+                    <div class="review-save">
+                        <button type="submit" class="btn btn-info btn-block">리뷰 등록하기</button>
+                    </div>
             </div>
-        </div>
-    </form>
-</div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
