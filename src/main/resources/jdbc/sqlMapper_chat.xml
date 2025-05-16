@@ -6,8 +6,8 @@
 <mapper namespace="org.multi.final_project.chat.ChatMapper">
 
     <insert id="insertRoom" parameterType="org.multi.final_project.chat.ChatRoomVO">
-        INSERT INTO chat_room (room_id, room_name, chat_info, cdate)
-        VALUES (#{room_id}, #{room_name}, #{chat_info}, NOW())
+        INSERT INTO chat_room (room_id, room_name )
+        VALUES (#{room_id}, #{room_name})
     </insert>
 
     <select id="findAllRooms" resultType="org.multi.final_project.chat.ChatRoomVO">
@@ -15,12 +15,12 @@
     </select>
 
     <insert id="insertMessage" parameterType="ChatMessageVO">
-        INSERT INTO chat_message(room_id, sender, message, nick)
-        VALUES(#{room_id}, #{sender}, #{message}, #{nick})
+        INSERT INTO chat_message(room_id, sender, message)
+        VALUES(#{room_id}, #{sender}, #{message})
     </insert>
 
     <select id="getMessagesByRoomId" >
-        SELECT * FROM chat_message WHERE room_id = #{room_id} ORDER BY wdate desc
+        SELECT * FROM chat_message WHERE room_id = #{room_id} ORDER BY wdate asc
     </select>
 
 </mapper>

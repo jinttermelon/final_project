@@ -1,5 +1,6 @@
 package org.multi.final_project.chat;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.multi.final_project.friend.FriendMapper;
 import org.multi.final_project.user.UserMapper;
@@ -22,19 +23,14 @@ public class ChatController {
     @Autowired
     private FriendMapper friendMapper;
 
+    @Autowired
+    private HttpSession session;
 
 
-    //채팅방 전체 목록 출력
-//    @GetMapping("/rooms")
-//    public String findAllRooms(Model model) {
-//        List<ChatRoomVO> rooms = chatMapper.findAllRooms();
-//        model.addAttribute("rooms", rooms);
-//        return "chat/rooms"; // 방 목록만 있는 별도 페이지가 있다면
-//    }
 
     //채팅방 입장 (room_id 파라미터 받기)
     @GetMapping("/cummunity")
-    public String cummunity(@RequestParam(name = "room_id", required = false) String roomId, Model model) {
+    public String cummunity(@RequestParam(name = "room_id", required = false) String room_id, Model model) {
 //        if (roomId != null) {
 //            ChatRoomVO selectedRoom = chatMapper.selectRoomById(roomId);
 //            model.addAttribute("selectedRoom", selectedRoom);
@@ -45,7 +41,8 @@ public class ChatController {
 
         List<ChatRoomVO> rooms = chatMapper.findAllRooms();
         model.addAttribute("rooms", rooms);
-//        model.addAttribute("friends", friendMapper.selectAcceptedFriends("name03")); // 테스트용 유저
+        model.addAttribute("messages_history", chatMapper.getMessagesByRoomId(room_id));
+        model.addAttribute("friends", friendMapper.selectAcceptedFriends(session.getAttribute("nickname").toString()));
         return "chat/chatMain";
     }
 

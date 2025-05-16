@@ -8,8 +8,7 @@ import java.sql.Timestamp;
 public class ChatMessageVO {
     private int num;
     private String room_id;
-    private String sender;
-    private String nick;
+    private String sender;//nickname
     private String message;
     private Timestamp wdate;
 }
