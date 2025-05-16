@@ -93,7 +93,7 @@
         <!-- 여기까지 댓글 목록 보여주는 부분 -->
 
         <!-- 댓글 입력칸입니다 -->
-        <form th:action="@{/crewboard/selectOne.html}" method="post">
+        <form th:action="@{/crewboard/selectOne}" method="post">
             <!-- 게시글 번호도 함께 전달 -->
             <input type="hidden" name="bnum" th:value="${vo2.bnum}" />
 
