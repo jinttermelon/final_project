@@ -137,6 +137,7 @@ public class UserController {
     public String banUserOK(UserVO vo) {
         return "redirect:/user/selectAll";
     }
+
     @GetMapping("/userRecord")
     public String userRecord(@RequestParam(defaultValue = "1") int cpage,
                             @RequestParam(defaultValue = "10") int limit,

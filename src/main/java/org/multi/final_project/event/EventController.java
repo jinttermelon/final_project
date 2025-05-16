@@ -164,9 +164,9 @@ public class EventController {
         return "event/delete";
     }
 
-    @GetMapping("/deleteOk")
-    public String deleteOk() {
-        return "event/deleteOk";
+    @GetMapping("/deleteOK")
+    public String deleteOK() {
+        return "redirect:eventManagement";
     }
 
 
