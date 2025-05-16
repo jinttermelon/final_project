@@ -8,10 +8,7 @@ import org.multi.final_project.cos.CosVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,20 +31,11 @@ public class CosLikeController {
             return "redirect:/login";
         }
 
-
-
-        int count = service.checkLike(nickname,cos_num);
-        if (count == 0) {
-            CosLikeVO vo = new CosLikeVO();
-            vo.setCos_num(cos_num);
-            vo.setNickname(nickname);
-            service.insertOK(vo);
-            return "redirect:/cos/selectOne?cos_num="+ cos_num+"&message=like";
-        }else {
-            return "redirect:/cos/selectOne?cos_num="+ cos_num+"&message=liked";
-        }
-
-
+        CosLikeVO vo = new CosLikeVO();
+        vo.setCos_num(cos_num);
+        vo.setNickname(nickname);
+        service.insertOK(vo);
+        return "redirect:/cos/selectOne?cos_num="+ cos_num;
     }
 
     @PostMapping("/insertOK")
@@ -62,10 +50,13 @@ public class CosLikeController {
         return "coslike/delete";
     }
 
-    @PostMapping("/deleteOK")
+    @GetMapping("/deleteOK")
     public String deleteOK(CosLikeVO vo){
         log.info("deleteOK()...");
-        return "redirect:selectALl";
+
+        service.deleteOK(vo);
+
+        return "redirect:/cos/selectOne?cos_num="+ vo.getCos_num();
     }
 
     @GetMapping("/selectAll")

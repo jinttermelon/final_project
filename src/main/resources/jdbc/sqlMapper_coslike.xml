@@ -12,7 +12,7 @@
 
     <delete id="deleteOK">
         DELETE FROM coslike
-        WHERE cos_num = #{cos_num}
+        WHERE cos_num = #{cos_num} and nickname = #{nickname}
     </delete>
 
     <resultMap id="CosLikeWithCosMap" type="org.multi.final_project.coslike.CosLikeVO">
