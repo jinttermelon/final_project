@@ -86,7 +86,7 @@
         </table>
 
         <!-- 댓글 입력칸입니다 -->
-        <form th:action="@{/crewboard/comment}" method="post">
+        <form th:action="@{/crewboard/selectOne.html}" method="post">
             <!-- 게시글 번호도 함께 전달 -->
             <input type="hidden" name="bnum" th:value="${vo2.bnum}" />
 

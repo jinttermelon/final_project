@@ -1,5 +1,6 @@
 package org.multi.final_project.comment;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.multi.final_project.ad.AdVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class CommentController {
     @Autowired
     private CommentService service;
 
+    @Autowired
+    private HttpSession session;
+
     @GetMapping("/insert")
     public String insert(){
         log.info("insert()...");
@@ -31,9 +35,12 @@ public class CommentController {
     }
 
     @PostMapping("/insertOK")
-    public String insertOK(CommentVO vo){
+    public String insertOK(CommentVO vo, HttpSession session){
         log.info("insertOK()...");
-        return "redirect:selectALl";
+        String userNickname = (String) session.getAttribute("nickname");
+        vo.setNickname(userNickname);
+        service.insertOK(vo);
+        return "redirect:crewBoard/selectOne";
     }
 
     @GetMapping("/update")
@@ -45,7 +52,7 @@ public class CommentController {
     @PostMapping("/updateOK")
     public String updateOK(CommentVO vo){
         log.info("updateOK()...");
-        return "redirect:selectALl";
+        return "redirect:selectAll";
     }
 
     @GetMapping("/delete")
@@ -56,7 +63,7 @@ public class CommentController {
     @PostMapping("/deleteOK")
     public String deleteOK(CommentVO vo){
         log.info("deleteOK()...");
-        return "redirect:selectALl";
+        return "redirect:selectAll";
     }
 
     @GetMapping("/selectAll")
