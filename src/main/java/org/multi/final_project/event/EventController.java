@@ -30,6 +30,11 @@ public class EventController {
     @Autowired
     private EventService service;
 
+    @GetMapping("/update")
+    public String update() {
+        return "event/update";
+    }
+
     @GetMapping("/applyDone")
     public String applyDone() {
         return "event/applyDone";
@@ -40,14 +45,10 @@ public class EventController {
         return "event/myevent";
     }
 
-    @GetMapping("/insert")
-    public String insert() {
-        return "event/insert";
-    }
 
     @GetMapping("/eventManagement")
     public String eventManagement(@RequestParam(defaultValue = "1") int cpage,
-                                  @RequestParam(defaultValue = "10") int limit, Model model , EventVO vo){
+                                  @RequestParam(defaultValue = "10") int limit, Model model, EventVO vo) {
 
         int startRow = (cpage - 1) * limit;
         List<EventVO> vos = service.selectAll(startRow, limit);
@@ -58,12 +59,12 @@ public class EventController {
         log.info("total row count: {}", totalRowCount);
 
         int pageCount = 1;
-        if (totalRowCount / limit==0){
+        if (totalRowCount / limit == 0) {
             pageCount = 1;
-        }else if(totalRowCount % limit==0){
+        } else if (totalRowCount % limit == 0) {
             pageCount = totalRowCount / limit;
-        }else {
-            pageCount = totalRowCount / limit +1;
+        } else {
+            pageCount = totalRowCount / limit + 1;
         }
         log.info("page count: {}", pageCount);
 
@@ -72,25 +73,29 @@ public class EventController {
         return "event/eventManagement";
     }
 
+    @GetMapping("/insert")
+    public String insert() {
+        return "event/insert";
+    }
 
     @PostMapping("/insertOK")
     public String insertOK(EventVO vo) throws IOException {
 
 
-        log.info("realPath : {}",realPath);
+        log.info("realPath : {}", realPath);
 
         String originName = vo.getFile().getOriginalFilename();
-        log.info("originName : {}",originName);
+        log.info("originName : {}", originName);
 
-        if(originName.length() == 0){//파일첨부안되었을때는 기본이미지이름으로 설정.
+        if (originName.length() == 0) {//파일첨부안되었을때는 기본이미지이름으로 설정.
             vo.setImg_name("default.png");
-        }else{
+        } else {
             //중복파일명 배제하는 처리. ex: img_387483924732743.png
-            String save_name = "img_"+ System.currentTimeMillis()+originName.substring(originName.lastIndexOf("."));
-            log.info("save_name : {}",save_name);
+            String save_name = "img_" + System.currentTimeMillis() + originName.substring(originName.lastIndexOf("."));
+            log.info("save_name : {}", save_name);
             vo.setImg_name(save_name);//디비에 들어갈 이미지명 세팅
 
-            File f = new File(realPath,save_name);
+            File f = new File(realPath, save_name);
             vo.getFile().transferTo(f);//파일 저장...
 
             //작은이미지로 만들어서 저장하기
@@ -111,7 +116,7 @@ public class EventController {
 
     @GetMapping("/selectAll")
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,
-                            @RequestParam(defaultValue = "10") int limit, Model model , EventVO vo){
+                            @RequestParam(defaultValue = "10") int limit, Model model, EventVO vo) {
 
         int startRow = (cpage - 1) * limit;
         List<EventVO> vos = service.selectAll(startRow, limit);
@@ -122,12 +127,12 @@ public class EventController {
         log.info("total row count: {}", totalRowCount);
 
         int pageCount = 1;
-        if (totalRowCount / limit==0){
+        if (totalRowCount / limit == 0) {
             pageCount = 1;
-        }else if(totalRowCount % limit==0){
+        } else if (totalRowCount % limit == 0) {
             pageCount = totalRowCount / limit;
-        }else {
-            pageCount = totalRowCount / limit +1;
+        } else {
+            pageCount = totalRowCount / limit + 1;
         }
         log.info("page count: {}", pageCount);
 
@@ -139,8 +144,8 @@ public class EventController {
 
     @GetMapping("/participantList")
     public String participantList(@RequestParam(defaultValue = "1") int cpage,
-                            @RequestParam(defaultValue = "10") int limit,
-                            Model model){
+                                  @RequestParam(defaultValue = "10") int limit,
+                                  Model model) {
 
         int startRow = (cpage - 1) * limit;
         List<EventVO> vos = service.selectAll(startRow, limit);
@@ -150,13 +155,19 @@ public class EventController {
     }
 
     @GetMapping("/selectOne")
-    public String selectOne(EventVO vo,Model model) {
+    public String selectOne(EventVO vo, Model model) {
         return "event/selectOne";
     }
 
-    @GetMapping("/deleteOK")
-    public String deleteOK(EventVO vo) {
-        return "redirect:selectAll";
+    @GetMapping("/delete")
+    public String delete() {
+        return "event/delete";
     }
+
+    @GetMapping("/deleteOk")
+    public String deleteOk() {
+        return "event/deleteOk";
+    }
+
 
 }

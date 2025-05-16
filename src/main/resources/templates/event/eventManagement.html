@@ -44,9 +44,11 @@
                 <th>장소</th>
                 <th>상품</th>
                 <th>이벤트 기간</th>
-                <th>이벤트 타입</th>
                 <th>신청인원</th>
+                <th>이벤트 타입</th>
                 <th>이미지</th>
+                <th>삭제</th>
+
             </tr>
             </thead>
             <tbody>
@@ -60,6 +62,10 @@
                     <td>[[${vo.partici_num}]]</td>
                     <td>[[${vo.event_type}]]</td>
                     <td>[[${vo.img_name}]]</td>
+                    <td><button onclick="location.href='/event/delete'">
+                        삭제
+                    </button></td>
+
                 </tr>
             </th:block>
             </tbody>
