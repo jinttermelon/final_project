@@ -23,4 +23,11 @@ public class CommentService {
         return mapper.selectAll(startRow,limit);
     }
 
+    public List<CommentVO> selectByUser(String nickname, int startRow, int limit) {
+        return mapper.selectByUser(nickname , startRow, limit);
+    }
+
+    public int getTotalByUser(String nickname) {
+        return mapper.getTotalByUser(nickname);
+    }
 }

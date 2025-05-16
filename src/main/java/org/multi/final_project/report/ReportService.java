@@ -22,4 +22,12 @@ public class ReportService {
     public int getTotalRowCount(ReportVO vo) {
         return mapper.totalRowCount(vo);
     }
+
+    public List<ReportVO> selectByReporter(String nickname, int startRow, int limit) {
+        return mapper.selectByReporter(nickname,startRow,limit);
+    }
+
+    public int getTotalByReporter(String nickname) {
+        return mapper.getTotalByReporter(nickname);
+    }
 }

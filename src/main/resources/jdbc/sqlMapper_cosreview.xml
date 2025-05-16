@@ -16,9 +16,9 @@
     </select>
 
     <insert id="insertOK">
-    INSERT INTO cosreview (cos_num, nickname, grade, content)
-    VALUES
-    (#{cos_num},#{nickname},#{grade},#{content})
+        INSERT INTO cosreview (cos_num, nickname, grade, content)
+        VALUES
+        (#{cos_num},#{nickname},#{grade},#{content})
     </insert>
 
     <update id="updateOK">

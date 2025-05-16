@@ -57,8 +57,8 @@
     <form action="/mypage" method="post">
 
       <div class="list-group">
-        <a th:href="@{/user/userRecord(nickname=${session.nickname})}"
-           class="list-group-item list-group-item-action">유저 활동기록
+        <a th:href="@{/user/selectAll}"
+           class="list-group-item list-group-item-action">전체회원목록
         </a>
         <a th:href="@{/report/reportAdmin(nickname=${session.nickname})}"
            class="list-group-item list-group-item-action ">신고/문의내역 관리

@@ -41,4 +41,12 @@ public class CrewBoardService {
     public List<CrewBoardVO> myBoardselectAll(int startRow, int limit, CrewBoardVO vo) {
         return mapper.myBoardSelectAll(startRow,limit, vo.getNickname());
     }
+
+    public List<CrewBoardVO> selectByUser(String nickname, int startRow, int limit) {
+        return mapper.selectByUser(nickname, startRow, limit);
+    }
+
+    public int getTotalByUser(String nickname) {
+        return mapper.getTotalByUser(nickname);
+    }
 }

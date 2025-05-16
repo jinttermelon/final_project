@@ -1,8 +1,10 @@
 package org.multi.final_project.cos;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.multi.final_project.ad.AdVO;
 import org.multi.final_project.comment.CommentVO;
+import org.multi.final_project.coslike.CosLikeService;
 import org.multi.final_project.cosreview.CosReviewVO;
 import org.multi.final_project.crewboard.CrewBoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,11 @@ public class CosController {
     @Autowired
     private CosService service;
 
+    @Autowired
+    private CosLikeService cosLikeService;
+
+    @Autowired
+    private HttpSession session;
 
 
     @GetMapping("/insert")
@@ -94,6 +101,9 @@ public class CosController {
     @GetMapping("/selectOne")
     public String selectOne(Model model,@RequestParam("cos_num") int cos_num){
         log.info("selectOne()...");
+        log.info("cos_num:{}", cos_num);
+
+        log.info("nickname:{}", session.getAttribute("nickname"));
 
 
         CosVO vo2 = service.selectOne(cos_num);
@@ -101,6 +111,10 @@ public class CosController {
 
         List<CosReviewVO> reviews = service.selectReviewsByCosNum(cos_num);
         model.addAttribute("reviews", reviews);
+
+        int checkLike = cosLikeService.checkLike(session.getAttribute("nickname").toString(),cos_num);
+        model.addAttribute("checkLike", checkLike);
+        log.info("checkLike:{}", checkLike);
 
         return "cos/selectOne";
     }

@@ -43,4 +43,5 @@ public class CosService {
         return mapper.selectReviewsByCosNum(cos_num);
     }
 
+
 }

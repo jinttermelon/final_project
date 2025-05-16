@@ -11,4 +11,8 @@ public interface CommentMapper {
     public int updateOK(CommentVO vo);
     public int deleteOK(CommentVO vo);
     public List<CommentVO> selectAll(int startRow,int limit);
+
+    public List<CommentVO> selectByUser(String nickname, int startRow, int limit);
+
+    public int getTotalByUser(String nickname);
 }

@@ -2,6 +2,12 @@ package org.multi.final_project.user;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.multi.final_project.comment.CommentService;
+import org.multi.final_project.comment.CommentVO;
+import org.multi.final_project.crewboard.CrewBoardService;
+import org.multi.final_project.crewboard.CrewBoardVO;
+import org.multi.final_project.report.ReportService;
+import org.multi.final_project.report.ReportVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,6 +40,15 @@ public class UserController {
 
     @Autowired
     private HttpSession session;
+
+    @Autowired
+    private CommentService commentService;
+
+    @Autowired
+    private ReportService reportService;
+
+    @Autowired
+    private CrewBoardService crewBoardService;
 
     @GetMapping("/userAdmin")
     public String userAdmin(UserVO vo, Model model) {
@@ -140,36 +155,43 @@ public class UserController {
 
     @GetMapping("/userRecord")
     public String userRecord(@RequestParam(defaultValue = "1") int cpage,
-                            @RequestParam(defaultValue = "10") int limit,
-                            Model model,
-                            UserVO vo) {
+                             @RequestParam(defaultValue = "10") int limit,
+                             Model model,
+                             UserVO vo,
+                             @RequestParam(defaultValue = "board") String tab) {
 
+        int startRow = (cpage - 1) * limit;
+        String nickname = vo.getNickname(); // 혹은 session에서 nickname/id를 받아도 됨
 
-//        int startRow = (cpage - 1) * limit;
-//        log.info("startRow:" + startRow);
-//        List<UserVO> vos = service.selectAll(startRow, limit);
-//        model.addAttribute("vos", vos);
+        // 게시글
+        List<CrewBoardVO> crewboardList = crewBoardService.selectByUser(nickname, startRow, limit);
+        log.info(crewboardList.toString());
+        int totalCrewboard = crewBoardService.getTotalByUser(nickname);
+        int pageCountBoard = (totalCrewboard + limit - 1) / limit;
 
-        // 페이지네이션
-        //int totalRowCount = service.getTotalRowCount(vo);
-        int totalRowCount = 10;
-        log.info("total row count: {}", totalRowCount);
+        // 댓글
+        List<CommentVO> commentList = commentService.selectByUser(nickname, startRow, limit);
+        int totalComment = commentService.getTotalByUser(nickname);
+        int pageCountComment = (totalComment + limit - 1) / limit;
 
-        int pageCount = 1;
-        if (totalRowCount / limit==0){
-            pageCount = 1;
-        }else if(totalRowCount % limit==0){
-            pageCount = totalRowCount / limit;
-        }else {
-            pageCount = totalRowCount / limit +1;
-        }
-        log.info("page count: {}", pageCount);
+        // 신고내역
+        List<ReportVO> reportList = reportService.selectByReporter(nickname, startRow, limit);
+        int totalReport = reportService.getTotalByReporter(nickname);
+        int pageCountReport = (totalReport + limit - 1) / limit;
 
-        model.addAttribute("pageCount", pageCount);
+        // Model에 담기
+        model.addAttribute("nickname", nickname);
+        model.addAttribute("crewboardList", crewboardList);
+        model.addAttribute("commentList", commentList);
+        model.addAttribute("reportList", reportList);
 
+        model.addAttribute("pageCountBoard", pageCountBoard);
+        model.addAttribute("pageCountComment", pageCountComment);
+        model.addAttribute("pageCountReport", pageCountReport);
+
+        model.addAttribute("tab", tab);
         return "/user/userRecord";
     }
-
     @GetMapping("/selectAll")
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,
                             @RequestParam(defaultValue = "10") int limit,

@@ -27,5 +27,17 @@
         SELECT count(*) FROM report where nickname= #{nickname}
     </select>
 
+    <select id="selectByReporter" resultType="org.multi.final_project.report.ReportVO">
+        SELECT *
+        FROM report
+        WHERE nickname = #{nickname}
+        ORDER BY rdate DESC
+        LIMIT #{limit} OFFSET #{startRow}
+    </select>
 
+    <select id="getTotalByReporter" resultType="int">
+        SELECT COUNT(*)
+        FROM report
+        WHERE nickname = #{nickname}
+    </select>
 </mapper>

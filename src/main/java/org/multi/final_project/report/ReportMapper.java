@@ -15,4 +15,8 @@ public interface ReportMapper {
 
     public List<ReportVO> selectAll(int startRow, int limit, @Param("nickname") String nickname);
     public int totalRowCount(ReportVO vo);
+
+    public List<ReportVO> selectByReporter(String nickname, int startRow, int limit);
+
+    int getTotalByReporter(String nickname);
 }
