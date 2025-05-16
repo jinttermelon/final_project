@@ -40,13 +40,7 @@
             outline-color: #1388ff;
         }
 
-        .profile-preview {
-            width: 150px;
-            height: 150px;
-            border: 2px dashed #4dd0e1;
-            border-radius: 50%;
-            background-color: #fff;
-        }
+
         .main-content, footer {
             padding: 100px;
         }
@@ -85,6 +79,19 @@
             </tr>
         </table>
 
+        <!-- 댓글 목록 보여주는 부분 -->
+        <div class="mt-4">
+            <h5>댓글 목록</h5>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="comment : ${commentList}">
+                    <strong th:text="${comment.nickname}">작성자</strong> :
+                    <span th:text="${comment.content}">댓글 내용</span>
+                    <span class="text-muted float-right" th:text="${#dates.format(comment.wdate, 'yyyy-MM-dd HH:mm')}">작성일</span>
+                </li>
+            </ul>
+        </div>
+        <!-- 여기까지 댓글 목록 보여주는 부분 -->
+
         <!-- 댓글 입력칸입니다 -->
         <form th:action="@{/crewboard/selectOne.html}" method="post">
             <!-- 게시글 번호도 함께 전달 -->
@@ -105,6 +112,7 @@
             <a th:href="@{/crewboard/delete(cnum=${param.bnum})}"
                class="list-group-item list-group-item-action ">게시글 삭제 페이지로 이동</a>
         </div>
+
     </div>
     <footer>
         <div th:replace="~{footer :: footer}"></div>
