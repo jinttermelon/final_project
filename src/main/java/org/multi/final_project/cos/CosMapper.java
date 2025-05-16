@@ -19,5 +19,4 @@ public interface CosMapper {
     public List<CosVO> selectTop6ByReviewCount(CosVO vo);
     public List<CosReviewVO> selectReviewsByCosNum(@Param("cos_num") int cos_num);
 
-
 }
