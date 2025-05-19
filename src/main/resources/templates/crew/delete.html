@@ -32,12 +32,12 @@
 <div class="delete-box">
     <h4 class="mb-4">크루를 정말 해체하시겠습니까?</h4>
 
-    <form th:action="@{/crew/deleteOK}" method="post">
+    <form th:action="@{/crew/deleteOK}" method="get">
         <!-- 삭제할 크루정보를 hidden으로 넘겨줘야 함 -->
-        <input type="hidden" name="cnum" th:value="${cnum}" />
+        <input type="hidden" name="cnum" th:value="${param.cnum}" />
 
         <button type="submit" class="btn btn-danger btn-space">해체</button>
-        <a th:href="@{/crew/selectOne}" class="btn btn-secondary btn-space">취소</a>
+        <a th:href="@{/crew/selectOne(cnum=${param.cnum})}" class="btn btn-secondary btn-space">취소</a>
     </form>
 </div>
 
