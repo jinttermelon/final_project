@@ -37,7 +37,7 @@
         <input type="hidden" name="cnum" th:value="${param.cnum}" />
 
         <button type="submit" class="btn btn-danger btn-space">해체</button>
-        <a th:href="@{/crew/selectOne(cnum=${param.cnum})}" class="btn btn-secondary btn-space">취소</a>
+        <a th:href="@{/crew/crewlistAdmin(cnum=${param.cnum})}" class="btn btn-secondary btn-space">취소</a>
     </form>
 </div>
 
