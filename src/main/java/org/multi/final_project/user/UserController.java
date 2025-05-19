@@ -308,7 +308,7 @@ public class UserController {
         if(session.getAttribute("role").equals("ADMIN")){
             return "redirect:selectAll";
         }else{
-            return "redirect:/home";
+            return "redirect:/user/selectAll";
         }
 
     }
