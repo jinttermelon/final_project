@@ -2,29 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>MY EVENT</title>
+    <title>EVENT</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
     <style>
-
-        .body {
+        body {
             background-color: #f5f5f5;
-
         }
-
 
         .main-content, footer {
             padding: 100px;
-        }
-
-        .table th, .table td {
-            text-align: center;
-            vertical-align: middle;
-        }
-
-        .table thead th {
-            background-color: #f8f9fa;
         }
 
         .event-card {
@@ -36,9 +27,6 @@
 
         .card-body {
             background-color: #f8f9fa;
-            width: 300px;
-            height: auto;
-
         }
 
         .card-text {
@@ -49,106 +37,74 @@
             width: 100%;
             height: auto;
         }
+
         .container {
             display: flex;
-            flex-wrap: wrap;
-            gap: 30px; /* 카드 간 일정한 간격 */
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
 
+        .event-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 30px;
+        }
 
+        .event-tabs {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .event-tabs button {
+            margin: 0 10px;
+            padding: 8px 16px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .event-tabs button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
-<body class="body">
+
+<body>
 <header>
     <nav th:replace="~{top_menu :: top_menu}"></nav>
 </header>
-<!-- 메인 콘텐츠 영역 -->
+
 <div class="main-content">
     <div class="container">
         <h1>MY EVENT</h1>
 
-         <!-- 이벤트 카테고리 버튼들 -->
-        <nav class="event-tabs">
-            <button>진행 이벤트</button>
-            <button>종료 이벤트</button>
-            <button>지역별 이벤트</button>
-        </nav>
-
-        <!-- 이벤트 카드 반복 영역 -->
-        <div class="row g-4">
-            <div class="col-md-4 mb-4">
-                <div class="event-card" style="width: 18rem;">
-                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
-                    <div class="card-body">
-                        <h5 class="card-title">전체</h5>
-                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
-                        <a href="#" class="btn btn-primary">취소</a>
-                    </div>
+        <!-- 이벤트 카드 목록 -->
+        <div class="event-grid">
+            <div class="event-card" th:each="vo : ${vos}">
+                <img th:src="@{'/uploadimgPath/' + ${vo.img_name}}" class="card-img-top" alt="이미지">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${vo.event_type}">전체</h5>
+                    <p class="card-text">
+                        지역: <span th:text="${vo.city}"></span>명<br>
+                        참여 인원 수: <span th:text="${vo.partici_num}"></span><br>
+                        기간: <span th:text="${vo.dur}"></span>
+                    </p>
                 </div>
             </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="event-card" style="width: 18rem;">
-                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
-                    <div class="card-body">
-                        <h5 class="card-title">전체</h5>
-                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
-                        <a href="#" class="btn btn-primary">취소</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="event-card" style="width: 18rem;">
-                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
-                    <div class="card-body">
-                        <h5 class="card-title">전체</h5>
-                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
-                        <a href="#" class="btn btn-primary">취소</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="event-card" style="width: 18rem;">
-                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
-                    <div class="card-body">
-                        <h5 class="card-title">전체</h5>
-                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
-                        <a href="#" class="btn btn-primary">취소</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="event-card" style="width: 18rem;">
-                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
-                    <div class="card-body">
-                        <h5 class="card-title">전체</h5>
-                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
-                        <a href="#" class="btn btn-primary">취소</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="event-card" style="width: 18rem;">
-                    <img src="/img/event.jpg" class="card-img-top" alt="이미지">
-                    <div class="card-body">
-                        <h5 class="card-title">전체</h5>
-                        <p class="card-text">서울 참가비 0원 참여 인원 수 00명 기간: 2025.12.34 ~ 2025.12.34</p>
-                        <a href="#" class="btn btn-primary">취소</a>
-                    </div>
-                </div>
-            </div>
-
+        </div>
 
     </div>
 </div>
+
 <footer>
     <div th:replace="~{footer :: footer}"></div>
 </footer>
+
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

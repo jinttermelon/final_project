@@ -329,10 +329,22 @@ CREATE TABLE IF NOT EXISTS `final_project`.`friend` (
     ON UPDATE CASCADE)
     ENGINE = InnoDB;
 
+CREATE TABLE event_entry (
+     event_num INT,
+     nickname VARCHAR(50),
+     PRIMARY KEY (event_num, nickname),  -- 복합키: 하나의 이벤트에 한 유저만 1번 참여 가능
+     FOREIGN KEY (event_num) REFERENCES event(num) ON DELETE CASCADE,
+     FOREIGN KEY (nickname) REFERENCES user(nickname) ON DELETE CASCADE
+);
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+
+
 
 
 ALTER TABLE chat_room ADD chat_info VARCHAR(255);

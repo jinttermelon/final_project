@@ -94,6 +94,7 @@
             <div class="event-card" th:each="vo : ${vos}">
                 <img th:src="@{'/uploadimgPath/' + ${vo.img_name}}" class="card-img-top" alt="이미지">
                 <div class="card-body">
+                    <h4 class="card-title" th:text="${vo.title}"></h4>
                     <h5 class="card-title" th:text="${vo.event_type}">전체</h5>
                     <p class="card-text">
                         지역: <span th:text="${vo.city}"></span>명<br>

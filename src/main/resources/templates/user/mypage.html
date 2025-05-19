@@ -78,7 +78,8 @@
                 <a th:href="@{/crewboard/myboard(nickname=${session.nickname})}"
                    class="list-group-item list-group-item-action ">내가 쓴 글</a>
                 <a href="/chat/chatMain" class="list-group-item list-group-item-action ">내 채팅방</a>
-                <a href="/event/myevent" class="list-group-item list-group-item-action ">신청한 이벤트</a>
+                <a th:href="@{/event/myevent(nickname=${session.nickname})}"
+                   class="list-group-item list-group-item-action ">신청한 이벤트</a>
                 <a th:href="@{/report/selectAll(nickname=${session.nickname})}"
                    class="list-group-item list-group-item-action ">신고내역</a>
             </div>

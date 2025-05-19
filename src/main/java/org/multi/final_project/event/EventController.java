@@ -1,6 +1,8 @@
 package org.multi.final_project.event;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.multi.final_project.crew.CrewVO;
 import org.multi.final_project.crewboard.CrewBoardVO;
 import org.multi.final_project.friend.FriendVO;
@@ -36,13 +38,37 @@ public class EventController {
     }
 
     @GetMapping("/applyDone")
-    public String applyDone() {
+    public String applyDone(Event_EntryVO entryVO, EventVO eventVO, HttpSession session, Model model) {
+        entryVO.setEvent_num(eventVO.getNum());
+        entryVO.setNickname(session.getAttribute("nickname").toString());
+        log.info("applyDone 요청: " + entryVO);
+
+        // 이미 신청한 적 있는지 확인
+        boolean isApplied = service.checkAlreadyApplied(entryVO);
+
+        if (isApplied) {
+            model.addAttribute("message", "해당 이벤트는 이미 신청완료상태입니다.");
+            return "event/applyFail"; // 실패 페이지로 리다이렉트하거나 메시지를 보여주세요
+        }
+
+        service.applyDone(entryVO);
         return "event/applyDone";
     }
 
     @GetMapping("/myevent")
-    public String myevent() {
-        return "event/myevent";
+    public String myevent(@RequestParam(defaultValue = "1") int cpage,
+                          @RequestParam(defaultValue = "3") int limit,
+                          Model model,
+                          EventVO vo,
+                          HttpSession session,
+                          @RequestParam("nickname") String nickname) {
+
+        int startRow = (cpage - 1) * limit;
+        List<EventVO> vos = service.myEvent(startRow, limit, nickname);
+        model.addAttribute("vos", vos);
+        model.addAttribute("nickname", nickname); // nickname도 모델에 담기
+
+        return "event/myevent"; // 템플릿 경로만 반환
     }
 
 

@@ -42,4 +42,25 @@
         SELECT count(*) FROM event
     </select>
 
+    <select id="myEvent" resultType="org.multi.final_project.event.EventVO">
+        SELECT e.*
+        FROM event_entry ee
+        JOIN event e ON ee.event_num = e.num
+        WHERE ee.nickname = #{nickname};
+    </select>
+
+    <insert id="applyDone">
+        INSERT INTO event_entry (event_num,nickname)
+        VALUES
+        (#{event_num},#{nickname})
+    </insert>
+
+    <select id="countApplied" resultType="int">
+        SELECT COUNT(*)
+        FROM event_entry
+        WHERE event_num = #{event_num}
+        AND nickname = #{nickname}
+    </select>
+
+
 </mapper>

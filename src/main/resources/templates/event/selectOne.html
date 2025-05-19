@@ -26,13 +26,16 @@
     <h1>진행 이벤트</h1>
 
     <div class="event-card">
+        <input type="hidden" name="nickname" class="form-control" th:value="${session.nickname}">
         <img th:src="@{'/uploadimgPath/' + ${vo2.img_name}}" class="card-img-top" alt="이미지">
         <div class="card-body">
+            <h4 class="card-title" th:text="${vo2.title}"></h4>
             <h5 class="card-title" th:text="${vo2.event_type}">이벤트 종류</h5>
             <p class="card-text">
-                <span th:text="${vo2.city}">서울</span>
-                참여 인원 수 <span th:text="${vo2.partici_num}">00</span>명<br>
-                기간: <span th:text="${vo2.dur}">2025.12.34 ~ 2025.12.34</span>
+                지역 : <span th:text="${vo2.city}"></span><br>
+                모집 인원 수 : <span th:text="${vo2.partici_num}"></span>명<br>
+                기간 : <span th:text="${vo2.dur}"></span><br>
+                상품 : <span th:text="${vo2.prize}"></span>
             </p>
             <a th:href="@{/event/applyDone(num=${vo2.num})}" class="btn btn-primary">참가</a>
         </div>
