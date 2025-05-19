@@ -32,7 +32,7 @@
 <div class="delete-box">
     <h4 class="mb-4">정말 해당 이벤트를 삭제하시겠습니까?</h4>
 
-    <form th:action="@{/event/deleteOK}" method="post">
+    <form th:action="@{/event/deleteOK}" method="get">
         <!-- 삭제할 이벤트정보를 hidden으로 넘겨줘야 함 -->
         <input type="hidden" name="cnum" th:value="${cnum}" />
 

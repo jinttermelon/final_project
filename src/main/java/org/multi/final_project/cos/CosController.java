@@ -7,6 +7,7 @@ import org.multi.final_project.comment.CommentVO;
 import org.multi.final_project.coslike.CosLikeService;
 import org.multi.final_project.cosreview.CosReviewVO;
 import org.multi.final_project.crewboard.CrewBoardVO;
+import org.multi.final_project.event.EventVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,32 @@ public class CosController {
     @Autowired
     private HttpSession session;
 
+    @GetMapping("/cosManagement")
+    public String cosManagement(@RequestParam(defaultValue = "1") int cpage,
+                                  @RequestParam(defaultValue = "10") int limit, Model model, CosVO vo) {
+
+        int startRow = (cpage - 1) * limit;
+        List<CosVO> vos = service.selectAll(startRow, limit);
+        model.addAttribute("vos", vos);
+
+        // 페이지네이션
+        int totalRowCount = service.getTotalRowCount(vo);
+        log.info("total row count: {}", totalRowCount);
+
+        int pageCount = 1;
+        if (totalRowCount / limit == 0) {
+            pageCount = 1;
+        } else if (totalRowCount % limit == 0) {
+            pageCount = totalRowCount / limit;
+        } else {
+            pageCount = totalRowCount / limit + 1;
+        }
+        log.info("page count: {}", pageCount);
+
+        model.addAttribute("pageCount", pageCount);
+
+        return "cos/cosManagement";
+    }
 
     @GetMapping("/insert")
     public String insert(){

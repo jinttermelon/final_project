@@ -19,8 +19,7 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    @Autowired
-    private ReportService service;
+
 
     @Autowired
     private CosService cosService;

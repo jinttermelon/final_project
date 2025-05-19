@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>코스 관리목록</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <style>
+        .main-content, footer {
+            padding: auto;
+            margin-top: 100px;
+        }
+
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table thead th {
+            background-color: #f8f9fa;
+        }
+
+        .container h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav th:replace="~{top_menu :: top_menu}"></nav>
+</header>
+<!-- 메인 콘텐츠 영역 -->
+<div class="main-content">
+    <div class="container">
+        <h1>코스 관리목록</h1>
+        <a th:href="@{/cos/insert}" class="btn btn-danger">코스 등록</a>
+
+        <table class="table table-bordered table-striped table-hover mt-3">
+            <thead>
+            <tr>
+                <th>코스번호</th>
+                <th>코스이름</th>
+                <th>코스등록일</th>
+                <th>찜 수</th>
+                <th>리뷰 수</th>
+                <th>난이도</th>
+                <th>공개여부</th>
+                <th>지역</th>
+                <th>삭제</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="vo : ${vos}">
+                <tr>
+                    <td>[[${vo.cos_num}]]</td>
+                    <td><a th:href="@{/cos/update(num=${vo.cos_num})}">[[${vo.cos_name}]]</a></td>
+                    <td>[[${vo.cdate}]]</td>
+                    <td>[[${vo.like_count}]]</td>
+                    <td>[[${vo.review_count}]]</td>
+                    <td>[[${vo.level}]]</td>
+                    <td>[[${vo.open}]]</td>
+                    <td>[[${vo.city}]]</td>
+                    <td><button onclick="location.href='/cos/delete'">
+                        삭제
+                    </button></td>
+
+                </tr>
+            </th:block>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="8">
+                    <th:block th:each="i : ${#numbers.sequence(1,pageCount)}">
+                        <a th:href="@{/cos/cosManagement(cpage=${i},limit=10)}">[[${i}]]</a>
+                    </th:block>
+                </td>
+            </tr>
+
+            </tfoot>
+        </table>
+    </div>
+</div>
+<footer>
+    <div th:replace="~{footer :: footer}"></div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
