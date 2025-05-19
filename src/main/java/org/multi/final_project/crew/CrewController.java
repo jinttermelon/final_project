@@ -1,9 +1,6 @@
 package org.multi.final_project.crew;
 
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
-import org.multi.final_project.user.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -126,32 +123,11 @@ public class CrewController {
     public String deleteFinish(){
         return "crew/deleteFinish";
     }
-
-
     @GetMapping("/deleteOK")
-    public String deleteOK(@RequestParam("cnum") int cnum, HttpSession session) {
-
-        String role = session.getAttribute("role").toString();
-        String nickname = session.getAttribute("nickname").toString();
-
-        log.info("nickname : " + nickname);
-        log.info("role : " + role);
-
-        // crew 정보를 DB에서 직접 조회
-        CrewVO vo = service.getCrewByCnum(cnum);
-        log.info("crew.getLeader_nickname : " + vo.getLeader_nickname());
-
-        // 관리자이거나, 리더일 경우만 삭제
-        if ("ADMIN".equals(role) || nickname.equals(vo.getLeader_nickname())) {
-            service.deleteOK(vo);
-            return "redirect:/crew/deleteFinish";
-        } else
-        {
-            return "redirect:/crew/selectAll";
-        }
-
+    public String deleteOK(CrewVO vo){
+        service.deleteOK(vo);
+        return "redirect:/crew/deleteFinish";
     }
-
     @GetMapping("/crewlistAdmin")
     public String crewlistAdmin(@RequestParam(defaultValue = "1") int cpage,
                             @RequestParam(defaultValue = "10") int limit, Model model , CrewVO vo){
@@ -207,14 +183,10 @@ public class CrewController {
         return "crew/selectAll";
     }
     @GetMapping("/selectOne")
-    public String selectOne(CrewVO vo, Model model,HttpSession session ){
+    public String selectOne(CrewVO vo, Model model ){
 
         CrewVO vo2 = service.selectOne(vo);
         model.addAttribute("vo2", vo2);
-
-        String sessionNickname = (String) session.getAttribute("nickname");
-        model.addAttribute("sessionNickname", sessionNickname);
-
         return "crew/selectOne";
     }
     @GetMapping("/searchList")

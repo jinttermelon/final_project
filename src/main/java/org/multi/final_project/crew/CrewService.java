@@ -1,5 +1,6 @@
 package org.multi.final_project.crew;
 
+import org.multi.final_project.cos.CosVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +18,9 @@ public class CrewService {
     public int updateOK(CrewVO vo){
         return mapper.updateOK(vo);
     }
-    public int deleteOK(CrewVO vo) {
+    public int deleteOK(CrewVO vo){
         return mapper.deleteOK(vo);
     }
-
     public List<CrewVO> selectAll(int startRow, int limit){
         return mapper.selectAll(startRow, limit);
     }
@@ -44,10 +44,5 @@ public class CrewService {
 
     public List<CrewVO> selectOneDayCrew(CrewVO vo){
         return mapper.selectOneDayCrew(vo);
-    }
-
-
-    public CrewVO getCrewByCnum(int cnum) {
-        return mapper.selectCrewByCnum(cnum);
     }
 }
