@@ -106,10 +106,16 @@
                    class="list-group-item list-group-item-action">게시글 페이지로 이동</a>
                 <a th:href="@{/crewrecord/selectAll(cpage=1,limit=10,cnum=${param.cnum},name=${vo2.name})}"
                    class="list-group-item list-group-item-action">크루레코드 페이지로 이동</a>
-                <a th:href="@{/crew/update(cnum=${param.cnum})}"
-                   class="list-group-item list-group-item-action ">크루 수정 페이지로 이동</a>
-                <a th:href="@{/crew/delete(cnum=${param.cnum},name=${vo2.name})}"
-                   class="list-group-item list-group-item-action ">크루 해체 페이지로 이동</a>
+                <a th:if="${vo2.leader_nickname == sessionNickname}"
+                   th:href="@{/crew/update(cnum=${param.cnum})}"
+                   class="list-group-item list-group-item-action">
+                    크루 수정 페이지로 이동
+                </a>
+                <a th:if="${vo2.leader_nickname == sessionNickname}"
+                   th:href="@{/crew/delete(cnum=${param.cnum},name=${vo2.name})}"
+                   class="list-group-item list-group-item-action">
+                    크루 해체 페이지로 이동
+                </a>
             </div>
 
 </div>
