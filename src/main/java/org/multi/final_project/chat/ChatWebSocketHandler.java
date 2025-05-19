@@ -49,6 +49,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 
     private String getRoomId(WebSocketSession session) {
         // 예: /ws/chat?room_id=123
+        log.info("session.getUri().getQuery(): " + session.getUri().getQuery());
         String room_id = session.getUri().getQuery().split("=")[1];
         log.info("room_id: " + room_id);
         return room_id;

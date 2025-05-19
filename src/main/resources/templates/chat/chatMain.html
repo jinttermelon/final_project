@@ -294,21 +294,24 @@
     }
 
     let room_id = '[[${param.room_id}]]';
-    console.log(room_id);
-    let ws = new WebSocket("ws://localhost:8888/ws/chat?room_id=" + room_id);
+    console.log('room_id : ',room_id);
 
-    ws.onopen = function( evt ) {
-        log_div( '서버와 연결하였습니다.' );
-    };
+    let ws;
+    if(room_id.length > 0){
+        ws = new WebSocket("ws://localhost:8888/ws/chat?room_id=" + room_id);
+        ws.onopen = function( evt ) {
+            log_div( '서버와 연결하였습니다.' );
+        };
+
+        ws.onmessage = function(event) {
+            let obj = JSON.parse(event.data);
+            console.log(obj);
+            console.log(obj.sender,obj.message);
+            log_div( "**"+obj.sender+"** : "+obj.message);
+        };
+    }
 
 
-
-    ws.onmessage = function(event) {
-        let obj = JSON.parse(event.data);
-        console.log(obj);
-        console.log(obj.sender,obj.message);
-        log_div( "**"+obj.sender+"** : "+obj.message);
-    };
 
     function sendMessage() {
         const room_id = $("#room_id").val();

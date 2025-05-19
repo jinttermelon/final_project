@@ -238,12 +238,11 @@ CREATE TABLE IF NOT EXISTS `final_project`.`chat_room` (
 
 
 -- -----------------------------------------------------
--- Table `final_project`.`chat_message`
+-- Table `final_project`.`chat_messagechat_message`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `final_project`.`chat_message` (
                                                               `num` INT NOT NULL AUTO_INCREMENT,
                                                               `sender` VARCHAR(45) NOT NULL,
-    `nick` VARCHAR(45) NOT NULL,
     `message` VARCHAR(2000) NOT NULL,
     `room_id` VARCHAR(45) NOT NULL,
     `wdate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
