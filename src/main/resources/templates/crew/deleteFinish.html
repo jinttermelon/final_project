@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -29,8 +30,12 @@
 <body th:replace="~{layout::layout}">
     <div th:fragment="content" class="delete-box">
         <h3>크루를 해체완료했습니다.</h3>
-        <a th:href="@{/crew/selectAll}" class="btn btn-secondary btn-space">목록으로 돌아가기</a>
-
+        <th:block sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/crew/crewlistAdmin}" class="btn btn-secondary btn-space">목록(ADMIN)으로 돌아가기</a>
+        </th:block>
+        <th:block sec:authorize="hasRole('USER')">
+            <a th:href="@{/crew/selectAll}" class="btn btn-secondary btn-space">목록으로(USER) 돌아가기</a>
+        </th:block>
     </div>
 </body>
 </html>

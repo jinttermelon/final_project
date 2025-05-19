@@ -330,11 +330,11 @@ CREATE TABLE IF NOT EXISTS `final_project`.`friend` (
     ENGINE = InnoDB;
 
 CREATE TABLE event_entry (
-     event_num INT,
-     nickname VARCHAR(50),
-     PRIMARY KEY (event_num, nickname),  -- 복합키: 하나의 이벤트에 한 유저만 1번 참여 가능
-     FOREIGN KEY (event_num) REFERENCES event(num) ON DELETE CASCADE,
-     FOREIGN KEY (nickname) REFERENCES user(nickname) ON DELETE CASCADE
+                             event_num INT,
+                             nickname VARCHAR(50),
+                             PRIMARY KEY (event_num, nickname),  -- 복합키: 하나의 이벤트에 한 유저만 1번 참여 가능
+                             FOREIGN KEY (event_num) REFERENCES event(num) ON DELETE CASCADE,
+                             FOREIGN KEY (nickname) REFERENCES user(nickname) ON DELETE CASCADE
 );
 
 
@@ -596,5 +596,5 @@ VALUES
 -- testnick01 의 친구
 ('name09', 'testnick01'),
 ('name10', 'testnick01');
-
+UPDATE `final_project`.`user` SET `role` = 'ADMIN' WHERE (`num` = '13');
 commit;
