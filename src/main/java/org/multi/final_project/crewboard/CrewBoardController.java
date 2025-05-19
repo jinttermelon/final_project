@@ -19,6 +19,7 @@ import java.util.List;
 @Controller
 public class CrewBoardController {
 
+
     @Autowired
     private CrewBoardService service;
 
