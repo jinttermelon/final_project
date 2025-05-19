@@ -45,7 +45,7 @@ public class CrewRecordController {
         return "redirect:/selectAll";
     }
 
-    @GetMapping("selectAll")
+    @GetMapping("/selectAll")
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,
                             @RequestParam(defaultValue = "1") int cnum,
                             @RequestParam(defaultValue = "10") int limit,

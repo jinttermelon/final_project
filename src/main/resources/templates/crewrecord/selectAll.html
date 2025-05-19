@@ -6,15 +6,28 @@
     <link rel="stylesheet" th:href="@{/css/board.css}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <style>
+        .main-content, footer {
+            padding: 100px;
+        }
+
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table thead th {
+            background-color: #1388ff;
+        }
+    </style>
 </head>
 <body th:replace="~{layout::layout}">
-    <div th:fragment="content">
-        <br>
-        <br>
-        <br>
+    <div th:fragment="content" class="main-content">
+
         <h1>[[${param.name}]] 활동 일지</h1>
         <form action="#" method="post" th:action="@{/crewrecord/selectAll}">
-            <table id="customers">
+            <a th:href="@{/crewrecord/insert}" class="btn btn-danger">활동일지 등록</a>
+            <table id="customers" class="table table-bordered table-striped table-hover mt-3">
                 <thead>
                     <tr>
                       <th>활동일</th>
