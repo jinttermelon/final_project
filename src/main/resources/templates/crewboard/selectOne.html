@@ -80,20 +80,29 @@
         </table>
 
         <!-- 댓글 목록 보여주는 부분 -->
-        <div class="mt-4">
+        <div>
             <h5>댓글 목록</h5>
-            <ul class="list-group">
-                <li class="list-group-item" th:each="comment : ${commentList}">
-                    <strong th:text="${comment.nickname}">작성자</strong> :
-                    <span th:text="${comment.content}">댓글 내용</span>
+
+            <!-- 댓글이 하나도 없을 경우 -->
+            <div th:if="${#lists.isEmpty(vos)}">
+                <p>댓글이 없습니다.</p>
+            </div>
+
+            <!-- 댓글이 있는 경우 -->
+            <ul th:if="${not #lists.isEmpty(vos)}">
+                <li th:each="comment : ${vos}">
+                    <p><strong th:text="${comment.nickname}">닉네임</strong>:
+                        <span th:text="${comment.content}">댓글내용</span></p>
                     <span class="text-muted float-right" th:text="${#dates.format(comment.wdate, 'yyyy-MM-dd HH:mm')}">작성일</span>
+
                 </li>
             </ul>
         </div>
+
         <!-- 여기까지 댓글 목록 보여주는 부분 -->
 
         <!-- 댓글 입력칸입니다 -->
-        <form th:action="@{/crewboard/selectOne}" method="post">
+        <form th:action="@{/comment/insertOK}" method="post">
             <!-- 게시글 번호도 함께 전달 -->
             <input type="hidden" name="bnum" th:value="${vo2.bnum}" />
 
