@@ -30,7 +30,7 @@ public class FriendService {
 
         System.out.println(">>> 불러온 친구 수: " + list.size());
         for (FriendVO f : list) {
-            System.out.println("내 닉네임: " + f.getNickname() + ", 친구 닉네임: " + f.getFnickname());
+            System.out.println("내 닉네임: " + f.getUnickname() + ", 친구 닉네임: " + f.getFnickname());
         }
 
         return list;
