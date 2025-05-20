@@ -7,8 +7,22 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <style>
-        .main-content, footer {
-            padding: 100px;
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 150px auto;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .btn-space {
+            margin: 10px;
         }
     </style>
 </head>
@@ -20,7 +34,7 @@
 <div class="main-content">
     <div class="container">
         <h2>로그인 후 사용가능한 항목 입니다.</h2>
-        <input type="button" value="login" onclick="location.href='/user/login_form';">
+        <input type="button" class="btn btn-danger btn-space" value="login" onclick="location.href='/user/login_form';">
     </div>
 </div>
 <footer>
