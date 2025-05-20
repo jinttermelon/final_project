@@ -80,7 +80,7 @@
                 <div class="card" th:each="vo : ${vos}">
                     <!-- 링크 추가 -->
                     <a th:href="@{'/cos/selectOne?cos_num=' + ${vo.cosVO.cos_num}}">
-                        <img th:src="@{'/uploadimgPath/' + ${vo.cosVO.img}}" th:alt="${vo.cosVO.cos_name}">
+                        <img th:src="@{'/uploadimgPath/' + ${vo.cosVO.img_name}}" th:alt="${vo.cosVO.cos_name}">
                         <div class="card-content">
                             <h3 th:text="${vo.cosVO.cos_name}">코스이름</h3>
                             <p th:text="${vo.cosVO.info}">코스설명</p>

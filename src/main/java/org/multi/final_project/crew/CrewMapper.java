@@ -3,6 +3,7 @@ package org.multi.final_project.crew;
 
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.multi.final_project.cos.CosVO;
 
 import java.util.List;
@@ -29,4 +30,5 @@ public interface CrewMapper {
 
         public List<CrewVO> selectOneDayCrew(CrewVO vo);
 
+        CrewVO selectCrewByCnum(int cnum);
 }

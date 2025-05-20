@@ -2,63 +2,88 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <title>크루 게시판 글수정</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <style>
+        .main-content, footer {
+            padding: 100px;
+        }
+        .table th {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .table thead th {
+            background-color: #f8f9fa;
+        }
+    </style>
 </head>
 
-<body th:replace="~{layout::layout}">
-<div th:fragment="content">
-    <h1>크루게시판 글 수정 페이지</h1>
-    <form action="#" method="post" th:action="@{/crewboard/updateOK}">
-        <table id="customers">
+<body>
+<header>
+    <nav th:replace="~{top_menu :: top_menu}"></nav>
+</header>
 
-            <tr>
-                <td>크루번호:</td>
-                <td>[[${vo2.cnum}]]
-                    <input type="hidden" th:name="cnum" th:value="${vo2.cnum}">
-                </td>
-            </tr>
-            <tr>
-                <td><label for="bnum">글번호:</label></td>
-                <td>[[${vo2.bnum}]]
-                    <input type="hidden" id="bnum" name="bnum" th:value="${vo2.bnum}" >
-                </td>
-
-            </tr>
-            <tr>
-                <td><label for="title">제목:</label></td>
-                <td>
-                    <input type="text" id="title" name="title" th:value="${vo2.title}">
-                </td>
-            </tr>
-            <tr>
-                <td><label for="nickname">작성자:</label></td>
-                <td>
-                    <input type="text" id="nickname" name="nickname" th:value="${vo2.nickname}">
-                </td>
-            </tr>
-
-            <tr>
-                <td><label for="notice"></label></td>
-                <td>
-                    <label><input type="checkbox" id="notice"name="notice" th:value="${vo2.notice}"> 공지글 </label><br>
-            </tr>
-
-            <tr>
-                <td><label for="content">내용:</label></td>
-                <td>
-                    <textarea name="content" id="content" rows="10" cols="30">[[${vo2.content}]]</textarea>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="수정">
-                </td>
-            </tr>
-        </table>
-    </form>
+<!-- 메인 콘텐츠 영역 -->
+<div class="main-content">
+    <div class="container">
+        <h1 class="mb-4">크루 게시판 글수정</h1>
+        <form method="post" th:action="@{/crewboard/updateOK}">
+            <table class="table table-bordered table-hover">
+                <tbody>
+                <tr>
+                    <th>크루 번호</th>
+                    <td>
+                        [[${param.cnum}]]
+                        <input type="hidden" name="bnum" th:value="${param.bnum}">
+                        <input type="hidden" name="cnum" th:value="${param.cnum}">
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="title">제목</label></th>
+                    <td>
+                        <input type="text" id="title" name="title" class="form-control" value="이번 주 정라 공지">
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="nickname">작성자</label></th>
+                    <td>
+                        [[${session.nickname}]]
+                        <input type="hidden" id="nickname" name="nickname" th:value="${session.nickname}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>공지 여부</th>
+                    <td>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="notice" name="notice" value="checked" checked>
+                            <label class="form-check-label" for="notice">공지글로 등록</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="content">내용</label></th>
+                    <td>
+                            <textarea id="content" name="content" class="form-control" rows="10">일시 : 2025년 5월 17일 (토) 오전 10시
+장소 : 구리한강시민공원
+참석인원 : 0명</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center">
+                        <input type="submit" class="btn btn-primary" value="작성 완료">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
 </div>
+
+<footer>
+    <div th:replace="~{footer :: footer}"></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

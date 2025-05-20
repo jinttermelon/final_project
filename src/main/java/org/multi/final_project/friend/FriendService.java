@@ -3,7 +3,9 @@ package org.multi.final_project.friend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class FriendService {
@@ -16,8 +18,22 @@ public class FriendService {
     public int deleteOK(FriendVO vo){
         return mapper.deleteOK(vo);
     }
-    public List<FriendVO> selectAll(int cpage, int limit){
-        return mapper.selectAll(cpage, limit);
+    public List<FriendVO> selectAll(String fnickname, int cpage, int limit) {
+        int startRow = (cpage - 1) * limit;
+
+        Map<String, Object> param = new HashMap<>();
+        param.put("fnickname", fnickname);
+        param.put("startRow", startRow);
+        param.put("limit", limit);
+
+        List<FriendVO> list = mapper.selectAll(param);
+
+        System.out.println(">>> 불러온 친구 수: " + list.size());
+        for (FriendVO f : list) {
+            System.out.println("내 닉네임: " + f.getNickname() + ", 친구 닉네임: " + f.getFnickname());
+        }
+
+        return list;
     }
     public List<FriendVO> selectSend(FriendVO vo){
         return mapper.selectSend(vo);

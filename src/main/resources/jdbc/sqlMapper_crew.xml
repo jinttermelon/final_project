@@ -40,8 +40,9 @@
         WHERE cnum = #{cnum}
     </update>
 
-    <delete id="deleteOK" parameterType="int">
-        DELETE FROM crew WHERE cnum = #{cnum}
+    <delete id="deleteOK">
+        DELETE FROM crew
+        WHERE cnum = #{cnum}
     </delete>
 
     <select id="nameCheck" resultType="org.multi.final_project.crew.CrewVO" parameterType="String">
@@ -59,5 +60,9 @@
     <select id="selectOneDayCrew" resultType="org.multi.final_project.crew.CrewVO">
         SELECT * FROM crew
         WHERE sche_check = 'one'
+    </select>
+
+    <select id="selectCrewByCnum" resultType="org.multi.final_project.crew.CrewVO">
+        SELECT * FROM crew WHERE cnum = #{cnum}
     </select>
 </mapper>

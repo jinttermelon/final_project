@@ -4,10 +4,11 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.multi.final_project.friend.FriendMapper">
 
-    <select id="selectAll" resultType="org.multi.final_project.friend.FriendVO">
+    <select id="selectAll" parameterType="map" resultType="org.multi.final_project.friend.FriendVO">
         SELECT * FROM friend
-        WHERE fnickname = ${fnickname}
-        ORDER BY num DESC LIMIT #{startRow}, #{limit}
+        WHERE unickname = #{fnickname}
+        ORDER BY fnum DESC
+        LIMIT #{startRow}, #{limit}
     </select>
 
     <select id="selectSend">
@@ -49,5 +50,6 @@
         SELECT * FROM friend
         WHERE unickname = #{user_id}
     </select>
+
 
 </mapper>

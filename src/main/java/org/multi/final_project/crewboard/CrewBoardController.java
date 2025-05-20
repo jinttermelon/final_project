@@ -19,7 +19,6 @@ import java.util.List;
 @Controller
 public class CrewBoardController {
 
-
     @Autowired
     private CrewBoardService service;
 
@@ -65,6 +64,7 @@ public class CrewBoardController {
 
     @GetMapping ("deleteOK")
     public String deleteOK(CrewBoardVO vo){
+        log.info("delete ok:{}",vo);
 
         int result = service.deleteOK(vo);
         return "redirect:selectAll?cnum="+vo.getCnum();

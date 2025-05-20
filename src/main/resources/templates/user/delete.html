@@ -37,7 +37,7 @@
 
     <form th:action="@{/user/deleteOK}" method="post">
         <!-- 삭제할 유저정보 hidden으로 넘겨줘야 함 -->
-        <input type="hidden" name="cnum" th:value="${cnum}" />
+        <input type="hidden" name="nickname" th:value="${param.nickname}" />
 
         <button type="submit" class="btn btn-danger btn-space">탈퇴</button>
         <a th:href="@{/user/selectAll}" class="btn btn-secondary btn-space">취소</a>

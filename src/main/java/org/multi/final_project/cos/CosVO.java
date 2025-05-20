@@ -2,6 +2,7 @@ package org.multi.final_project.cos;
 
 import lombok.Data;
 import org.multi.final_project.cosreview.CosReviewVO;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,10 +20,11 @@ public class CosVO {
     private String cdate;
     private int like_count;
     private int review_count;
-    private String img;
+    private String img_name;
     private String level;
     private String open;
     private String tag;
     private String city;
     private List<CosReviewVO> reviewList;
+    private MultipartFile file;
 }

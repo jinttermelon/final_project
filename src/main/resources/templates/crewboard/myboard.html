@@ -69,7 +69,6 @@
                     <th:block th:each="i : ${#numbers.sequence(1,pageCount)}">
                         <a th:href="@{/crewboard/selectAll(cpage=${i},limit=10,cnum=${param.cnum})}">[[${i}]]</a>
                     </th:block>
-
                 </td>
             </tr>
             <tr th:if="${param.searchKey != null}">
