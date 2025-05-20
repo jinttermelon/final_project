@@ -2,17 +2,44 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" th:href="@{/css/board.css}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-</head>
-<body th:replace="~{layout::layout}">
-    <div th:fragment="content">
-        <h1>코스 삭제 페이지</h1>
-        <h3>코스를 삭제하시겠습니까?</h3>
-        <a th:href="@{/cos/deleteOK(cos_num=${param.cos_num})}">코스삭제</a>
-    </div>
-</body>
+    <title>코스 삭제</title>
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    >
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
 
+        .delete-box {
+            max-width: 500px;
+            margin: 150px auto;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .btn-space {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="delete-box">
+    <h4 class="mb-4">크루를 정말 해체하시겠습니까?</h4>
+
+    <form th:action="@{/cos/deleteOK}" method="get">
+        <!-- 삭제할 크루정보를 hidden으로 넘겨줘야 함 -->
+        <input type="hidden" name="cos_num" th:value="${param.cos_num}" />
+
+        <button type="submit" class="btn btn-danger btn-space">코스 삭제</button>
+        <a th:href="@{/cos/cosManagement}" class="btn btn-secondary btn-space">취소</a>
+    </form>
+</div>
+
+</body>
 </html>

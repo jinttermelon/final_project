@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -155,7 +152,7 @@ public class CosController {
         }//end if
 
         service.updateOK(vo);
-        return "redirect:selectAll";
+        return "redirect:cosManagement";
     }
 
     @GetMapping("/delete")
@@ -163,10 +160,11 @@ public class CosController {
         log.info("delete()...");
         return "cos/delete";
     }
-    @PostMapping("/deleteOK")
+    @GetMapping("/deleteOK")
     public String deleteOK(CosVO vo){
         log.info("deleteOK()...");
-        return "redirect:selectAll";
+        service.deleteOK(vo);
+        return "redirect:cosManagement";
     }
 
     @GetMapping("/selectAll")

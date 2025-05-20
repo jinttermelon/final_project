@@ -63,9 +63,10 @@
                     <td>[[${vo.level}]]</td>
                     <td>[[${vo.open}]]</td>
                     <td>[[${vo.city}]]</td>
-                    <td><button onclick="location.href='/cos/delete'">
-                        삭제
-                    </button></td>
+                    <td><a th:href="@{/cos/delete(cos_num=${vo.cos_num})}">
+                        <button type="button">삭제</button>
+                    </a>
+                    </td>
 
                 </tr>
             </th:block>
