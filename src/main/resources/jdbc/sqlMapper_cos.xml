@@ -35,9 +35,9 @@
     </select>
 
     <insert id="insertOK">
-        INSERT INTO cos(nickname, cos_name, info, km, cos_time, route, like_count, review_count, level, tag, city , open)
+        INSERT INTO cos(nickname, cos_name, info, km, cos_time, route, like_count, review_count, level, tag, city , open,img_name)
         VALUES
-        (#{nickname}, #{cos_name}, #{info}, #{km}, #{cos_time}, #{route},  #{like_count}, #{review_count}, #{level}, #{tag}, #{city} , #{open})
+        (#{nickname}, #{cos_name}, #{info}, #{km}, #{cos_time}, #{route},  #{like_count}, #{review_count}, #{level}, #{tag}, #{city} , #{open},#{img_name})
 
     </insert>
 

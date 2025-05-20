@@ -95,7 +95,7 @@
                    th:href="@{'/cos/selectOne?cos_num=' + ${top6.cos_num}}"
                    style="text-decoration: none; color: inherit; width: 300px;">
                     <div class="card" style="border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">
-                        <img th:src="@{'/uploadimgPath/' + ${top6.img}}" th:alt="${top6.cos_name}" style="width: 100%; height: 180px; object-fit: cover;">
+                        <img th:src="@{'/uploadimgPath/' + ${top6.img_name}}" th:alt="${top6.cos_name}" style="width: 100%; height: 180px; object-fit: cover;">
                         <div class="card-content" style="padding: 12px;">
                             <h3 th:text="${top6.cos_name}">코스명</h3>
                             <p th:text="${top6.info}">코스 설명</p>
