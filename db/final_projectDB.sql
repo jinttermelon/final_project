@@ -166,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `final_project`.`cos` (
     `cdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `like_count` INT NOT NULL DEFAULT 0,
     `review_count` INT NOT NULL DEFAULT 0,
-    `img` VARCHAR(45) NOT NULL DEFAULT 'default.img',
+    `img_name` VARCHAR(45) NOT NULL DEFAULT 'default.img',
     `level` VARCHAR(45) NOT NULL DEFAULT '하',
     `open` VARCHAR(45) NOT NULL DEFAULT 'open',
     `tag` VARCHAR(45) NULL,
@@ -379,7 +379,7 @@ VALUES
     ('광주 슬로우라이더', '광주', '초급', 15, '5월30일 09시', '속도보단 여유로운 라이딩을 좋아하시나요?', 3, 'default.png', 'name05',  '골드', 'one'),
     ('제주 오름러버스', '제주', '중급', 10, '매주 토요일 오전', '가장 좋아하는 오름이 어디인지 알려주세요!', 4, 'default.png', 'name06',  '실버', 'regular');
 
-INSERT INTO cos(nickname, cos_name, info, km, cos_time, route, cdate, like_count, review_count, img, level, open, tag, city)
+INSERT INTO cos(nickname, cos_name, info, km, cos_time, route, cdate, like_count, review_count, img_name, level, open, tag, city)
 VALUES
     ('admin01', '한강 야경 코스', '야경이 아름다운 한강변 코스로 초보자도 즐길 수 있습니다.', 15,65, '여의도 한강공원 - 반포 한강공원', now(), 2, 5, 'hangang_dark.jpg', '초급', true, '#한강 #야경 #초보자추천', '서울'),
     ('admin01', '서울 도심 순환 코스', '서울 도심을 한 바퀴 도는 속도감 있는 코스입니다.', 32, 105, '청계천 - 한남대교 - 서울숲 - 광화문', now(), 2, 9, 'seoul_city.jpg', '중급', true, '#도심 #속도감 #서울한바퀴', '서울'),

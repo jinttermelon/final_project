@@ -299,17 +299,14 @@ public class UserController {
     }
 
     @PostMapping("/deleteOK")
-    public String deleteOK(UserVO vo) {
-
-        log.info(vo.toString());
+    public String deleteOK(UserVO vo, @RequestParam String nickname) {
 
 
+        vo.setNickname(nickname);
+        log.info("nickname : {}",nickname);
         service.deleteOK(vo);
-        if(session.getAttribute("role").equals("ADMIN")){
-            return "redirect:selectAll";
-        }else{
-            return "redirect:/user/selectAll";
-        }
+
+        return "redirect:/user/selectAll";
 
     }
 
