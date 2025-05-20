@@ -1,6 +1,13 @@
 package org.multi.final_project.friend;
 
+import java.security.Principal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import lombok.extern.slf4j.Slf4j;
+import org.multi.final_project.user.UserService;
+import org.multi.final_project.user.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +23,9 @@ public class FriendController {
 
     @Autowired
     private FriendService service;
+    @Autowired
+    private UserService userService;
+
 
     @GetMapping("/insert")
     public String insert(FriendVO vo) {
@@ -31,7 +41,17 @@ public class FriendController {
     @GetMapping("/selectAll")
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,
                             @RequestParam(defaultValue = "10") int limit,
-                            Model model) {
+                            Model model,
+                            Principal principal) {
+
+        String loginId = principal.getName(); // 이메일 등 로그인 아이디
+        UserVO user = userService.getNickname(loginId); // 이 메서드 호출
+        String nickname = user.getNickname(); // 진짜 닉네임
+
+        List<FriendVO> list = service.selectAll(nickname, cpage, limit);
+
+        model.addAttribute("friendList", list);
+        model.addAttribute("cpage", cpage);
         return "friend/selectAll";
     }
 
