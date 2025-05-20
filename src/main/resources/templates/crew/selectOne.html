@@ -68,51 +68,57 @@
 <div th:fragment="content">
     <div class="mypage-card">
         <h2>크루 상세 페이지</h2>
-            <div class="text-center mb-4">
-                <div class="profile-preview mx-auto mb-2"
-                     th:style="'background-image: url(' + @{/uploadimgPath/} + ${vo2.img_name} + '); background-size: cover; background-position: center;'">
-                </div>
+        <div class="text-center mb-4">
+            <div class="profile-preview mx-auto mb-2"
+                 th:style="'background-image: url(' + @{/uploadimgPath/} + ${vo2.img_name} + '); background-size: cover; background-position: center;'">
             </div>
-            <table class="table table-bordered table-striped table-hover mt-3">
+        </div>
+        <table class="table table-bordered table-striped table-hover mt-3">
             <thead>
             <tr>
-                    <th>크루번호</th>
-                    <th>크루명</th>
-                    <th>모집인원</th>
-                    <th>sche</th>
-                    <th>평점</th>
-                    <th>크루장</th>
-                    <th>크루등급</th>
-                    <th>정기일정유무</th>
-                    <th></th>
+                <th>크루번호</th>
+                <th>크루명</th>
+                <th>모집인원</th>
+                <th>sche</th>
+                <th>평점</th>
+                <th>크루장</th>
+                <th>크루등급</th>
+                <th>정기일정유무</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>[[${param.cnum}]]</td>
-                    <td>[[${vo2.name}]]</td>
-                    <td>[[${vo2.recruit}]]</td>
-                    <td>[[${vo2.sche}]]</td>
-                    <td>[[${vo2.score}]]</td>
-                    <td>[[${vo2.leader_nickname}]]</td>
-                    <td>[[${vo2.grade}]]</td>
-                    <td>[[${vo2.sche_check}]]</td>
-                    <td><button><a th:href="@{../crewjoin/join(cnum=${vo2.cnum})}">가입</a></button></td>
-                </tr>
+            <tr>
+                <td>[[${param.cnum}]]</td>
+                <td>[[${vo2.name}]]</td>
+                <td>[[${vo2.recruit}]]</td>
+                <td>[[${vo2.sche}]]</td>
+                <td>[[${vo2.score}]]</td>
+                <td>[[${vo2.leader_nickname}]]</td>
+                <td>[[${vo2.grade}]]</td>
+                <td>[[${vo2.sche_check}]]</td>
+                <td><button><a th:href="@{../crewjoin/join(cnum=${vo2.cnum})}">가입</a></button></td>
+            </tr>
             </tbody>
-            </table>
-            <div class="list-group">
-                <a th:href="@{/crewboard/selectAll(cpage=1,limit=10,cnum=${param.cnum},name=${vo2.name})}"
-                   class="list-group-item list-group-item-action">게시글 페이지로 이동</a>
-                <a th:href="@{/crewrecord/selectAll(cpage=1,limit=10,cnum=${param.cnum},name=${vo2.name})}"
-                   class="list-group-item list-group-item-action">크루레코드 페이지로 이동</a>
-                <a th:href="@{/crew/update(cnum=${param.cnum})}"
-                   class="list-group-item list-group-item-action ">크루 수정 페이지로 이동</a>
-                <a th:href="@{/crew/delete(cnum=${param.cnum},name=${vo2.name})}"
-                   class="list-group-item list-group-item-action ">크루 해체 페이지로 이동</a>
-            </div>
+        </table>
+        <div class="list-group">
+            <a th:href="@{/crewboard/selectAll(cpage=1,limit=10,cnum=${param.cnum},name=${vo2.name})}"
+               class="list-group-item list-group-item-action">게시글 페이지로 이동</a>
+            <a th:href="@{/crewrecord/selectAll(cpage=1,limit=10,cnum=${param.cnum},name=${vo2.name})}"
+               class="list-group-item list-group-item-action">크루레코드 페이지로 이동</a>
+            <a th:if="${vo2.leader_nickname == sessionNickname}"
+               th:href="@{/crew/update(cnum=${param.cnum})}"
+               class="list-group-item list-group-item-action">
+                크루 수정 페이지로 이동
+            </a>
+            <a th:if="${vo2.leader_nickname == sessionNickname}"
+               th:href="@{/crew/delete(cnum=${param.cnum},name=${vo2.name})}"
+               class="list-group-item list-group-item-action">
+                크루 해체 페이지로 이동
+            </a>
+        </div>
 
-</div>
+    </div>
 </div>
 <footer>
     <div th:replace="~{footer :: footer}"></div>
