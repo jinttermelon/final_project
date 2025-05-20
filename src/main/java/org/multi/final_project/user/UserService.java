@@ -75,4 +75,7 @@ public class UserService {
     public int updatePwOK(UserVO vo) {
         return mapper.updatePwOK(vo);
     }
+
+    public List<UserVO> searchByNickname(String searchWord) {return mapper.searchByNickname(searchWord);}
+
 }

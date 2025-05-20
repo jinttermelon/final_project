@@ -99,4 +99,10 @@
         pw = #{pw}
         WHERE id = #{id}
     </update>
+
+    <select id="searchByNickname" parameterType="string" resultType="org.multi.final_project.user.UserVO">
+        SELECT * FROM user
+        WHERE nickname LIKE CONCAT('%', #{searchWord}, '%')
+    </select>
+
 </mapper>

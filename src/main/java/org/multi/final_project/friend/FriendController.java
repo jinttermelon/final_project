@@ -80,4 +80,11 @@ public class FriendController {
         return "redirect:selectAll";
     }
 
+    @GetMapping("/search")
+    public String searchFriend(@RequestParam String searchWord, Model model) {
+        List<UserVO> searchList = userService.searchByNickname(searchWord);
+        model.addAttribute("searchList", searchList);
+        return "friend/insert";
+    }
+
 }
