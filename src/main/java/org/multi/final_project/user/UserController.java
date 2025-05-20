@@ -50,6 +50,11 @@ public class UserController {
     @Autowired
     private CrewBoardService crewBoardService;
 
+    @GetMapping("/insert")
+    public String insert() {
+        return "user/insert";
+    }
+
     @GetMapping("/userAdmin")
     public String userAdmin(UserVO vo, Model model) {
 
@@ -68,10 +73,21 @@ public class UserController {
         return "user/adminMenu";
     }
 
-    @GetMapping("/insert")
-    public String insert() {
-        return "user/insert";
+    @GetMapping("/adminInsert")
+    public String adminInsert(UserVO vo, Model model) {
+        return "user/adminInsert";
     }
+
+    @GetMapping("/adminManagement")
+    public String adminManagement(UserVO vo, Model model) {
+        return "user/adminManagement";
+    }
+
+    @GetMapping("/adminSelectAll")
+    public String adminSelectAll(UserVO vo, Model model) {
+        return "user/adminSelectAll";
+    }
+
 
     @GetMapping("/ridingHistory")
     public String ridingHistory() {

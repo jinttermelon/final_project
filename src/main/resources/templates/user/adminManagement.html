@@ -57,16 +57,10 @@
         <form action="/mypage" method="post">
 
             <div class="list-group">
-                <a th:href="@{/event/eventManagement(nickname=${session.nickname})}"
-                   class="list-group-item list-group-item-action">이벤트 관리</a>
-                <a th:href="@{/user/userAdmin(nickname=${session.nickname})}"
-                   class="list-group-item list-group-item-action ">유저 관리</a>
-                <a th:href="@{/crew/crewAdmin(nickname=${session.nickname})}"
-                   class="list-group-item list-group-item-action ">크루 관리</a>
-                <a th:href="@{/cos/cosManagement(nickname=${session.nickname})}"
-                   class="list-group-item list-group-item-action ">코스 관리</a>
-                <a th:href="@{/user/adminManagement(nickname=${session.nickname})}"
-                   class="list-group-item list-group-item-action ">관리자 관리</a>
+                <a th:href="@{/user/adminSelectAll(nickname=${session.nickname})}"
+                   class="list-group-item list-group-item-action">관리자 목록</a>
+                <a th:href="@{/user/admininsert(nickname=${session.nickname})}"
+                   class="list-group-item list-group-item-action ">관리자 등록</a>
             </div>
 
         </form>
