@@ -10,9 +10,9 @@
     </select>
 
     <insert id="insertOK">
-        INSERT INTO comment (bnum, content, nickname, wdate)
+        INSERT INTO comment (bnum, content, nickname)
         VALUES
-        (#{bnum},#{content},#{nickname},#{wdate})
+        (#{bnum},#{content},#{nickname})
     </insert>
 
     <update id="updateOK">
@@ -42,5 +42,9 @@
         SELECT COUNT(*)
         FROM comment
         WHERE nickname = #{nickname}
+    </select>
+
+    <select id="selectByBnum" resultType="org.multi.final_project.comment.CommentVO">
+        SELECT * FROM comment WHERE bnum = #{bnum} ORDER BY num
     </select>
 </mapper>

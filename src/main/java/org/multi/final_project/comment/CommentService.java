@@ -30,4 +30,8 @@ public class CommentService {
     public int getTotalByUser(String nickname) {
         return mapper.getTotalByUser(nickname);
     }
+
+    public List<CommentVO> selectByBnum(int bnum) {
+        return mapper.selectByBnum(bnum);
+    }
 }

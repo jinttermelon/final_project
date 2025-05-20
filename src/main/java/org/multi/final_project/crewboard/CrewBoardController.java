@@ -2,6 +2,8 @@ package org.multi.final_project.crewboard;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
+import org.multi.final_project.comment.CommentService;
+import org.multi.final_project.comment.CommentVO;
 import org.multi.final_project.cos.CosVO;
 import org.multi.final_project.crew.CrewVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class CrewBoardController {
 
     @Autowired
     private CrewBoardService service;
+
+    @Autowired
+    private CommentService commentService;
 
 
 
@@ -101,9 +106,15 @@ public class CrewBoardController {
 
     @GetMapping("selectOne")
     public String selectOne(CrewBoardVO vo, Model model){
-
+        // 게시글 조회
         CrewBoardVO vo2 = service.selectOne(vo);
         model.addAttribute("vo2", vo2);
+
+        // 댓글 리스트 조회 (bnum 또는 cnum으로 댓글 조회)
+        // 예시로 bnum을 댓글 조회 기준으로 사용한다고 가정
+        List<CommentVO> commentList = commentService.selectByBnum(vo.getBnum());
+        model.addAttribute("vos", commentList);
+
         return "crewboard/selectOne";
     }
 

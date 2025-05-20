@@ -15,4 +15,6 @@ public interface CommentMapper {
     public List<CommentVO> selectByUser(String nickname, int startRow, int limit);
 
     public int getTotalByUser(String nickname);
+
+    public List<CommentVO> selectByBnum(int bnum);
 }

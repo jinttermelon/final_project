@@ -35,12 +35,14 @@ public class CommentController {
     }
 
     @PostMapping("/insertOK")
-    public String insertOK(CommentVO vo, HttpSession session){
+    public String insertOK(CommentVO vo, HttpSession session,
+                           @RequestParam("cnum") int cnum){
         log.info("insertOK()...");
         String userNickname = (String) session.getAttribute("nickname");
         vo.setNickname(userNickname);
         service.insertOK(vo);
-        return "redirect:crewBoard/selectOne";
+
+        return "redirect:/crewboard/selectOne?bnum="+vo.getBnum()+"&cnum="+cnum;
     }
 
     @GetMapping("/update")
@@ -73,6 +75,7 @@ public class CommentController {
         log.info("selectAll()...");
         int startRow = (cpage - 1) * limit;
         List<CommentVO> vos = service.selectAll(startRow, limit);
+        log.info(vos.toString());
         model.addAttribute("vos", vos);
         return "comment/selectAll";
     }
