@@ -118,7 +118,7 @@
         <div class="list-group">
             <a th:href="@{/crewboard/update(bnum=${param.bnum})}"
                class="list-group-item list-group-item-action ">게시글 수정 페이지로 이동</a>
-            <a th:href="@{/crewboard/delete(cnum=${param.bnum})}"
+            <a th:href="@{/crewboard/delete(bnum=${param.bnum},cnum=${param.cnum})}"
                class="list-group-item list-group-item-action ">게시글 삭제 페이지로 이동</a>
         </div>
 

@@ -32,12 +32,13 @@
 <div class="delete-box">
     <h4 class="mb-4">정말 삭제하시겠습니까?</h4>
 
-    <form th:action="@{/comment/deleteOK}" method="post">
+    <form th:action="@{/crewboard/deleteOK}" method="get">
         <!-- 삭제할 댓글 ID를 hidden으로 넘겨줘야 함 -->
-        <input type="hidden" name="cnum" th:value="${cnum}" />
+        <input type="hidden" name="bnum" th:value="${param.bnum}" />
+        <input type="hidden" name="cnum" th:value="${param.cnum}" />
 
         <button type="submit" class="btn btn-danger btn-space">삭제</button>
-        <a th:href="@{/comment/selectAll}" class="btn btn-secondary btn-space">취소</a>
+        <a th:href="@{/crewboard/selectAll}" class="btn btn-secondary btn-space">취소</a>
     </form>
 </div>
 
