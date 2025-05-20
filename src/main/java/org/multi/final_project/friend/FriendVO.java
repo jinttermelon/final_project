@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class FriendVO {
     private String fnum;
-    private String nickname;
+    private String unickname;
     private String fnickname;
 }
