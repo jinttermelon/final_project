@@ -24,7 +24,7 @@
         <association property="cosVO" javaType="org.multi.final_project.cos.CosVO">
             <id property="cos_num" column="cos_num"/>
             <result property="cos_name" column="cos_name"/>
-            <result property="img" column="img"/>
+            <result property="img_name" column="img_name"/>
             <result property="info" column="info"/>
         </association>
     </resultMap>
