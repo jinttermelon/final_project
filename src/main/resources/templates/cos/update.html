@@ -2,52 +2,159 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <title>코스 수정</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+    <style>
+        .form-container {
+            max-width: 700px;
+            margin: auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .main-content {
+            padding: 100px;
+        }
+
+        footer {
+            padding: 100px;
+        }
+
+        .cos-preview {
+            width: 100%;
+            height: 200px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            display: none;  /* 기본적으로 숨겨두기 */
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            toggleScheInput();
+        };
+
+        function toggleScheInput() {
+            const scheCheck = document.getElementById('sche_check').value;
+            const scheRow = document.getElementById('sche_row');
+            if (scheCheck === 'regular') {
+                scheRow.style.display = 'block';
+            } else {
+                scheRow.style.display = 'none';
+            }
+        }
+
+        function previewImage() {
+            const fileInput = document.getElementById('fileUpload');
+            const profilePreview = document.querySelector('.cos-preview');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    profilePreview.style.display = 'block';  // 미리보기 영역을 보이도록 설정
+                    profilePreview.style.backgroundImage = 'url(' + e.target.result + ')';  // 미리보기 이미지 설정
+                };
+                reader.readAsDataURL(file);  // 파일을 Data URL로 읽어오기
+            } else {
+                profilePreview.style.display = 'none';  // 파일이 없으면 미리보기 숨기기
+            }
+        }
+    </script>
 </head>
 <body th:replace="~{layout::layout}">
-    <div th:fragment="content">
-        <h1>코스 수정 페이지</h1>
-        <form action="#" method="post" th:action="@{/crewboard/insertOK}">
-            <table id="customers">
-                <tr>
-                    <td><label for="title">제목:</label></td>
-                    <td>
-                        <input type="text" id="title" name="title" value="title01...">
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="nickname">작성자:</label></td>
-                    <td>
-                        <input type="text" id="nickname" name="nickname" value="nickname01">
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="notice"></label></td>
-                    <td>
-                        <label><input type="checkbox" name="notice" value="notice"> 공지글 </label><br>
-                </tr>
-                <tr>
-                    <td><label for="wdate">작성일:</label></td>
-                    <td>
-                        <input type="text" id="wdate" name="wdate" value="2000.01.01">
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="content">내용:</label></td>
-                    <td>
-                        <textarea name="content" id="content" rows="10" cols="30">안녕하세요 새로 가입했습니다.</textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="submit" value="저장">
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </div>
+<div th:fragment="content">
+    <form method="post" th:action="@{/cos/updateOK}" enctype="multipart/form-data" class="form-container">
+        <div class="main-content">
+            <div class="form-group">
+                <h1>코스 수정 페이지</h1>
+
+                <label for="cos_name">코스 이름</label>
+                <input type="text" class="form-control" id="cos_name" name="cos_name"
+                       placeholder="코스이름을 입력하세요" value="한강자전거길">
+            </div>
+
+            <div class="form-group">
+                <label for="nickname">작성자: [[${session.nickname}]]</label>
+                <input type="hidden" class="form-control" id="nickname" name="nickname"
+                       th:value="${session.nickname}">
+            </div>
+            <div class="form-group">
+                <label for="city">지역</label>
+                <select class="form-control" id="city" name="city" required>
+                    <option value="">-- 지역을 선택하세요 --</option>
+                    <option value="서울" selected>서울</option>
+                    <option value="경기">경기</option>
+                    <option value="부산">부산</option>
+                    <option value="대구">대구</option>
+                    <option value="인천">인천</option>
+                    <option value="광주">광주</option>
+                    <option value="대전">대전</option>
+                    <option value="울산">울산</option>
+                    <option value="제주">제주</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="km">주행거리</label>
+                <input type="text" class="form-control" id="km" name="km"
+                       placeholder="ex) 30km" value="30">
+            </div>
+
+            <div class="form-group">
+                <label for="route">코스 이름</label>
+                <input type="text" class="form-control" id="route" name="route"
+                       placeholder="ex) 여의도 한강공원 - 반포 한강공원" value="여의도 한강공원 - 반포 한강공원">
+            </div>
+
+            <div class="form-group">
+                <label for="info">코스 이름</label>
+                <textarea class="form-control"
+                          id="info"
+                          name="info"
+                          rows="5"
+                          placeholder="코스에 대한 설명을 입력하세요">야경이 아름다운 한강변 코스로 초보자도 즐길 수 있습니다.</textarea>            </div>
+            <div class="form-group">
+                <label for="level">코스 난이도</label>
+                <select class="form-control" id="level" name="level" required>
+                    <option value="">-- 지역을 선택하세요 --</option>
+                    <option value="초급" selected>초급</option>
+                    <option value="중급">중급</option>
+                    <option value="고급">고급</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>공개 여부</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="open" id="public" value="1" >
+                    <label class="form-check-label" for="public">공개</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="open" id="private" value="2" checked>
+                    <label class="form-check-label" for="private">비공개</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="tag">태그</label>
+                <input type="text" class="form-control" id="tag" name="tag"
+                       value="#서울 #한강 #강변">
+            </div>
+
+            <div class="text-center mb-4">
+                <div class="profile-preview mx-auto mb-2"></div>
+                <label for="fileUpload" class="btn btn-outline-info btn-sm">사진 업로드</label>
+                <input type="file" id="fileUpload" name="file" style="display:none;" onchange="previewImage()">
+            </div>
+
+            <button type="submit" class="btn btn-info btn-block" value="등록">등록</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>
