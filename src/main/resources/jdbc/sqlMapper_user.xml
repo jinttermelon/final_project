@@ -101,8 +101,14 @@
     </update>
 
     <select id="searchByNickname" parameterType="string" resultType="org.multi.final_project.user.UserVO">
-        SELECT * FROM user
+        SELECT nickname
+        FROM final_project.user
         WHERE nickname LIKE CONCAT('%', #{searchWord}, '%')
+        AND nickname NOT IN (
+        SELECT fnickname
+        FROM final_project.friend
+        WHERE unickname = #{nickname}
+        )
     </select>
 
 </mapper>

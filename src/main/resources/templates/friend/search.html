@@ -17,7 +17,7 @@
     <div class="container" style="margin-top: 100px;">
         <h2>🔍 친구 신청</h2>
         <form th:action="@{/friend/search}" method="get">
-            <input type="text" name="searchWord" placeholder="닉네임 검색" />
+            <input type="text" name="searchWord" placeholder="닉네임 검색" value="name" />
             <button type="submit">검색</button>
         </form>
 
@@ -25,8 +25,9 @@
             <li th:each="user : ${searchList}">
                 <span th:text="${user.nickname}">닉네임</span>
                 <!-- 예: 친구 신청 버튼 추가 -->
-                <form th:action="@{/friend/insertOk}" method="post" style="display:inline;">
+                <form th:action="@{/friend/insertOK}" method="post" style="display:inline;">
                     <input type="hidden" name="fnickname" th:value="${user.nickname}" />
+                    <input type="hidden" name="searchWord" th:value="${param.searchWord}" />
                     <button type="submit">친구 신청</button>
                 </form>
             </li>

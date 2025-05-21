@@ -28,9 +28,9 @@
     </select>
 
     <insert id="insertOK">
-    INSERT INTO friend (fnickname,unickname,fnum)
+    INSERT INTO friend (fnickname,unickname)
     VALUES
-    (#{fnickname},#{unickname},#{fnum})
+    (#{fnickname},#{unickname})
     </insert>
 
     <update id="updateOK">

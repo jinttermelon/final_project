@@ -49,6 +49,6 @@ public interface UserMapper {
 
     public int updatePwOK(UserVO vo);
 
-    public List<UserVO> searchByNickname(String searchWord);
+    public List<UserVO> searchByNickname(String searchWord,String nickname);
 
 }

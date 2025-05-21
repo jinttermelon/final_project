@@ -1,10 +1,9 @@
 package org.multi.final_project.friend;
 
 import java.security.Principal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.multi.final_project.user.UserService;
 import org.multi.final_project.user.UserVO;
@@ -23,20 +22,15 @@ public class FriendController {
 
     @Autowired
     private FriendService service;
+
     @Autowired
     private UserService userService;
 
-
-    @GetMapping("/insert")
-    public String insert(FriendVO vo) {
-        return "friend/insert";
-    }
+    @Autowired
+    private HttpSession session;
 
 
-    @PostMapping("/insertOK")
-    public String insertOK(FriendVO vo) {
-        return "redirect:selectAll";
-    }
+
 
     @GetMapping("/selectAll")
     public String selectAll(@RequestParam(defaultValue = "1") int cpage,
@@ -90,10 +84,26 @@ public class FriendController {
     }
 
     @GetMapping("/search")
-    public String searchFriend(@RequestParam String searchWord, Model model) {
-        List<UserVO> searchList = userService.searchByNickname(searchWord);
+    public String search(@RequestParam(defaultValue = "") String searchWord, Model model) {
+        String nickname = session.getAttribute("nickname").toString();
+        log.info("nickname: " + nickname);
+        List<UserVO> searchList = userService.searchByNickname(searchWord,nickname);
         model.addAttribute("searchList", searchList);
-        return "friend/insert";
+        return "friend/search";
+    }
+
+    @PostMapping("/insertOK")
+    public String insertOK(FriendVO vo,@RequestParam(defaultValue = "") String searchWord) {
+        String nickname = session.getAttribute("nickname").toString();
+        log.info("nickname: " + nickname);
+        vo.setUnickname(nickname);
+        log.info("insertOK");
+        log.info(vo.toString());
+        log.info(searchWord);
+
+        service.insertOK(vo);
+
+        return "redirect:search?searchWord="+searchWord;
     }
 
 }
