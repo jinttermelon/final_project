@@ -31,4 +31,13 @@ public interface CrewMapper {
         public List<CrewVO> selectOneDayCrew(CrewVO vo);
 
         CrewVO selectCrewByCnum(int cnum);
+
+        public List<CrewVO> searchListAdmin(@Param("startRow") int startRow,
+                                     @Param("limit") int limit,
+                                     @Param("searchKey") String searchKey,
+                                     @Param("searchWord") String searchWord);
+
+        public int searchCountAdmin(@Param("searchKey") String searchKey, @Param("searchWord") String searchWord);
+
+        public int searchCount(@Param("searchKey") String searchKey, @Param("searchWord") String searchWord);
 }

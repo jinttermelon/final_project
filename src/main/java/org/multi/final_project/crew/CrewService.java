@@ -50,4 +50,15 @@ public class CrewService {
     public CrewVO getCrewByCnum(int cnum) {
         return mapper.selectCrewByCnum(cnum);
     }
+
+    public List<CrewVO> searchList(String searchKey, String searchWord, int cpage, int limit) {
+        int startRow = (cpage - 1) * limit;
+        return mapper.searchList(startRow, limit, searchKey, searchWord);
+    }
+
+    public int getSearchPageCount(String searchKey, String searchWord, int limit) {
+        int totalCount = mapper.searchCount(searchKey, searchWord);
+        return (int) Math.ceil((double) totalCount / limit);
+    }
+
 }
