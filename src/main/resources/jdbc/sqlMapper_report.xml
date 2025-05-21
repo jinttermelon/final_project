@@ -11,6 +11,12 @@
         LIMIT #{startRow}, #{limit}
     </select>
 
+    <select id="reportAdminSelectAll" resultType="org.multi.final_project.report.ReportVO">
+        SELECT * FROM report
+        ORDER BY num DESC
+        LIMIT #{startRow}, #{limit}
+    </select>
+
     <select id="selectOne">
         SELECT *
         FROM report

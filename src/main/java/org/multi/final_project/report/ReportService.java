@@ -30,4 +30,8 @@ public class ReportService {
     public int getTotalByReporter(String nickname) {
         return mapper.getTotalByReporter(nickname);
     }
+
+    public List<ReportVO> reportAdminSelectAll(int startRow, int limit) {
+        return mapper.reportAdminSelectAll(startRow,limit);
+    }
 }

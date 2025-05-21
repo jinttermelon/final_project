@@ -42,7 +42,7 @@ public class ReportController {
                             ReportVO vo){
 
         int startRow = (cpage - 1) * limit;
-        List<ReportVO> vos = service.selectAll(startRow, limit, vo);
+        List<ReportVO> vos = service.reportAdminSelectAll(startRow, limit);
         model.addAttribute("vos", vos);
 
         // 페이지네이션
