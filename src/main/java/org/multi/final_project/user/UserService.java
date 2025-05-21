@@ -83,4 +83,8 @@ public class UserService {
     public List<UserVO> adminSelectAll(int startRow, int limit) {
         return mapper.adminSelectAll(startRow,limit);
     }
+
+    public int adminInsertOK(UserVO vo) {
+        return mapper.adminInsertOK(vo);
+    }
 }
