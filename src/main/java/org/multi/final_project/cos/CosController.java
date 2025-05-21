@@ -232,6 +232,24 @@ public class CosController {
         // startRow를 매퍼로 전달
         List<CosVO> vos = service.searchList(searchKey,searchWord,startRow, limit);
         model.addAttribute("vos", vos);
+
+
+        // 페이지네이션
+        int totalRowCount = vos.size();
+        log.info("total row count: {}", totalRowCount);
+
+        int pageCount = 1;
+        if (totalRowCount / limit==0){
+            pageCount = 1;
+        }else if(totalRowCount % limit==0){
+            pageCount = totalRowCount / limit;
+        }else {
+            pageCount = totalRowCount / limit +1;
+        }
+        log.info("page count: {}", pageCount);
+
+        model.addAttribute("pageCount", pageCount);
+
         return "cos/selectAll";
     }
 

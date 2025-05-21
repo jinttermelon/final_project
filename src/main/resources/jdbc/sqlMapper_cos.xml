@@ -18,10 +18,10 @@
                     cos_name LIKE CONCAT('%', #{searchWord}, '%')
                 </when>
                 <when test="searchKey == 'city'">
-                    city = LIKE CONCAT('%', #{searchWord}, '%')
+                    city  LIKE CONCAT('%', #{searchWord}, '%')
                 </when>
-                <when test="searchKey == 'level'">
-                    level = #{searchWord}
+                <when test="searchKey == 'km'">
+                    km LIKE CONCAT('%', #{searchWord}, '%')
                 </when>
             </choose>
         </where>
