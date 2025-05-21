@@ -82,7 +82,11 @@
             <label for="fileUpload" class="btn btn-outline-info btn-sm">사진 업로드</label>
             <input type="file" id="fileUpload" name="file" style="display:none;" onchange="previewImage()">
         </div>
-
+        <div class="form-group">
+            <div class="input-group">
+                <input type="hidden" class="form-control" id="role" name="role" value="ADMIN">
+            </div>
+        </div>
         <div class="form-group">
             <label for="id">아이디(이메일형식)</label>
             <div class="input-group">
@@ -212,7 +216,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-info btn-block">회원가입 완료</button>
+        <button type="submit" class="btn btn-info btn-block">관리자등록 완료</button>
     </form>
 </div>
 <footer>
