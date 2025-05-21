@@ -259,4 +259,21 @@ public class CrewController {
         return "crew/selectAll";
     }
 
+    @GetMapping("/searchListAdmin")
+    public String searchCrewListAdmin(
+            @RequestParam String searchKey,
+            @RequestParam String searchWord,
+            @RequestParam(defaultValue = "1") int cpage,
+            @RequestParam(defaultValue = "10") int limit,
+            Model model) {
+
+        List<CrewVO> vos = service.searchList(searchKey, searchWord, cpage, limit);
+        int pageCount = service.getSearchPageCount(searchKey, searchWord, limit);
+
+        model.addAttribute("vos", vos);
+        model.addAttribute("pageCount", pageCount);
+
+        return "crew/crewlistAdmin";  // ✅ 여기로 같은 템플릿 사용
+    }
+
 }

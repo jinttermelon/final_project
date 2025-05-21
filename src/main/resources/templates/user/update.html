@@ -40,12 +40,12 @@
         };
 
         function toggleScheInput() {
-            const scheCheck = document.getElementById('sche_check').value;
+            const scheCheck = document.getElementById('sche_check')?.value;
             const scheRow = document.getElementById('sche_row');
             if (scheCheck === 'regular') {
-                scheRow.style.display = 'block';
+                if (scheRow) scheRow.style.display = 'block';
             } else {
-                scheRow.style.display = 'none';
+                if (scheRow) scheRow.style.display = 'none';
             }
         }
 
@@ -128,11 +128,11 @@
                     <label>전화번호</label>
                     <div class="form-row">
                         <div class="col-4">
-                            <select name="tel_company" class="form-control">
-                                <option selected>통신사</option>
-                                <option value="KT" selected>KT</option>
-                                <option value="LGU+">LGU+</option>
-                                <option value="SKT">SKT</option>
+                            <select name="tel_company" class="form-control" th:value="${vo2.tel_company}">
+                                <option value="">통신사</option>
+                                <option value="KT" th:selected="${vo2.tel_company == 'KT'}">KT</option>
+                                <option value="LGU+" th:selected="${vo2.tel_company == 'LGU+'}">LGU+</option>
+                                <option value="SKT" th:selected="${vo2.tel_company == 'SKT'}">SKT</option>
                             </select>
                         </div>
                         <div class="col">
@@ -144,19 +144,18 @@
                         <div class="col">
                             <input type="text" class="form-control" name="tel03" placeholder="5678" th:value="${vo2.tel03}">
                         </div>
-
                     </div>
                     <!-- 라디오 버튼 그룹 -->
                     <div class="form-group mt-3">
                         <label class="d-block font-weight-bold mb-2">전화번호 공개 여부</label>
 
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="tel_open" name="tel_open" value="open">
+                            <input class="form-check-input" type="radio" id="tel_open" name="tel_open" value="open" th:checked="${vo2.tel_open == 'open'}">
                             <label class="form-check-label" for="tel_open">공개</label>
                         </div>
 
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="tel_close" name="tel_open" value="close" checked>
+                            <input class="form-check-input" type="radio" id="tel_close" name="tel_open" value="close" th:checked="${vo2.tel_open == 'close'}">
                             <label class="form-check-label" for="tel_close">비공개</label>
                         </div>
                     </div>
@@ -166,23 +165,13 @@
                     <label>거주지역</label>
                     <div class="form-row">
                         <div class="col">
-                            <select class="form-control" name="sido01">
-                                <option>도 (선택)</option>
-                                <option value="경기도" selected>경기도</option>
-                                <option value="서울특별시">서울특별시</option>
-                                <option value="부산광역시">부산광역시</option>
-                                <option value="대전광역시">대전광역시</option>
-                                <option value="대구광역시">대구광역시</option>
-                                <option value="부산광역시">부산광역시</option>
-                                <option value="제주특별시">제주특별시</option>
+                            <select class="form-control" name="sido01" data-init-value="[[${vo2.sido01}]]">
+                                <!-- 도 옵션은 JS에서 동적 생성 -->
                             </select>
                         </div>
                         <div class="col">
-                            <select class="form-control" name="sido02">
-                                <option>시 (선택)</option>
-                                <option value="수원시" selected>수원시</option>
-                                <option value="용인시">용인시</option>
-                                <option value="성남시">성남시</option>
+                            <select class="form-control" name="sido02" data-init-value="[[${vo2.sido02}]]">
+                                <!-- 시 옵션은 JS에서 동적 생성 -->
                             </select>
                         </div>
                     </div>
@@ -192,9 +181,9 @@
                     <label>라이딩 경력</label>
                     <div class="form-row">
                         <div class="col">
-                            <select class="form-control" name="riding_year">
-                                <option>년 (선택)</option>
-                                <option value="1년" selected>1년</option>
+                            <select class="form-control" name="riding_year" data-init-value="[[${vo2.riding_year}]]">
+                                <option value="">년 (선택)</option>
+                                <option value="1년">1년</option>
                                 <option value="2년">2년</option>
                                 <option value="3년">3년</option>
                                 <option value="4년">4년</option>
@@ -202,7 +191,6 @@
                                 <option value="6년">6년</option>
                             </select>
                         </div>
-
                     </div>
                 </div>
 
@@ -214,6 +202,80 @@
         </footer>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const sidoSelect = document.querySelector('select[name="sido01"]');
+        const citySelect = document.querySelector('select[name="sido02"]');
+        const ridingYearSelect = document.querySelector('select[name="riding_year"]');
+        ridingYearSelect.value = "";
+
+        const locationData = {
+            "서울특별시": ["종로구", "중구", "강남구", "서초구", "송파구", "강서구"],
+            "부산광역시": ["중구", "서구", "동구", "영도구", "해운대구", "수영구"],
+            "대구광역시": ["중구", "동구", "서구", "남구", "북구", "수성구"],
+            "인천광역시": ["중구", "동구", "남동구", "부평구", "계양구", "연수구"],
+            "광주광역시": ["동구", "서구", "남구", "북구", "광산구"],
+            "대전광역시": ["동구", "중구", "서구", "유성구", "대덕구"],
+            "울산광역시": ["중구", "남구", "동구", "북구", "울주군"],
+            "세종특별자치시": ["세종시"],
+            "경기도": ["수원시", "성남시", "고양시", "용인시", "부천시", "안산시"],
+            "강원도": ["춘천시", "원주시", "강릉시", "동해시", "태백시"],
+            "충청북도": ["청주시", "충주시", "제천시"],
+            "충청남도": ["천안시", "공주시", "보령시", "서산시"],
+            "전라북도": ["전주시", "군산시", "익산시"],
+            "전라남도": ["목포시", "여수시", "순천시"],
+            "경상북도": ["포항시", "경주시", "안동시"],
+            "경상남도": ["창원시", "진주시", "김해시"],
+            "제주특별자치도": ["제주시", "서귀포시"]
+        };
+
+        // sido 옵션 생성
+        function createSidoOptions() {
+            sidoSelect.innerHTML = '<option value="">도 (선택)</option>';
+            Object.keys(locationData).forEach(function(sido) {
+                const option = document.createElement('option');
+                option.value = sido;
+                option.textContent = sido;
+                sidoSelect.appendChild(option);
+            });
+        }
+
+        // 시 옵션 초기화
+        function resetCityOptions() {
+            citySelect.innerHTML = '<option value="">시 (선택)</option>';
+        }
+
+        // 시 옵션 생성
+        function createCityOptions(sido) {
+            resetCityOptions();
+            if (sido && locationData[sido]) {
+                locationData[sido].forEach(function(city) {
+                    const option = document.createElement('option');
+                    option.value = city;
+                    option.textContent = city;
+                    citySelect.appendChild(option);
+                });
+            }
+        }
+
+        createSidoOptions();
+
+        // 도 선택 시 시 옵션 업데이트
+        sidoSelect.addEventListener('change', function () {
+            createCityOptions(this.value);
+        });
+
+        // 초기값 세팅 (Thymeleaf에서 넘어온 값 사용)
+        const initSido = "";  // value=""인 도 (선택)
+        const initCity = "";  // value=""인 시 (선택)
+
+        sidoSelect.value = initSido;
+        createCityOptions(initSido);  // 도 (선택) 이면 도시 옵션도 초기화
+        citySelect.value = initCity;
+
+    });
+</script>
+
 </body>
 </html>

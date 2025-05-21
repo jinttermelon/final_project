@@ -72,4 +72,21 @@
     <select id="selectCrewByCnum" resultType="org.multi.final_project.crew.CrewVO">
         SELECT * FROM crew WHERE cnum = #{cnum}
     </select>
+
+    <select id="searchCount" resultType="int">
+        SELECT COUNT(*) FROM crew
+        <where>
+            <choose>
+                <when test="searchKey == 'name'">
+                    name LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <when test="searchKey == 'sche_check'">
+                    sche_check LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    1 = 1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
 </mapper>

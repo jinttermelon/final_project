@@ -9,6 +9,12 @@
         ORDER BY num DESC LIMIT #{startRow}, #{limit}
     </select>
 
+    <select id="adminSelectAll" resultType="org.multi.final_project.user.UserVO">
+        SELECT * FROM user
+        WHERE role = 'ADMIN'
+        ORDER BY num DESC LIMIT #{startRow}, #{limit}
+    </select>
+
     <select id="selectOne" resultType="org.multi.final_project.user.UserVO">
         SELECT * FROM user
         WHERE nickname = #{nickname}
@@ -38,6 +44,12 @@
         INSERT INTO user(id, pw, nickname, birth_year, gender, sido, riding_year, tel, tel_open, img_name)
         VALUES
         (#{id}, #{pw}, #{nickname}, #{birth_year}, #{gender}, #{sido}, #{riding_year}, #{tel}, #{tel_open} ,#{img_name})
+    </insert>
+
+    <insert id="adminInsertOK">
+        INSERT INTO user(id, pw, nickname, birth_year, gender, sido, riding_year, tel, tel_open, img_name,role)
+        VALUES
+        (#{id}, #{pw}, #{nickname}, #{birth_year}, #{gender}, #{sido}, #{riding_year}, #{tel}, #{tel_open} ,#{img_name},'ADMIN')
     </insert>
 
     <update id="updateOK">
@@ -110,5 +122,7 @@
         WHERE unickname = #{nickname}
         )
     </select>
+
+
 
 </mapper>

@@ -25,19 +25,83 @@
             border: 2px dashed #4dd0e1;
             border-radius: 50%;
             background-color: #fff;
+            background-size: cover;
+            background-position: center center;
+            display: none;
         }
         .main-content {
             padding: 100px;
         }
-
         footer {
             padding: 100px;
         }
     </style>
     <script>
-        window.onload = function () {
-            toggleScheInput();
+        // 시도별 시군구 데이터 (필요에 따라 확장하세요)
+        const locationData = {
+            "서울특별시": ["종로구", "중구", "용산구", "성동구", "광진구", "동대문구", "중랑구",
+                "성북구", "강북구", "도봉구", "노원구", "은평구", "서대문구", "마포구",
+                "양천구", "강서구", "구로구", "금천구", "영등포구", "동작구", "관악구",
+                "서초구", "강남구", "송파구", "강동구"],
+            "부산광역시": ["중구", "서구", "동구", "영도구", "부산진구", "동래구", "남구",
+                "북구", "해운대구", "사하구", "금정구", "강서구", "연제구", "수영구", "사상구",
+                "기장군"],
+            "대구광역시": ["중구", "동구", "서구", "남구", "북구", "수성구", "달서구", "달성군"],
+            "인천광역시": ["중구", "동구", "미추홀구", "연수구", "남동구", "부평구", "계양구",
+                "서구", "강화군", "옹진군"],
+            "광주광역시": ["동구", "서구", "남구", "북구", "광산구"],
+            "대전광역시": ["동구", "중구", "서구", "유성구", "대덕구"],
+            "울산광역시": ["중구", "남구", "동구", "북구", "울주군"],
+            "세종특별자치시": ["세종특별자치시"],
+            "경기도": ["수원시", "성남시", "의정부시", "안양시", "부천시", "광명시", "평택시",
+                "동두천시", "안산시", "고양시", "과천시", "구리시", "남양주시", "오산시",
+                "시흥시", "군포시", "의왕시", "하남시", "용인시", "파주시", "이천시",
+                "안성시", "김포시", "화성시", "여주시", "연천군", "가평군", "양평군"]
         };
+
+        // 시도 목록 셀렉트 박스 id
+        const sidoSelectId = 'sidoSelect';
+        // 시군구 목록 셀렉트 박스 id
+        const sigunguSelectId = 'sigunguSelect';
+
+        function populateSido() {
+            const sidoSelect = document.getElementById(sidoSelectId);
+            sidoSelect.options.length = 0; // 초기화
+
+            let defaultOption = document.createElement('option');
+            defaultOption.text = '도 (선택)';
+            defaultOption.value = '';
+            sidoSelect.add(defaultOption);
+
+            for (let sido in locationData) {
+                let option = document.createElement('option');
+                option.value = sido;
+                option.text = sido;
+                sidoSelect.add(option);
+            }
+        }
+
+        function updateSigungu() {
+            const sidoSelect = document.getElementById(sidoSelectId);
+            const sigunguSelect = document.getElementById(sigunguSelectId);
+
+            let selectedSido = sidoSelect.value;
+            sigunguSelect.options.length = 0; // 초기화
+
+            let defaultOption = document.createElement('option');
+            defaultOption.text = '시/군/구 선택';
+            defaultOption.value = '';
+            sigunguSelect.add(defaultOption);
+
+            if (selectedSido && locationData[selectedSido]) {
+                locationData[selectedSido].forEach(sigungu => {
+                    let option = document.createElement('option');
+                    option.value = sigungu;
+                    option.text = sigungu;
+                    sigunguSelect.add(option);
+                });
+            }
+        }
 
         function toggleScheInput() {
             const scheCheck = document.getElementById('sche_check').value;
@@ -57,14 +121,38 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    profilePreview.style.display = 'block';  // 미리보기 영역을 보이도록 설정
-                    profilePreview.style.backgroundImage = 'url(' + e.target.result + ')';  // 미리보기 이미지 설정
+                    profilePreview.style.display = 'block';  // 미리보기 영역 보임
+                    profilePreview.style.backgroundImage = 'url(' + e.target.result + ')';
                 };
-                reader.readAsDataURL(file);  // 파일을 Data URL로 읽어오기
+                reader.readAsDataURL(file);
             } else {
-                profilePreview.style.display = 'none';  // 파일이 없으면 미리보기 숨기기
+                profilePreview.style.display = 'none';  // 미리보기 숨김
+                profilePreview.style.backgroundImage = '';
             }
         }
+
+        window.onload = function () {
+            populateSido();
+
+            const sidoSelect = document.getElementById(sidoSelectId);
+            const sigunguSelect = document.getElementById(sigunguSelectId);
+
+            // 초기값 세팅 (필요시)
+            const initSido = sidoSelect.getAttribute('data-init-value');
+            if (initSido) {
+                sidoSelect.value = initSido;
+                updateSigungu();
+
+                const initSigungu = sigunguSelect.getAttribute('data-init-value');
+                if (initSigungu) {
+                    sigunguSelect.value = initSigungu;
+                }
+            }
+
+            sidoSelect.addEventListener('change', updateSigungu);
+
+            toggleScheInput();
+        };
     </script>
 </head>
 
@@ -74,152 +162,143 @@
 </header>
 <div class="main-content">
     <div class="container">
-<div class="form-container">
-    <h2 class="text-center mb-4">회원가입</h2>
-    <form action="insertOK" method="post" enctype="multipart/form-data">
-        <div class="text-center mb-4">
-            <div class="profile-preview mx-auto mb-2"></div>
-            <label for="fileUpload" class="btn btn-outline-info btn-sm">사진 업로드</label>
-            <input type="file" id="fileUpload" name="file" style="display:none;" onchange="previewImage()">
+        <div class="form-container">
+            <h2 class="text-center mb-4">회원가입</h2>
+            <form action="insertOK" method="post" enctype="multipart/form-data">
+                <div class="text-center mb-4">
+                    <div class="profile-preview mx-auto mb-2"></div>
+                    <label for="fileUpload" class="btn btn-outline-info btn-sm">사진 업로드</label>
+                    <input type="file" id="fileUpload" name="file" style="display:none;" onchange="previewImage()">
+                </div>
+
+                <div class="form-group">
+                    <label for="id">아이디(이메일형식)</label>
+                    <div class="input-group">
+                        <input type="email" class="form-control" id="id" name="id" value="test02@bbb.com">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-info" type="button">중복체크</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pw">비밀번호</label>
+                    <input type="password" class="form-control" id="pw" name="pw" value="1111">
+                    <small class="form-text text-muted">8~20자 입력해주세요.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="pwConfirm">비밀번호 확인</label>
+                    <input type="password" class="form-control" id="pwConfirm" value="1111">
+                </div>
+
+                <div class="form-group">
+                    <label for="nickname">닉네임</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="nickname" name="nickname" value="testnick02">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-info" type="button">중복체크</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>성별</label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="M" >
+                        <label class="form-check-label" for="male">남자</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="F" checked>
+                        <label class="form-check-label" for="female">여자</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="birth_year">출생년도</label>
+                    <input type="text" class="form-control" id="birth_year" placeholder="1999" name="birth_year" value="1999">
+                </div>
+
+                <div class="form-group">
+                    <label>전화번호</label>
+                    <div class="form-row">
+                        <div class="col-4">
+                            <select name="tel_company" class="form-control">
+                                <option>통신사</option>
+                                <option value="KT">KT</option>
+                                <option value="LGU+" selected>LGU+</option>
+                                <option value="SKT">SKT</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="tel01" placeholder="010" value="010">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="tel02" placeholder="2222" value="2222">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="tel03" placeholder="3333" value="3333">
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label class="d-block font-weight-bold mb-2">전화번호 공개 여부</label>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="tel_open" name="tel_open" value="open">
+                            <label class="form-check-label" for="tel_open">공개</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="tel_close" name="tel_open" value="close" checked>
+                            <label class="form-check-label" for="tel_close">비공개</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>거주지역</label>
+                    <div class="form-row">
+                        <div class="col">
+                            <select id="sidoSelect" name="sido01" class="form-control" data-init-value="">
+                                <!-- 시도 옵션 동적 생성 -->
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select id="sigunguSelect" name="sido02" class="form-control" data-init-value="">
+                                <!-- 시군구 옵션 동적 생성 -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>라이딩 경력</label>
+                    <div class="form-row">
+                        <div class="col">
+                            <select class="form-control" name="riding_year">
+                                <option>년 (선택)</option>
+                                <option value="1년">1년</option>
+                                <option value="2년" selected>2년</option>
+                                <option value="3년">3년</option>
+                                <option value="4년">4년</option>
+                                <option value="5년">5년</option>
+                                <option value="6년">6년</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-info btn-block">회원가입 완료</button>
+            </form>
         </div>
 
-        <div class="form-group">
-            <label for="id">아이디(이메일형식)</label>
-            <div class="input-group">
-                <input type="email" class="form-control" id="id" name="id" value="test02@bbb.com">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-info">중복체크</button>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="pw">비밀번호</label>
-            <input type="password" class="form-control" id="pw" name="pw" value="1111">
-            <small class="form-text text-muted">8~20자 입력해주세요.</small>
-        </div>
-
-        <div class="form-group">
-            <label for="pwConfirm">비밀번호 확인</label>
-            <input type="password" class="form-control" id="pwConfirm" value="1111">
-        </div>
-
-        <div class="form-group">
-            <label for="nickname">닉네임</label>
-            <div class="input-group">
-                <input type="text" class="form-control" id="nickname" name="nickname" value="testnick02">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-info">중복체크</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>성별</label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="gender" id="male" value="M" >
-                <label class="form-check-label" for="male">남자</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="gender" id="female" value="F" checked>
-                <label class="form-check-label" for="female">여자</label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="birth_year">출생년도</label>
-            <input type="text" class="form-control" id="birth_year" placeholder="1999" name="birth_year" value="1999">
-        </div>
-
-        <div class="form-group">
-            <label>전화번호</label>
-            <div class="form-row">
-                <div class="col-4">
-                    <select name="tel_company" class="form-control">
-                        <option>통신사</option>
-                        <option value="KT">KT</option>
-                        <option value="LGU+" selected>LGU+</option>
-                        <option value="SKT">SKT</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" name="tel01" placeholder="010" value="010">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" name="tel02" placeholder="2222" value="2222">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" name="tel03" placeholder="3333" value="3333">
-                </div>
-
-            </div>
-            <!-- 라디오 버튼 그룹 -->
-            <div class="form-group mt-3">
-                <label class="d-block font-weight-bold mb-2">전화번호 공개 여부</label>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="tel_open" name="tel_open" value="open">
-                    <label class="form-check-label" for="tel_open">공개</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="tel_close" name="tel_open" value="close" checked>
-                    <label class="form-check-label" for="tel_close">비공개</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>거주지역</label>
-            <div class="form-row">
-                <div class="col">
-                    <select class="form-control" name="sido01">
-                        <option>도 (선택)</option>
-                        <option value="경기도">경기도</option>
-                        <option value="서울특별시" selected>서울특별시</option>
-                        <option value="부산광역시">부산광역시</option>
-                        <option value="대전광역시">대전광역시</option>
-                        <option value="대구광역시">대구광역시</option>
-                        <option value="부산광역시">부산광역시</option>
-                        <option value="제주특별시">제주특별시</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <select class="form-control" name="sido02">
-                        <option>시 (선택)</option>
-                        <option value="수원시">수원시</option>
-                        <option value="용인시" selected>용인시</option>
-                        <option value="성남시">성남시</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>라이딩 경력</label>
-            <div class="form-row">
-                <div class="col">
-                    <select class="form-control" name="riding_year">
-                        <option>년 (선택)</option>
-                        <option value="1년">1년</option>
-                        <option value="2년" selected>2년</option>
-                        <option value="3년">3년</option>
-                        <option value="4년">4년</option>
-                        <option value="5년">5년</option>
-                        <option value="6년">6년</option>
-                    </select>
-                </div>
-
-            </div>
-        </div>
-
-        <button type="submit" class="btn btn-info btn-block">회원가입 완료</button>
-    </form>
+        <footer>
+            <div th:replace="~{footer :: footer}"></div>
+        </footer>
+    </div>
 </div>
-<footer>
-    <div th:replace="~{footer :: footer}"></div>
-</footer>
-</div>
-</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
