@@ -41,8 +41,8 @@
             <tbody>
             <th:block th:each="vo : ${vos}">
                 <tr>
-                    <td><a th:href="@{/user/userRecord(nickname=${vo.nickname})}">[[${vo.num}]]</a></td>
-                    <td><a th:href="@{/user/userRecord(nickname=${vo.nickname})}">[[${vo.nickname}]]</a></td>
+                    <td>[[${vo.num}]]</td>
+                    <td>[[${vo.nickname}]]</td>
                     <td>[[${vo.gender}]]</td>
                     <td>[[${vo.birth_year}]]</td>
                     <td>[[${vo.sido}]]</td>

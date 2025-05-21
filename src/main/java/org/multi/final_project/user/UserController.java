@@ -83,10 +83,7 @@ public class UserController {
         return "user/adminManagement";
     }
 
-    @GetMapping("/adminSelectAll")
-    public String adminSelectAll(UserVO vo, Model model) {
-        return "user/adminSelectAll";
-    }
+
 
 
     @GetMapping("/ridingHistory")
@@ -430,6 +427,38 @@ public class UserController {
         }else{
             return "redirect:/user/findPwSuccess?id="+vo.getId();
         }
+    }
+
+    @GetMapping("/adminSelectAll")
+    public String adminSelectAll(@RequestParam(defaultValue = "1") int cpage,
+                            @RequestParam(defaultValue = "10") int limit,
+                            Model model,
+                            UserVO vo) {
+
+
+        int startRow = (cpage - 1) * limit;
+        log.info("startRow:" + startRow);
+        List<UserVO> vos = service.adminSelectAll(startRow, limit);
+        model.addAttribute("vos", vos);
+
+        // 페이지네이션
+        //int totalRowCount = service.getTotalRowCountAdmin(vo);
+        int totalRowCount = 2;
+        log.info("total row count: {}", totalRowCount);
+
+        int pageCount = 1;
+        if (totalRowCount / limit==0){
+            pageCount = 1;
+        }else if(totalRowCount % limit==0){
+            pageCount = totalRowCount / limit;
+        }else {
+            pageCount = totalRowCount / limit +1;
+        }
+        log.info("page count: {}", pageCount);
+
+        model.addAttribute("pageCount", pageCount);
+
+        return "user/adminSelectAll";
     }
 
 }

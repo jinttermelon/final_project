@@ -51,4 +51,5 @@ public interface UserMapper {
 
     public List<UserVO> searchByNickname(String searchWord,String nickname);
 
+    List<UserVO> adminSelectAll(int startRow, int limit);
 }

@@ -80,4 +80,7 @@ public class UserService {
         return mapper.searchByNickname(searchWord,nickname);
     }
 
+    public List<UserVO> adminSelectAll(int startRow, int limit) {
+        return mapper.adminSelectAll(startRow,limit);
+    }
 }

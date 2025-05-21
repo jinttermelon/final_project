@@ -9,6 +9,12 @@
         ORDER BY num DESC LIMIT #{startRow}, #{limit}
     </select>
 
+    <select id="adminSelectAll" resultType="org.multi.final_project.user.UserVO">
+        SELECT * FROM user
+        WHERE role = 'ADMIN'
+        ORDER BY num DESC LIMIT #{startRow}, #{limit}
+    </select>
+
     <select id="selectOne" resultType="org.multi.final_project.user.UserVO">
         SELECT * FROM user
         WHERE nickname = #{nickname}
