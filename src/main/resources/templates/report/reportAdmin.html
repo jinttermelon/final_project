@@ -24,6 +24,26 @@
             text-align: center;
         }
     </style>
+    <script>
+        function updateStatus(reportId, newStatus) {
+            $.ajax({
+                url: '/report/updateStatus',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    id: reportId,
+                    state: newStatus
+                }),
+                success: function(response) {
+                    alert('상태가 업데이트되었습니다.');
+                    location.reload(); // 필요시 새로고침
+                },
+                error: function(xhr) {
+                    alert('오류가 발생했습니다.');
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -57,7 +77,12 @@
                     </td>
                     <td>[[${vo.detail}]]</td>
                     <td>[[${vo.reason}]]</td>
-                    <td>[[${vo.state}]]</td>
+                    <td>
+                        <select onchange="updateStatus([[${vo.num}]], this.value)">
+                            <option value="처리중" th:selected="${vo.state == '처리중'}">대기</option>
+                            <option value="완료" th:selected="${vo.state == '완료'}">처리 완료</option>
+                        </select>
+                    </td>
                     <td>[[${vo.rdate}]]</td>
                 </tr>
             </th:block>
