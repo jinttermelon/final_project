@@ -10,7 +10,14 @@
 
     <select id="searchList" resultType="org.multi.final_project.crew.CrewVO">
         SELECT * FROM crew
-        WHERE name LIKE CONCAT('%', #{searchWord}, '%')
+        <choose>
+            <when test="searchKey == 'name'">
+                WHERE name LIKE CONCAT('%', #{searchWord}, '%')
+            </when>
+            <when test="searchKey == 'sche'">
+                WHERE sche LIKE CONCAT('%', #{searchWord}, '%')
+            </when>
+        </choose>
         ORDER BY cnum DESC
         LIMIT #{startRow}, #{limit}
     </select>
