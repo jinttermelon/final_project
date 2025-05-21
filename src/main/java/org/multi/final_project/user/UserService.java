@@ -29,9 +29,6 @@ public class UserService {
     public int login(UserVO vo){
         return mapper.login(vo);
     }
-    public UserVO idCheck(UserVO vo){
-        return mapper.idCheck(vo);
-    }
     public UserVO selectOne(UserVO vo){
         return mapper.selectOne(vo);
     }
@@ -40,9 +37,6 @@ public class UserService {
     }
     public UserVO banUserOK(UserVO vo){
         return mapper.banUserOK(vo);
-    }
-    public UserVO nicknameCheck(UserVO vo){
-        return mapper.nicknameCheck(vo);
     }
     public int getTotalRowCount(UserVO vo) {
         return mapper.totalRowCount(vo);
@@ -86,5 +80,13 @@ public class UserService {
 
     public int adminInsertOK(UserVO vo) {
         return mapper.adminInsertOK(vo);
+    }
+
+    public boolean idCheck(String id) {
+        return mapper.idCheck(id) > 0;
+    }
+
+    public boolean nicknameCheck(String nickname) {
+        return mapper.nicknameCheck(nickname) > 0;
     }
 }

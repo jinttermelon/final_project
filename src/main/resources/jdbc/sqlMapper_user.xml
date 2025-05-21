@@ -28,17 +28,10 @@
 
     </select>
 
-    <select id="idCheck" resultType="org.multi.final_project.user.UserVO">
-
-    </select>
-
     <select id="banUserOK" resultType="org.multi.final_project.user.UserVO">
 
     </select>
 
-    <select id="nicknameCheck" resultType="org.multi.final_project.user.UserVO">
-
-    </select>
 
     <insert id="insertOK">
         INSERT INTO user(id, pw, nickname, birth_year, gender, sido, riding_year, tel, tel_open, img_name)
@@ -123,6 +116,12 @@
         )
     </select>
 
+    <select id="idCheck" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM user WHERE id = #{id}
+    </select>
 
+    <select id="nicknameCheck" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM user WHERE nickname = #{nickname}
+    </select>
 
 </mapper>

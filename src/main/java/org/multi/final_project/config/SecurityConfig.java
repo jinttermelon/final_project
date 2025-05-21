@@ -18,7 +18,7 @@ public class SecurityConfig {
 
         //1.로그인의 대상이 아닌 서블릿경로 또는 리소스,에러 등등의 경로들을 지정해준다.
         String[] whiteList = {
-                "/", "/home", "/user/insert", "/user/insertOK",
+                "/", "/home", "/user/insert", "/user/insertOK","/idCheck","nicknameCheck",
                 "/user/selectAll",
                 "/user/login_form", "/user/loginSuccess", "/user/loginFail",
                 "/user/findId","/user/findPw",
