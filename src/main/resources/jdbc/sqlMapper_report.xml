@@ -33,6 +33,10 @@
         SELECT count(*) FROM report where nickname= #{nickname}
     </select>
 
+    <update id="updateStatus">
+        update report set state=#{state} where num=#{num}
+    </update>
+
     <select id="selectByReporter" resultType="org.multi.final_project.report.ReportVO">
         SELECT *
         FROM report

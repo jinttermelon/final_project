@@ -21,4 +21,6 @@ public interface ReportMapper {
     int getTotalByReporter(String nickname);
 
     List<ReportVO> reportAdminSelectAll(int startRow, int limit);
+
+    int updateStatus(ReportVO vo);
 }

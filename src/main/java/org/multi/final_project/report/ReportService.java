@@ -34,4 +34,8 @@ public class ReportService {
     public List<ReportVO> reportAdminSelectAll(int startRow, int limit) {
         return mapper.reportAdminSelectAll(startRow,limit);
     }
+
+    public int updateStatus(ReportVO vo) {
+        return mapper.updateStatus(vo);
+    }
 }
