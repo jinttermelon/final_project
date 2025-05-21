@@ -30,7 +30,7 @@ public class FriendController {
     @GetMapping("/insert")
     public String insert(FriendVO vo) {
         return "friend/insert";
-    }//크루 목록이 나와야함
+    }
 
 
     @PostMapping("/insertOK")
@@ -75,8 +75,17 @@ public class FriendController {
         return "friend/rejectedFriend";
     }
 
+    @GetMapping("/delete")
+    public String delete(FriendVO vo) {
+        return "friend/delete";
+    }
+
+
     @GetMapping("/deleteOK")
     public String deleteOK(FriendVO vo) {
+        log.info("deleteOK");
+        log.info(vo.toString());
+        service.deleteOK(vo);
         return "redirect:selectAll";
     }
 

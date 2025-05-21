@@ -35,7 +35,7 @@
             <tr th:each="friend : ${friendList}">
                 <td th:text="${friend.fnickname}">친구 닉네임</td>
                 <td>
-                    <form th:action="@{/friend/deleteOK}" method="get">
+                    <form th:action="@{/friend/delete}" method="get">
                         <input type="hidden" name="fnum" th:value="${friend.fnum}" />
                         <button type="submit" class="btn btn-danger btn-sm">삭제</button>
                     </form>

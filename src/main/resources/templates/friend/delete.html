@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>친구 삭제 확인</title>
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    >
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .delete-box {
+            max-width: 500px;
+            margin: 150px auto;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .btn-space {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="delete-box">
+    <h4 class="mb-4">친구를 정말 해체하시겠습니까?</h4>
+
+    <form th:action="@{/friend/deleteOK}" method="get">
+        <!-- 삭제할 크루정보를 hidden으로 넘겨줘야 함 -->
+        <input type="hidden" name="fnum" th:value="${param.fnum}" />
+
+        <button type="submit" class="btn btn-danger btn-space">삭제</button>
+        <a th:href="@{/friend/selectAll}" class="btn btn-secondary btn-space">취소</a>
+    </form>
+</div>
+
+</body>
+</html>
