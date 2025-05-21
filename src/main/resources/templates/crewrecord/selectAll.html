@@ -26,7 +26,7 @@
 
         <h1>[[${param.name}]] 활동 일지</h1>
         <form action="#" method="post" th:action="@{/crewrecord/selectAll}">
-            <a th:href="@{/crewrecord/insert}" class="btn btn-danger">활동일지 등록</a>
+            <a th:href="@{/crewrecord/insert(cnum=${param.cnum},name=${param.name})}" class="btn btn-danger">활동일지 등록</a>
             <table id="customers" class="table table-bordered table-striped table-hover mt-3">
                 <thead>
                     <tr>

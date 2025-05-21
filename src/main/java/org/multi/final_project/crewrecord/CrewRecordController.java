@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.beans.Encoder;
+import java.net.URLEncoder;
 import java.util.List;
 
 @Slf4j
@@ -24,9 +26,16 @@ public class CrewRecordController {
     public String insert(){
         return "crewrecord/insert";
     }
+
     @PostMapping("/insertOK")
-    public String insertOK(CrewRecordVO vo){
-        return "redirect:/selectAll";
+    public String insertOK(CrewRecordVO vo,String name){
+        log.info("crewrecord/insertOK");
+        log.info(vo.toString());
+        log.info("crew name : "+name);
+
+
+        service.insertOK(vo);
+        return "redirect:selectAll?cnum="+vo.getCnum()+"&name="+ URLEncoder.encode(name);
     }
     @GetMapping("/update")
     public String update(CrewRecordVO vo, Model model){

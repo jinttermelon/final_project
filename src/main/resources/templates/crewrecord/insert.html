@@ -31,6 +31,8 @@
 <body th:replace="~{layout::layout}">
 <div th:fragment="content">
     <form method="post" th:action="@{/crewrecord/insertOK}" enctype="multipart/form-data" class="form-container">
+        <input type="hidden" name="cnum" th:value="${param.cnum}">
+        <input type="hidden" name="name" th:value="${param.name}">
         <div class="main-content">
             <div class="form-group">
                 <h1>크루 활동일지</h1>
