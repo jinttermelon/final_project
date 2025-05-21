@@ -196,7 +196,9 @@ public class EventController {
     }
 
     @GetMapping("/deleteOK")
-    public String deleteOK() {
+    public String deleteOK(EventVO vo) {
+        log.info(vo.toString());
+        service.deleteOK(vo);
         return "redirect:eventManagement";
     }
 

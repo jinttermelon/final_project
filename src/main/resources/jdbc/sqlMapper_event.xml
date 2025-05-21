@@ -34,7 +34,7 @@
     </update>
 
     <delete id="deleteOK">
-        DELETE FROM evnet
+        DELETE FROM event
         WHERE num = #{num}
     </delete>
 

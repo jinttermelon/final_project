@@ -34,7 +34,7 @@
 
     <form th:action="@{/event/deleteOK}" method="get">
         <!-- 삭제할 이벤트정보를 hidden으로 넘겨줘야 함 -->
-        <input type="hidden" name="cnum" th:value="${cnum}" />
+        <input type="hidden" name="num" th:value="${param.num}" />
 
         <button type="submit" class="btn btn-danger btn-space">삭제</button>
         <a th:href="@{/event/eventManagement}" class="btn btn-secondary btn-space">취소</a>

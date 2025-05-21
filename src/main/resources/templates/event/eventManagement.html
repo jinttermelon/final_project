@@ -62,8 +62,9 @@
                     <td>[[${vo.partici_num}]]</td>
                     <td>[[${vo.event_type}]]</td>
                     <td>[[${vo.img_name}]]</td>
-                    <td><button onclick="location.href='/event/delete'">
-                        삭제
+                    <td><a th:href="@{/event/delete(num=${vo.num})}">
+                        <button type="button">삭제</button>
+                    </a>
                     </button></td>
 
                 </tr>
