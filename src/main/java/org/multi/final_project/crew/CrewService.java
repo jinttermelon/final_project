@@ -61,4 +61,7 @@ public class CrewService {
         return (int) Math.ceil((double) totalCount / limit);
     }
 
+    public int getLastCnum() {
+        return mapper.getLastCnum();
+    }
 }

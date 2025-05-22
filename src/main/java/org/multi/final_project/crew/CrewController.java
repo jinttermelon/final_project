@@ -3,6 +3,8 @@ package org.multi.final_project.crew;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
+import org.multi.final_project.crewjoin.CrewJoinService;
+import org.multi.final_project.crewjoin.CrewJoinVO;
 import org.multi.final_project.user.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +30,9 @@ public class CrewController {
 
     @Autowired
     private CrewService service;
+
+    @Autowired
+    private CrewJoinService joinService;
 
     @Value("${file.dir}")
     private String realPath;
@@ -74,6 +79,15 @@ public class CrewController {
 
         service.createOK(vo);
 
+        int cnum = service.getLastCnum();
+        log.info("cnum : {}",cnum);
+
+        CrewJoinVO joinVO = new CrewJoinVO();
+        joinVO.setCnum(cnum);
+        joinVO.setNickname(vo.getLeader_nickname());
+        joinVO.setAnswer("");
+        joinVO.setApprove("승인");
+        joinService.joinOK(joinVO);
         return "redirect:selectAll";
     }
     @GetMapping("/update")

@@ -89,4 +89,10 @@
             </choose>
         </where>
     </select>
+
+
+    <select id="getLastCnum" >
+        SELECT Max(cnum) FROM crew
+    </select>
+
 </mapper>
