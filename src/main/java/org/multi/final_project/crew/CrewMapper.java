@@ -42,4 +42,6 @@ public interface CrewMapper {
         public int searchCount(@Param("searchKey") String searchKey, @Param("searchWord") String searchWord);
 
         public int getLastCnum();
+
+        int updateGrade(CrewVO vo);
 }

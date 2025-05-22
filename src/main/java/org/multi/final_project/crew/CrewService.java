@@ -1,5 +1,6 @@
 package org.multi.final_project.crew;
 
+import org.multi.final_project.report.ReportVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,5 +64,9 @@ public class CrewService {
 
     public int getLastCnum() {
         return mapper.getLastCnum();
+    }
+
+    public int updateGrade(CrewVO vo) {
+        return mapper.updateGrade(vo);
     }
 }

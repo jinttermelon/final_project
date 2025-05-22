@@ -95,4 +95,9 @@
         SELECT Max(cnum) FROM crew
     </select>
 
+    <update id="updateGrade">
+        update crew set grade=#{grade} where cnum=#{cnum}
+    </update>
+
+
 </mapper>

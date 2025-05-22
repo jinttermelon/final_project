@@ -5,6 +5,7 @@
   <title>전체 크루 목록</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <style>
     body {
       background-color: #f8f9fa;
@@ -90,6 +91,25 @@
       text-decoration: underline;
     }
   </style>
+  <script>
+    function updateGrade(cnum, grade) {
+      console.log(cnum, grade);
+      $.ajax({
+        url: '/crewlistAdmin/updateGrade',
+        type: 'GET',
+        contentType: 'application/json',
+        data: {cnum: cnum,
+          grade: grade},
+        success: function(response) {
+          alert('상태가 업데이트되었습니다.');
+          location.reload(); // 필요시 새로고침
+        },
+        error: function(xhr) {
+          alert('오류가 발생했습니다.');
+        }
+      });
+    }
+  </script>
 </head>
 
 <body>
@@ -142,7 +162,13 @@
         <td>[[${vo.sche}]]</td>
         <td>[[${vo.score}]]</td>
         <td>[[${vo.leader_nickname}]]</td>
-        <td>[[${vo.grade}]]</td>
+        <td>
+          <select th:onchange="|updateGrade(${vo.cnum}, this.value)|">
+            <option value="골드" th:selected="${vo.grade == '골드'}">골드</option>
+            <option value="실버" th:selected="${vo.grade == '실버'}">실버</option>
+            <option value="브론즈" th:selected="${vo.grade == '브론즈'}">브론즈</option>
+          </select>
+        </td>
         <td>[[${vo.sche_check}]]</td>
         <td><button><a th:href="@{../crew/delete(cnum=${vo.cnum})}">해체</a></button></td>
       </tr>
