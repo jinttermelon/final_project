@@ -10,10 +10,6 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/user/insert}">회원가입</a>
-                </li>
-
-                <li class="nav-item">
                     <a class="nav-link" th:href="@{/crew/selectAll(cpage=1,limit=10)}">크루목록</a>
                 </li>
 
@@ -46,12 +42,19 @@
                     </th:block>
                 </li>
                 <li class="nav-item">
+                    <th:block sec:authorize="isAnonymous()">
+                        <a class="nav-link" th:href="@{/user/insert}">회원가입</a>
+                    </th:block>
+                </li>
+                <li class="nav-item">
                     <th:block sec:authorize="isAuthenticated()">
                         <a class="nav-link" th:href="@{/user/mypage(nickname=${session.nickname})}">마이페이지[[${session.nickname}]]</a>
                     </th:block>
                 </li>
                 <li class="nav-iten">
+                    <th:block sec:authorize="isAuthenticated()">
                     <a class="nav-link" th:href="@{/friend/selectAll}">친구</a>
+                    </th:block>
                 </li>
             </ul>
 
